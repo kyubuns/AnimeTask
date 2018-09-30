@@ -27,6 +27,11 @@ public class Development : MonoBehaviour
             TranslateTo.Text(text, "{0}pt")
         );
 
+        await Anime.Play(
+            Linear.Animation(0, 100, TimeSpan.FromSeconds(2f)),
+            TranslateTo.Action<float>(x => Debug.Log(x))
+        );
+
         Debug.Log("Move End");
     }
 }

@@ -18,6 +18,7 @@
           <e p="IAnimator.cs" t="Include" />
           <e p="ITranslator.cs" t="Include" />
           <e p="Translator" t="Include">
+            <e p="ActionTranslator.cs" t="Include" />
             <e p="TransformTranslator.cs" t="Include" />
             <e p="UGuiTranslator.cs" t="Include" />
           </e>
