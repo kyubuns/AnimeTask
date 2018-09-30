@@ -27,7 +27,7 @@ namespace AnimeTask.Easing
         public (Vector3 value, bool finished) Update()
         {
             var elapsed = Time.time - startTime;
-            var value = Vector3.Lerp(start, end, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
+            var value = Vector3.LerpUnclamped(start, end, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
             return (value, elapsed > duration);
         }
     }
@@ -56,7 +56,7 @@ namespace AnimeTask.Easing
         public (Vector2 value, bool finished) Update()
         {
             var elapsed = Time.time - startTime;
-            var value = Vector2.Lerp(start, end, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
+            var value = Vector2.LerpUnclamped(start, end, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
             return (value, elapsed > duration);
         }
     }
@@ -85,7 +85,7 @@ namespace AnimeTask.Easing
         public (float value, bool finished) Update()
         {
             var elapsed = Time.time - startTime;
-            var value = Mathf.Lerp(start, end, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
+            var value = Mathf.LerpUnclamped(start, end, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
             return (value, elapsed > duration);
         }
     }

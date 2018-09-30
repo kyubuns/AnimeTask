@@ -11,9 +11,9 @@
           <e p="AnimeRunner.cs" t="Include" />
           <e p="AnimeTask.asmdef" t="Include" />
           <e p="Easing" t="Include">
+            <e p="Easing.cs" t="Include" />
             <e p="EasingAnimator.cs" t="Include" />
             <e p="IEasing.cs" t="Include" />
-            <e p="Linear.cs" t="Include" />
           </e>
           <e p="IAnimator.cs" t="Include" />
           <e p="ITranslator.cs" t="Include" />

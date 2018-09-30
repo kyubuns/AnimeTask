@@ -13,12 +13,12 @@ public class Development : MonoBehaviour
         Debug.Log("Move Start");
 
         await Anime.Play(
-            Linear.Animation(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), TimeSpan.FromSeconds(2f)),
+            OutBack.Animation(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), TimeSpan.FromSeconds(2f)),
             TranslateTo.LocalPosition(transform)
         );
 
         await Anime.Play(
-            Linear.Animation(new Vector3(5f, 0f, 0f), new Vector3(5f, 3f, 0f), TimeSpan.FromSeconds(2f)),
+            OutExpo.Animation(new Vector3(5f, 0f, 0f), new Vector3(5f, 3f, 0f), TimeSpan.FromSeconds(2f)),
             TranslateTo.LocalPosition(transform)
         );
 
