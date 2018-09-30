@@ -2,4 +2,3 @@
 
 Created by kyubuns
 
-インターフェースだけ考えてみただけ。
