@@ -13,17 +13,17 @@ public class Development : MonoBehaviour
         Debug.Log("Move Start");
 
         await Anime.Play(
-            Uniform.Animation(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), TimeSpan.FromSeconds(2f)),
+            Linear.Animation(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), TimeSpan.FromSeconds(2f)),
             TranslateTo.LocalPosition(transform)
         );
 
         await Anime.Play(
-            Uniform.Animation(new Vector3(5f, 0f, 0f), new Vector3(5f, 3f, 0f), TimeSpan.FromSeconds(2f)),
+            Linear.Animation(new Vector3(5f, 0f, 0f), new Vector3(5f, 3f, 0f), TimeSpan.FromSeconds(2f)),
             TranslateTo.LocalPosition(transform)
         );
 
         await Anime.Play(
-            Uniform.Animation(0, 100, TimeSpan.FromSeconds(2f)),
+            Linear.Animation(0, 100, TimeSpan.FromSeconds(2f)),
             TranslateTo.Text(text, "{0}pt")
         );
 

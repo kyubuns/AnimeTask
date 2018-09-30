@@ -7,11 +7,20 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="AnimeTask" t="Include">
-          <e p="Animator.cs" t="Include" />
           <e p="Anime.cs" t="Include" />
           <e p="AnimeRunner.cs" t="Include" />
           <e p="AnimeTask.asmdef" t="Include" />
-          <e p="Translator.cs" t="Include" />
+          <e p="Easing" t="Include">
+            <e p="EasingAnimator.cs" t="Include" />
+            <e p="IEasing.cs" t="Include" />
+            <e p="Linear.cs" t="Include" />
+          </e>
+          <e p="IAnimator.cs" t="Include" />
+          <e p="ITranslator.cs" t="Include" />
+          <e p="Translator" t="Include">
+            <e p="TransformTranslator.cs" t="Include" />
+            <e p="UGuiTranslator.cs" t="Include" />
+          </e>
         </e>
         <e p="Development" t="Include">
           <e p="Development.cs" t="Include" />

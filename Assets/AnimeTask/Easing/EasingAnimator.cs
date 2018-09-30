@@ -1,16 +1,9 @@
 using System;
 using UnityEngine;
-using AnimeTask.Easing;
 
-namespace AnimeTask
+namespace AnimeTask.Easing
 {
-    public interface IAnimator<T>
-    {
-        void Start();
-        (T value, bool finished) Update();
-    }
-
-    public class Vector3Easing : IAnimator<Vector3>
+    public class Vector3EasingAnimator : IAnimator<Vector3>
     {
         private readonly IEasing easing;
         private readonly Vector3 start;
@@ -18,7 +11,7 @@ namespace AnimeTask
         private readonly float duration;
         private float startTime;
 
-        public Vector3Easing(IEasing easing, Vector3 start, Vector3 end, TimeSpan duration)
+        public Vector3EasingAnimator(IEasing easing, Vector3 start, Vector3 end, TimeSpan duration)
         {
             this.easing = easing;
             this.start = start;
@@ -39,7 +32,7 @@ namespace AnimeTask
         }
     }
 
-    public class Vector2Easing : IAnimator<Vector2>
+    public class Vector2EasingAnimator : IAnimator<Vector2>
     {
         private readonly IEasing easing;
         private readonly Vector2 start;
@@ -47,7 +40,7 @@ namespace AnimeTask
         private readonly float duration;
         private float startTime;
 
-        public Vector2Easing(IEasing easing, Vector2 start, Vector2 end, TimeSpan duration)
+        public Vector2EasingAnimator(IEasing easing, Vector2 start, Vector2 end, TimeSpan duration)
         {
             this.easing = easing;
             this.start = start;
@@ -68,7 +61,7 @@ namespace AnimeTask
         }
     }
 
-    public class Vector1Easing : IAnimator<float>
+    public class Vector1EasingAnimator : IAnimator<float>
     {
         private readonly IEasing easing;
         private readonly float start;
@@ -76,7 +69,7 @@ namespace AnimeTask
         private readonly float duration;
         private float startTime;
 
-        public Vector1Easing(IEasing easing, float start, float end, TimeSpan duration)
+        public Vector1EasingAnimator(IEasing easing, float start, float end, TimeSpan duration)
         {
             this.easing = easing;
             this.start = start;
@@ -95,22 +88,5 @@ namespace AnimeTask
             var value = Mathf.Lerp(start, end, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
             return (value, elapsed > duration);
         }
-    }
-}
-
-namespace AnimeTask.Easing
-{
-    public interface IEasing
-    {
-        float Function(float v);
-    }
-
-    public class Uniform : IEasing
-    {
-        public float Function(float v) => v;
-
-        public static Vector3Easing Animation(Vector3 start, Vector3 end, TimeSpan duration) => new Vector3Easing(new Uniform(), start, end, duration);
-        public static Vector2Easing Animation(Vector2 start, Vector2 end, TimeSpan duration) => new Vector2Easing(new Uniform(), start, end, duration);
-        public static Vector1Easing Animation(float start, float end, TimeSpan duration) => new Vector1Easing(new Uniform(), start, end, duration);
     }
 }
