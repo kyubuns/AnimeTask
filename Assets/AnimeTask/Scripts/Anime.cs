@@ -23,6 +23,19 @@ namespace AnimeTask
             await awaitable;
         }
 
+        public static async Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator)
+        {
+            if (animeRunner == null)
+            {
+                var go = new GameObject("AnimeRunner");
+                animeRunner = go.AddComponent<AnimeRunner>();
+            }
+            var awaitable = new AwaitableEnumerator();
+            animator.Start(translator.Current);
+            animeRunner.StartCoroutine(Coroutine(new DummyAnimator<T>(animator), translator, awaitable));
+            await awaitable;
+        }
+
         private static IEnumerator Coroutine<T>(IAnimator<T> animator, ITranslator<T> translator, AwaitableEnumerator awaitable)
         {
             while (true)
@@ -34,30 +47,24 @@ namespace AnimeTask
             }
             awaitable.Finished();
         }
+    }
 
-        public static async Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator)
+    public class DummyAnimator<T> : IAnimator<T>
+    {
+        private readonly IAnimatorWithStartValue<T> animator;
+
+        public DummyAnimator(IAnimatorWithStartValue<T> animator)
         {
-            if (animeRunner == null)
-            {
-                var go = new GameObject("AnimeRunner");
-                animeRunner = go.AddComponent<AnimeRunner>();
-            }
-            var awaitable = new AwaitableEnumerator();
-            animator.Start(translator.Current);
-            animeRunner.StartCoroutine(Coroutine(animator, translator, awaitable));
-            await awaitable;
+            this.animator = animator;
         }
 
-        private static IEnumerator Coroutine<T>(IAnimatorWithStartValue<T> animator, ITranslator<T> translator, AwaitableEnumerator awaitable)
+        public void Start()
         {
-            while (true)
-            {
-                var t = animator.Update();
-                translator.Update(t.Item1);
-                if (t.Item2) break;
-                yield return null;
-            }
-            awaitable.Finished();
+        }
+
+        public Tuple<T, bool> Update()
+        {
+            return animator.Update();
         }
     }
 
