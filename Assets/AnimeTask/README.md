@@ -1,6 +1,6 @@
 # AnimeTask - Task Animation Library for Unity
 
-- Version 0.9.0
+- Version 0.9.1
 
 - Created by kyubuns
 
