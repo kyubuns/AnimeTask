@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace AnimeTask
@@ -56,11 +57,11 @@ namespace AnimeTask
             startTime = Time.time;
         }
 
-        public (Vector3 value, bool finished) Update()
+        public Tuple<Vector3, bool> Update()
         {
             var elapsed = Time.time - startTime;
             var value = Vector3.LerpUnclamped(start, end, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
-            return (value, elapsed > duration);
+            return Tuple.Create(value, elapsed > duration);
         }
     }
 
@@ -85,11 +86,11 @@ namespace AnimeTask
             startTime = Time.time;
         }
 
-        public (Vector3 value, bool finished) Update()
+        public Tuple<Vector3, bool> Update()
         {
             var elapsed = Time.time - startTime;
             var value = Vector3.LerpUnclamped(start, to, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
-            return (value, elapsed > duration);
+            return Tuple.Create(value, elapsed > duration);
         }
     }
 
@@ -114,11 +115,11 @@ namespace AnimeTask
             startTime = Time.time;
         }
 
-        public (Vector2 value, bool finished) Update()
+        public Tuple<Vector2, bool> Update()
         {
             var elapsed = Time.time - startTime;
             var value = Vector2.LerpUnclamped(start, end, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
-            return (value, elapsed > duration);
+            return Tuple.Create(value, elapsed > duration);
         }
     }
 
@@ -143,11 +144,11 @@ namespace AnimeTask
             startTime = Time.time;
         }
 
-        public (Vector2 value, bool finished) Update()
+        public Tuple<Vector2, bool> Update()
         {
             var elapsed = Time.time - startTime;
             var value = Vector2.LerpUnclamped(start, to, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
-            return (value, elapsed > duration);
+            return Tuple.Create(value, elapsed > duration);
         }
     }
 
@@ -172,11 +173,11 @@ namespace AnimeTask
             startTime = Time.time;
         }
 
-        public (float value, bool finished) Update()
+        public Tuple<float, bool> Update()
         {
             var elapsed = Time.time - startTime;
             var value = Mathf.LerpUnclamped(start, end, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
-            return (value, elapsed > duration);
+            return Tuple.Create(value, elapsed > duration);
         }
     }
 
@@ -201,11 +202,11 @@ namespace AnimeTask
             startTime = Time.time;
         }
 
-        public (float value, bool finished) Update()
+        public Tuple<float, bool> Update()
         {
             var elapsed = Time.time - startTime;
             var value = Mathf.LerpUnclamped(start, to, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
-            return (value, elapsed > duration);
+            return Tuple.Create(value, elapsed > duration);
         }
     }
 }

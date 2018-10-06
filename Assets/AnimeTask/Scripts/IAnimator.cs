@@ -1,14 +1,16 @@
+using System;
+
 namespace AnimeTask
 {
     public interface IAnimator<T>
     {
         void Start();
-        (T value, bool finished) Update();
+        Tuple<T, bool> Update();
     }
 
     public interface IAnimatorWithStartValue<T>
     {
         void Start(T startValue);
-        (T value, bool finished) Update();
+        Tuple<T, bool> Update();
     }
 }

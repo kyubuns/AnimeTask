@@ -27,9 +27,9 @@ namespace AnimeTask
         {
             while (true)
             {
-                var (value, finished) = animator.Update();
-                translator.Update(value);
-                if (finished) break;
+                var t = animator.Update();
+                translator.Update(t.Item1);
+                if (t.Item2) break;
                 yield return null;
             }
             awaitable.Finished();
@@ -52,9 +52,9 @@ namespace AnimeTask
         {
             while (true)
             {
-                var (value, finished) = animator.Update();
-                translator.Update(value);
-                if (finished) break;
+                var t = animator.Update();
+                translator.Update(t.Item1);
+                if (t.Item2) break;
                 yield return null;
             }
             awaitable.Finished();
