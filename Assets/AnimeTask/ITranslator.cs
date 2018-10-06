@@ -5,7 +5,7 @@ namespace AnimeTask
         void Update(T value);
     }
 
-    public interface ITranslatorWithCurrentValue<T> : ITranslator<T>
+    public interface IValueTranslator<T> : ITranslator<T>
     {
         T Current { get; }
     }

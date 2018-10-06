@@ -35,7 +35,7 @@ namespace AnimeTask
             awaitable.Finished();
         }
 
-        public static async Task PlayTo<T>(IAnimatorWithStartValue<T> animator, ITranslatorWithCurrentValue<T> translator)
+        public static async Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator)
         {
             if (animeRunner == null)
             {
