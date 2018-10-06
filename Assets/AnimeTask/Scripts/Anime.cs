@@ -16,26 +16,41 @@ namespace AnimeTask
             set => defaultScheduler = value;
         }
 
-        public static async Task Play<T>(IAnimator<T> animator, ITranslator<T> translator)
+        public static Task Play<T>(IAnimator<T> animator, ITranslator<T> translator)
+        {
+            return Play(animator, translator, DefaultScheduler);
+        }
+
+        public static async Task Play<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler)
         {
             var awaitable = new AwaitableEnumerator();
             animator.Start();
-            StartCoroutine(PlayCoroutine(animator, translator, awaitable));
+            StartCoroutine(PlayCoroutine(animator, translator, awaitable, scheduler));
             await awaitable;
         }
 
-        public static async Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator)
+        public static Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator)
+        {
+            return PlayTo(animator, translator, DefaultScheduler);
+        }
+
+        public static async Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator, IScheduler scheduler)
         {
             var awaitable = new AwaitableEnumerator();
             animator.Start(translator.Current);
-            StartCoroutine(PlayCoroutine(new DummyAnimator<T>(animator), translator, awaitable));
+            StartCoroutine(PlayCoroutine(new DummyAnimator<T>(animator), translator, awaitable, scheduler));
             await awaitable;
         }
 
-        public static async Task Delay(float duration)
+        public static Task Delay(float duration)
+        {
+            return Delay(duration, DefaultScheduler);
+        }
+
+        public static async Task Delay(float duration, IScheduler scheduler)
         {
             var awaitable = new AwaitableEnumerator();
-            StartCoroutine(DelayCoroutine(duration, awaitable));
+            StartCoroutine(DelayCoroutine(duration, awaitable, scheduler));
             await awaitable;
         }
 
@@ -49,11 +64,12 @@ namespace AnimeTask
             animeRunner.StartCoroutine(coroutine);
         }
 
-        private static IEnumerator PlayCoroutine<T>(IAnimator<T> animator, ITranslator<T> translator, AwaitableEnumerator awaitable)
+        private static IEnumerator PlayCoroutine<T>(IAnimator<T> animator, ITranslator<T> translator, AwaitableEnumerator awaitable, IScheduler scheduler)
         {
+            var startTime = scheduler.Now;
             while (true)
             {
-                var t = animator.Update();
+                var t = animator.Update(scheduler.Now - startTime);
                 translator.Update(t.Item1);
                 if (t.Item2) break;
                 yield return null;
@@ -61,9 +77,10 @@ namespace AnimeTask
             awaitable.Finished();
         }
 
-        private static IEnumerator DelayCoroutine(float duration, AwaitableEnumerator awaitable)
+        private static IEnumerator DelayCoroutine(float duration, AwaitableEnumerator awaitable, IScheduler scheduler)
         {
-            yield return new WaitForSeconds(duration);
+            var startTime = scheduler.Now;
+            yield return new WaitWhile(() => scheduler.Now - startTime < duration);
             awaitable.Finished();
         }
     }
@@ -81,9 +98,9 @@ namespace AnimeTask
         {
         }
 
-        public Tuple<T, bool> Update()
+        public Tuple<T, bool> Update(float time)
         {
-            return animator.Update();
+            return animator.Update(time);
         }
     }
 

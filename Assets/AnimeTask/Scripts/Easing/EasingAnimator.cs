@@ -42,7 +42,6 @@ namespace AnimeTask
         private readonly Vector3 start;
         private readonly Vector3 end;
         private readonly float duration;
-        private float startTime;
 
         public Vector3EasingAnimator(IEasing easing, Vector3 start, Vector3 end, float duration)
         {
@@ -54,14 +53,12 @@ namespace AnimeTask
 
         public void Start()
         {
-            startTime = Time.time;
         }
 
-        public Tuple<Vector3, bool> Update()
+        public Tuple<Vector3, bool> Update(float time)
         {
-            var elapsed = Time.time - startTime;
-            var value = Vector3.LerpUnclamped(start, end, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
-            return Tuple.Create(value, elapsed > duration);
+            var value = Vector3.LerpUnclamped(start, end, easing.Function(Mathf.Min(time / duration, 1.0f)));
+            return Tuple.Create(value, time > duration);
         }
     }
 
@@ -71,7 +68,6 @@ namespace AnimeTask
         private readonly Vector3 to;
         private readonly float duration;
         private Vector3 start;
-        private float startTime;
 
         public Vector3EasingAnimatorWithStartValue(IEasing easing, Vector3 to, float duration)
         {
@@ -83,14 +79,12 @@ namespace AnimeTask
         public void Start(Vector3 startValue)
         {
             start = startValue;
-            startTime = Time.time;
         }
 
-        public Tuple<Vector3, bool> Update()
+        public Tuple<Vector3, bool> Update(float time)
         {
-            var elapsed = Time.time - startTime;
-            var value = Vector3.LerpUnclamped(start, to, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
-            return Tuple.Create(value, elapsed > duration);
+            var value = Vector3.LerpUnclamped(start, to, easing.Function(Mathf.Min(time / duration, 1.0f)));
+            return Tuple.Create(value, time > duration);
         }
     }
 
@@ -100,7 +94,6 @@ namespace AnimeTask
         private readonly Vector2 start;
         private readonly Vector2 end;
         private readonly float duration;
-        private float startTime;
 
         public Vector2EasingAnimator(IEasing easing, Vector2 start, Vector2 end, float duration)
         {
@@ -112,14 +105,12 @@ namespace AnimeTask
 
         public void Start()
         {
-            startTime = Time.time;
         }
 
-        public Tuple<Vector2, bool> Update()
+        public Tuple<Vector2, bool> Update(float time)
         {
-            var elapsed = Time.time - startTime;
-            var value = Vector2.LerpUnclamped(start, end, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
-            return Tuple.Create(value, elapsed > duration);
+            var value = Vector2.LerpUnclamped(start, end, easing.Function(Mathf.Min(time / duration, 1.0f)));
+            return Tuple.Create(value, time > duration);
         }
     }
 
@@ -129,7 +120,6 @@ namespace AnimeTask
         private readonly Vector2 to;
         private readonly float duration;
         private Vector2 start;
-        private float startTime;
 
         public Vector2EasingAnimatorWithStartValue(IEasing easing, Vector2 to, float duration)
         {
@@ -141,14 +131,12 @@ namespace AnimeTask
         public void Start(Vector2 startValue)
         {
             start = startValue;
-            startTime = Time.time;
         }
 
-        public Tuple<Vector2, bool> Update()
+        public Tuple<Vector2, bool> Update(float time)
         {
-            var elapsed = Time.time - startTime;
-            var value = Vector2.LerpUnclamped(start, to, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
-            return Tuple.Create(value, elapsed > duration);
+            var value = Vector2.LerpUnclamped(start, to, easing.Function(Mathf.Min(time / duration, 1.0f)));
+            return Tuple.Create(value, time > duration);
         }
     }
 
@@ -158,7 +146,6 @@ namespace AnimeTask
         private readonly float start;
         private readonly float end;
         private readonly float duration;
-        private float startTime;
 
         public Vector1EasingAnimator(IEasing easing, float start, float end, float duration)
         {
@@ -170,14 +157,12 @@ namespace AnimeTask
 
         public void Start()
         {
-            startTime = Time.time;
         }
 
-        public Tuple<float, bool> Update()
+        public Tuple<float, bool> Update(float time)
         {
-            var elapsed = Time.time - startTime;
-            var value = Mathf.LerpUnclamped(start, end, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
-            return Tuple.Create(value, elapsed > duration);
+            var value = Mathf.LerpUnclamped(start, end, easing.Function(Mathf.Min(time / duration, 1.0f)));
+            return Tuple.Create(value, time > duration);
         }
     }
 
@@ -187,7 +172,6 @@ namespace AnimeTask
         private readonly float to;
         private readonly float duration;
         private float start;
-        private float startTime;
 
         public Vector1EasingAnimatorWithStartValue(IEasing easing, float to, float duration)
         {
@@ -199,14 +183,12 @@ namespace AnimeTask
         public void Start(float startValue)
         {
             start = startValue;
-            startTime = Time.time;
         }
 
-        public Tuple<float, bool> Update()
+        public Tuple<float, bool> Update(float time)
         {
-            var elapsed = Time.time - startTime;
-            var value = Mathf.LerpUnclamped(start, to, easing.Function(Mathf.Min(elapsed / duration, 1.0f)));
-            return Tuple.Create(value, elapsed > duration);
+            var value = Mathf.LerpUnclamped(start, to, easing.Function(Mathf.Min(time / duration, 1.0f)));
+            return Tuple.Create(value, time > duration);
         }
     }
 }
