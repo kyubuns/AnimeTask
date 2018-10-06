@@ -2,9 +2,12 @@
 
 Created by kyubuns
 
-Download [UnityPackage](https://github.com/kyubuns/AnimeTask/releases).
-
 ![image](https://user-images.githubusercontent.com/961165/46568998-56470e80-c989-11e8-8798-c168a1c6b494.gif)
+
+## Instructions
+
+- Import [UnityPackage](https://github.com/kyubuns/AnimeTask/releases)
+- Requires Unity2017.1 or later with .net4.6
 
 ## Sample
 
