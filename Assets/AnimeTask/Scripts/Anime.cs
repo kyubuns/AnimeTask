@@ -12,31 +12,38 @@ namespace AnimeTask
 
         public static async Task Play<T>(IAnimator<T> animator, ITranslator<T> translator)
         {
-            if (animeRunner == null)
-            {
-                var go = new GameObject("AnimeRunner");
-                animeRunner = go.AddComponent<AnimeRunner>();
-            }
             var awaitable = new AwaitableEnumerator();
             animator.Start();
-            animeRunner.StartCoroutine(Coroutine(animator, translator, awaitable));
+            StartCoroutine(PlayCoroutine(animator, translator, awaitable));
             await awaitable;
         }
 
         public static async Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator)
+        {
+            var awaitable = new AwaitableEnumerator();
+            animator.Start(translator.Current);
+            StartCoroutine(PlayCoroutine(new DummyAnimator<T>(animator), translator, awaitable));
+            await awaitable;
+        }
+
+        public static async Task Delay(float duration)
+        {
+            var awaitable = new AwaitableEnumerator();
+            StartCoroutine(DelayCoroutine(duration, awaitable));
+            await awaitable;
+        }
+
+        private static void StartCoroutine(IEnumerator coroutine)
         {
             if (animeRunner == null)
             {
                 var go = new GameObject("AnimeRunner");
                 animeRunner = go.AddComponent<AnimeRunner>();
             }
-            var awaitable = new AwaitableEnumerator();
-            animator.Start(translator.Current);
-            animeRunner.StartCoroutine(Coroutine(new DummyAnimator<T>(animator), translator, awaitable));
-            await awaitable;
+            animeRunner.StartCoroutine(coroutine);
         }
 
-        private static IEnumerator Coroutine<T>(IAnimator<T> animator, ITranslator<T> translator, AwaitableEnumerator awaitable)
+        private static IEnumerator PlayCoroutine<T>(IAnimator<T> animator, ITranslator<T> translator, AwaitableEnumerator awaitable)
         {
             while (true)
             {
@@ -45,6 +52,12 @@ namespace AnimeTask
                 if (t.Item2) break;
                 yield return null;
             }
+            awaitable.Finished();
+        }
+
+        private static IEnumerator DelayCoroutine(float duration, AwaitableEnumerator awaitable)
+        {
+            yield return new WaitForSeconds(duration);
             awaitable.Finished();
         }
     }

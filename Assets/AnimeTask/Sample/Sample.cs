@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using UnityEngine;
 
 namespace AnimeTask.Sample
@@ -10,12 +9,12 @@ namespace AnimeTask.Sample
         {
             using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
             {
-                await Task.Delay(TimeSpan.FromSeconds(1));
+                await Anime.Delay(1f);
                 await Anime.PlayTo(
                     Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), 2f),
                     TranslateTo.LocalPosition(cubes[0])
                 );
-                await Task.Delay(TimeSpan.FromSeconds(1));
+                await Anime.Delay(1f);
             }
         }
 
@@ -23,19 +22,19 @@ namespace AnimeTask.Sample
         {
             using (var cubes = new SampleCubes(new Vector3(0f, 3f, 0f), new Vector3(0f, 3f, 0f), new Vector3(0f, 3f, 0f)))
             {
-                await Task.Delay(TimeSpan.FromSeconds(1));
+                await Anime.Delay(1f);
                 await Task.WhenAll(
                     CircleAnimation(cubes[0], 0.0f),
                     CircleAnimation(cubes[1], 0.2f),
                     CircleAnimation(cubes[2], 0.4f)
                 );
-                await Task.Delay(TimeSpan.FromSeconds(1));
+                await Anime.Delay(1f);
             }
         }
 
         private async Task CircleAnimation(GameObject go, float delay)
         {
-            await Task.Delay(TimeSpan.FromSeconds(delay));
+            await Anime.Delay(delay);
             await Anime.Play(
                 Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f),
                 TranslateTo.Action<float>(x =>
