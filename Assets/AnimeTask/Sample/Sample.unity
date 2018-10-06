@@ -636,8 +636,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f58208be3020414085ce2784270fed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sample: {fileID: 395197740}
-  dropdown: {fileID: 1967098724}
+  Sample: {fileID: 395197740}
+  Dropdown: {fileID: 1967098724}
 --- !u!1 &835844139
 GameObject:
   m_ObjectHideFlags: 0

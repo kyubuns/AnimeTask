@@ -6,8 +6,9 @@ namespace AnimeTask.Sample
 {
     public class SampleMenu : MonoBehaviour
     {
-        [SerializeField] private Sample sample;
-        [SerializeField] private Dropdown dropdown;
+        public Sample Sample;
+        public Dropdown Dropdown;
+
         private readonly List<Dropdown.OptionData> list = new List<Dropdown.OptionData>
         {
             new Dropdown.OptionData("Sample01"),
@@ -15,9 +16,9 @@ namespace AnimeTask.Sample
 
         public void Start()
         {
-            dropdown.options = list;
-            dropdown.onValueChanged.AddListener(x => { sample.Invoke(list[x].text, 0.0f); });
-            sample.Invoke(list[0].text, 0.0f);
+            Dropdown.options = list;
+            Dropdown.onValueChanged.AddListener(x => { Sample.Invoke(list[x].text, 0.0f); });
+            Sample.Invoke(list[0].text, 0.0f);
         }
     }
 }
