@@ -12,13 +12,20 @@ namespace AnimeTask.Sample
         private readonly List<Dropdown.OptionData> list = new List<Dropdown.OptionData>
         {
             new Dropdown.OptionData("Sample01"),
+            new Dropdown.OptionData("Sample02"),
         };
 
         public void Start()
         {
             Dropdown.options = list;
-            Dropdown.onValueChanged.AddListener(x => { Sample.Invoke(list[x].text, 0.0f); });
-            Sample.Invoke(list[0].text, 0.0f);
+            Dropdown.onValueChanged.AddListener(Play);
+            Play(0);
+        }
+
+        private void Play(int index)
+        {
+            Debug.Log($"Play {list[index].text}");
+            Sample.Invoke(list[index].text, 0.0f);
         }
     }
 }
