@@ -1,4 +1,4 @@
-namespace AnimeTask.Easing
+namespace AnimeTask
 {
     public interface IEasing
     {

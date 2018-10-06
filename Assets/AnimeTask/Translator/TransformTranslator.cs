@@ -18,8 +18,9 @@ namespace AnimeTask
         public static LocalScaleZTranslator LocalScaleZ(Transform transform) => new LocalScaleZTranslator(transform);
     }
 
-    public class LocalPositionTranslator : ITranslator<Vector3>
+    public class LocalPositionTranslator : ITranslatorWithCurrentValue<Vector3>
     {
+        public Vector3 Current => transform.localPosition;
         private readonly Transform transform;
 
         public LocalPositionTranslator(Transform transform)
@@ -33,8 +34,9 @@ namespace AnimeTask
         }
     }
 
-    public class LocalPositionXTranslator : ITranslator<float>
+    public class LocalPositionXTranslator : ITranslatorWithCurrentValue<float>
     {
+        public float Current => transform.localPosition.x;
         private readonly Transform transform;
 
         public LocalPositionXTranslator(Transform transform)
@@ -50,8 +52,9 @@ namespace AnimeTask
         }
     }
 
-    public class LocalPositionYTranslator : ITranslator<float>
+    public class LocalPositionYTranslator : ITranslatorWithCurrentValue<float>
     {
+        public float Current => transform.localPosition.y;
         private readonly Transform transform;
 
         public LocalPositionYTranslator(Transform transform)
@@ -67,8 +70,9 @@ namespace AnimeTask
         }
     }
 
-    public class LocalPositionZTranslator : ITranslator<float>
+    public class LocalPositionZTranslator : ITranslatorWithCurrentValue<float>
     {
+        public float Current => transform.localPosition.z;
         private readonly Transform transform;
 
         public LocalPositionZTranslator(Transform transform)
@@ -84,8 +88,9 @@ namespace AnimeTask
         }
     }
 
-    public class GlobalPositionTranslator : ITranslator<Vector3>
+    public class GlobalPositionTranslator : ITranslatorWithCurrentValue<Vector3>
     {
+        public Vector3 Current => transform.position;
         private readonly Transform transform;
 
         public GlobalPositionTranslator(Transform transform)
@@ -99,8 +104,9 @@ namespace AnimeTask
         }
     }
 
-    public class GlobalPositionXTranslator : ITranslator<float>
+    public class GlobalPositionXTranslator : ITranslatorWithCurrentValue<float>
     {
+        public float Current => transform.position.x;
         private readonly Transform transform;
 
         public GlobalPositionXTranslator(Transform transform)
@@ -116,8 +122,9 @@ namespace AnimeTask
         }
     }
 
-    public class GlobalPositionYTranslator : ITranslator<float>
+    public class GlobalPositionYTranslator : ITranslatorWithCurrentValue<float>
     {
+        public float Current => transform.position.y;
         private readonly Transform transform;
 
         public GlobalPositionYTranslator(Transform transform)
@@ -133,8 +140,9 @@ namespace AnimeTask
         }
     }
 
-    public class GlobalPositionZTranslator : ITranslator<float>
+    public class GlobalPositionZTranslator : ITranslatorWithCurrentValue<float>
     {
+        public float Current => transform.position.z;
         private readonly Transform transform;
 
         public GlobalPositionZTranslator(Transform transform)
@@ -150,8 +158,9 @@ namespace AnimeTask
         }
     }
 
-    public class LocalScaleTranslator : ITranslator<Vector3>
+    public class LocalScaleTranslator : ITranslatorWithCurrentValue<Vector3>
     {
+        public Vector3 Current => transform.localScale;
         private readonly Transform transform;
 
         public LocalScaleTranslator(Transform transform)
@@ -165,8 +174,9 @@ namespace AnimeTask
         }
     }
 
-    public class LocalScaleXTranslator : ITranslator<float>
+    public class LocalScaleXTranslator : ITranslatorWithCurrentValue<float>
     {
+        public float Current => transform.localScale.x;
         private readonly Transform transform;
 
         public LocalScaleXTranslator(Transform transform)
@@ -182,8 +192,9 @@ namespace AnimeTask
         }
     }
 
-    public class LocalScaleYTranslator : ITranslator<float>
+    public class LocalScaleYTranslator : ITranslatorWithCurrentValue<float>
     {
+        public float Current => transform.localScale.y;
         private readonly Transform transform;
 
         public LocalScaleYTranslator(Transform transform)
@@ -199,8 +210,9 @@ namespace AnimeTask
         }
     }
 
-    public class LocalScaleZTranslator : ITranslator<float>
+    public class LocalScaleZTranslator : ITranslatorWithCurrentValue<float>
     {
+        public float Current => transform.localScale.z;
         private readonly Transform transform;
 
         public LocalScaleZTranslator(Transform transform)

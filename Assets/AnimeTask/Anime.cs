@@ -18,13 +18,38 @@ namespace AnimeTask
                 animeRunner = go.AddComponent<AnimeRunner>();
             }
             var awaitable = new AwaitableEnumerator();
+            animator.Start();
             animeRunner.StartCoroutine(Coroutine(animator, translator, awaitable));
             await awaitable;
         }
 
         private static IEnumerator Coroutine<T>(IAnimator<T> animator, ITranslator<T> translator, AwaitableEnumerator awaitable)
         {
-            animator.Start();
+            while (true)
+            {
+                var (value, finished) = animator.Update();
+                translator.Update(value);
+                if (finished) break;
+                yield return null;
+            }
+            awaitable.Finished();
+        }
+
+        public static async Task PlayTo<T>(IAnimatorWithStartValue<T> animator, ITranslatorWithCurrentValue<T> translator)
+        {
+            if (animeRunner == null)
+            {
+                var go = new GameObject("AnimeRunner");
+                animeRunner = go.AddComponent<AnimeRunner>();
+            }
+            var awaitable = new AwaitableEnumerator();
+            animator.Start(translator.Current);
+            animeRunner.StartCoroutine(Coroutine(animator, translator, awaitable));
+            await awaitable;
+        }
+
+        private static IEnumerator Coroutine<T>(IAnimatorWithStartValue<T> animator, ITranslator<T> translator, AwaitableEnumerator awaitable)
+        {
             while (true)
             {
                 var (value, finished) = animator.Update();
