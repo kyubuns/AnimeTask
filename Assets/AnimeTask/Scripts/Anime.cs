@@ -8,7 +8,13 @@ namespace AnimeTask
 {
     public static class Anime
     {
+        private static IScheduler defaultScheduler = new TimeScheduler();
         private static AnimeRunner animeRunner;
+        public static IScheduler DefaultScheduler
+        {
+            get => defaultScheduler;
+            set => defaultScheduler = value;
+        }
 
         public static async Task Play<T>(IAnimator<T> animator, ITranslator<T> translator)
         {
