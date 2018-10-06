@@ -8,39 +8,29 @@ namespace AnimeTask.Sample
     {
         public async Task Sample01()
         {
-            var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.localPosition = new Vector3(-5f, 0f, 0f);
-
-            await Task.Delay(TimeSpan.FromSeconds(1));
-            await Anime.PlayTo(
-                Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), 2f),
-                TranslateTo.LocalPosition(cube)
-            );
-            await Task.Delay(TimeSpan.FromSeconds(1));
-
-            Destroy(cube);
+            using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
+            {
+                await Task.Delay(TimeSpan.FromSeconds(1));
+                await Anime.PlayTo(
+                    Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), 2f),
+                    TranslateTo.LocalPosition(cubes[0])
+                );
+                await Task.Delay(TimeSpan.FromSeconds(1));
+            }
         }
 
         public async Task Sample02()
         {
-            var cube1 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube1.transform.localPosition = new Vector3(0f, 3f, 0f);
-
-            var cube2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube2.transform.localPosition = new Vector3(0f, 3f, 0f);
-
-            var cube3 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube3.transform.localPosition = new Vector3(0f, 3f, 0f);
-
-            await Task.Delay(TimeSpan.FromSeconds(1));
-            await Task.WhenAll(
-                CircleAnimation(cube1, 0.0f),
-                CircleAnimation(cube2, 0.2f),
-                CircleAnimation(cube3, 0.4f)
-            );
-            await Task.Delay(TimeSpan.FromSeconds(1));
-
-            Destroy(cube1);
+            using (var cubes = new SampleCubes(new Vector3(0f, 3f, 0f), new Vector3(0f, 3f, 0f), new Vector3(0f, 3f, 0f)))
+            {
+                await Task.Delay(TimeSpan.FromSeconds(1));
+                await Task.WhenAll(
+                    CircleAnimation(cubes[0], 0.0f),
+                    CircleAnimation(cubes[1], 0.2f),
+                    CircleAnimation(cubes[2], 0.4f)
+                );
+                await Task.Delay(TimeSpan.FromSeconds(1));
+            }
         }
 
         private async Task CircleAnimation(GameObject go, float delay)
