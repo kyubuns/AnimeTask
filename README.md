@@ -2,23 +2,9 @@
 
 Created by kyubuns
 
+Download [UnityPackage](https://github.com/kyubuns/AnimeTask/releases).
+
 ![image](https://user-images.githubusercontent.com/961165/46568998-56470e80-c989-11e8-8798-c168a1c6b494.gif)
-
-## Features
-
-- Taskベースのアニメーション
-- Easing Animation
-  - Linear
-  - InQuad, OutQuad, InOutQuad
-  - InCubic, OutCubic, InOutCubic
-  - InQuart, OutQuart, InOutQuart
-  - InQuint, OutQuint, InOutQuint
-  - InSine, OutSine, InOutSine
-  - InExpo, OutExpo, InOutExpo
-  - InCirc, OutCirc, InOutCirc
-  - InElastic, OutElastic, InOutElastic
-  - InBack, OutBack, InOutBack
-  - InBounce, OutBounce, InOutBounce
 
 ## Sample
 
