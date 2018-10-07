@@ -55,6 +55,16 @@ await Anime.Play(
 );
 ```
 
+## UniTask(UniRx.Async)を利用する
+
+[UniTask](https://github.com/neuecc/UniRx)を利用することでパフォーマンスの向上が見込めます。
+
+- UniTaskを利用できる状態にする。
+- AnimeTaskのAssembly DefinitionにUniRx.Asyncの参照を追加する。
+<img width="400" alt="unitask1" src="https://user-images.githubusercontent.com/961165/46583321-2afb1700-ca90-11e8-8591-e5d32b76a57d.png">
+- BuildSettingsのScripting Define Symbolsに `ENABLE_UNITASK` を追加する。
+<img width="300" alt="unitask2" src="https://user-images.githubusercontent.com/961165/46583322-2afb1700-ca90-11e8-9208-e73856fe3684.png">
+
 ## License
 
 [MIT License](LICENSE)
