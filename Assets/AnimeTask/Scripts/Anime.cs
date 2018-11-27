@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using UnityEngine;
 #if ENABLE_UNITASK
 using Task = UniRx.Async.UniTask;
@@ -20,29 +21,29 @@ namespace AnimeTask
             set { defaultScheduler = value; }
         }
 
-        public static Task Play<T>(IAnimator<T> animator, ITranslator<T> translator)
+        public static Task Play<T>(IAnimator<T> animator, ITranslator<T> translator, CancellationToken cancellationToken = default)
         {
-            return Play(animator, translator, DefaultScheduler);
+            return Play(animator, translator, DefaultScheduler, cancellationToken);
         }
 
-        public static async Task Play<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler)
+        public static async Task Play<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler, CancellationToken cancellationToken = default)
         {
             var awaitable = new AwaitableEnumerator();
             animator.Start();
-            StartCoroutine(PlayCoroutine(animator, translator, awaitable, scheduler));
+            StartCoroutine(PlayCoroutine(animator, translator, awaitable, scheduler, cancellationToken));
             await awaitable;
         }
 
-        public static Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator)
+        public static Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator, CancellationToken cancellationToken = default)
         {
-            return PlayTo(animator, translator, DefaultScheduler);
+            return PlayTo(animator, translator, DefaultScheduler, cancellationToken);
         }
 
-        public static async Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator, IScheduler scheduler)
+        public static async Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator, IScheduler scheduler, CancellationToken cancellationToken = default)
         {
             var awaitable = new AwaitableEnumerator();
             animator.Start(translator.Current);
-            StartCoroutine(PlayCoroutine(new DummyAnimator<T>(animator), translator, awaitable, scheduler));
+            StartCoroutine(PlayCoroutine(new DummyAnimator<T>(animator), translator, awaitable, scheduler, cancellationToken));
             await awaitable;
         }
 
@@ -68,11 +69,12 @@ namespace AnimeTask
             animeRunner.StartCoroutine(coroutine);
         }
 
-        private static IEnumerator PlayCoroutine<T>(IAnimator<T> animator, ITranslator<T> translator, AwaitableEnumerator awaitable, IScheduler scheduler)
+        private static IEnumerator PlayCoroutine<T>(IAnimator<T> animator, ITranslator<T> translator, AwaitableEnumerator awaitable, IScheduler scheduler, CancellationToken cancellToken)
         {
             var startTime = scheduler.Now;
             while (true)
             {
+                if (cancellToken.IsCancellationRequested) break;
                 var t = animator.Update(scheduler.Now - startTime);
                 translator.Update(t.Item1);
                 if (t.Item2) break;
@@ -112,7 +114,7 @@ namespace AnimeTask
     {
         private Action continuationAction;
         public bool IsCompleted { get; private set; }
-        public void GetResult() {}
+        public void GetResult() { }
 
         public void OnCompleted(Action continuation)
         {
