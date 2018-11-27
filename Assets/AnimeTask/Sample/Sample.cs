@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Threading;
+using UnityEngine;
 #if ENABLE_UNITASK
 using Task = UniRx.Async.UniTask;
 #else
@@ -31,6 +34,24 @@ namespace AnimeTask.Sample
                     CircleAnimation(cubes[0], 0.0f),
                     CircleAnimation(cubes[1], 0.2f),
                     CircleAnimation(cubes[2], 0.4f)
+                );
+                await Anime.Delay(1f);
+            }
+        }
+
+        public async Task Sample03()
+        {
+            using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
+            {
+                await Anime.Delay(1f);
+                CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+                cancellationTokenSource.Token.Register(() => Debug.Log("Cancel"));
+                cancellationTokenSource.CancelAfter(500);
+
+                await Anime.PlayTo(
+                    Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), 2f),
+                    TranslateTo.LocalPosition(cubes[0]),
+                    cancellationTokenSource.Token
                 );
                 await Anime.Delay(1f);
             }
