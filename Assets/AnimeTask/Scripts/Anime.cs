@@ -114,7 +114,7 @@ namespace AnimeTask
     {
         private Action continuationAction;
         public bool IsCompleted { get; private set; }
-        public void GetResult() { }
+        public void GetResult() {}
 
         public void OnCompleted(Action continuation)
         {
