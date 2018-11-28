@@ -21,12 +21,12 @@ namespace AnimeTask
             set { defaultScheduler = value; }
         }
 
-        public static Task Play<T>(IAnimator<T> animator, ITranslator<T> translator, CancellationToken cancellationToken = default)
+        public static Task Play<T>(IAnimator<T> animator, ITranslator<T> translator, CancellationToken cancellationToken = default(CancellationToken))
         {
             return Play(animator, translator, DefaultScheduler, cancellationToken);
         }
 
-        public static async Task Play<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler, CancellationToken cancellationToken = default)
+        public static async Task Play<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler, CancellationToken cancellationToken = default(CancellationToken))
         {
             var awaitable = new AwaitableEnumerator();
             animator.Start();
@@ -34,12 +34,12 @@ namespace AnimeTask
             await awaitable;
         }
 
-        public static Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator, CancellationToken cancellationToken = default)
+        public static Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator, CancellationToken cancellationToken = default(CancellationToken))
         {
             return PlayTo(animator, translator, DefaultScheduler, cancellationToken);
         }
 
-        public static async Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator, IScheduler scheduler, CancellationToken cancellationToken = default)
+        public static async Task PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator, IScheduler scheduler, CancellationToken cancellationToken = default(CancellationToken))
         {
             var awaitable = new AwaitableEnumerator();
             animator.Start(translator.Current);
