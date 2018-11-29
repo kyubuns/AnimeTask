@@ -69,12 +69,12 @@ namespace AnimeTask
             animeRunner.StartCoroutine(coroutine);
         }
 
-        private static IEnumerator PlayCoroutine<T>(IAnimator<T> animator, ITranslator<T> translator, AwaitableEnumerator awaitable, IScheduler scheduler, CancellationToken cancellToken)
+        private static IEnumerator PlayCoroutine<T>(IAnimator<T> animator, ITranslator<T> translator, AwaitableEnumerator awaitable, IScheduler scheduler, CancellationToken cancellationToken)
         {
             var startTime = scheduler.Now;
             while (true)
             {
-                if (cancellToken.IsCancellationRequested) break;
+                if (cancellationToken.IsCancellationRequested) break;
                 var t = animator.Update(scheduler.Now - startTime);
                 translator.Update(t.Item1);
                 if (t.Item2) break;
