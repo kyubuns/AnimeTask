@@ -1,13 +1,12 @@
-# AnimeTask - Task Animation Library for Unity
+# AnimeTask
 
-Created by kyubuns
+Task Animation Library for Unity
 
 ![image](https://user-images.githubusercontent.com/961165/46568998-56470e80-c989-11e8-8798-c168a1c6b494.gif)
 
 ## Instructions
 
 - Import [UnityPackage](https://github.com/kyubuns/AnimeTask/releases)
-- Requires Unity2017.1 or later with .net4.6
 
 ## Sample
 
@@ -65,6 +64,11 @@ await Anime.Play(
 - BuildSettingsのScripting Define Symbolsに `ENABLE_UNITASK` を追加する。
 <img width="300" alt="unitask2" src="https://user-images.githubusercontent.com/961165/46583322-2afb1700-ca90-11e8-9208-e73856fe3684.png">
 
+## Requirements
+
+- Requires Unity2017.1 or later with .net4.6
+
 ## License
 
-[MIT License](LICENSE)
+MIT License (see [LICENSE](LICENSE))
+
