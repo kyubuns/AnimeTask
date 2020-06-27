@@ -8,7 +8,8 @@ Task Animation Library for Unity
 
 - Import [UniTask](https://github.com/Cysharp)
 - Import AnimeTask
-    - Package Manager `git@github.com:kyubuns/UniTask.git` - UniTask must also be installed by PackageManager
+    - Package Manager `git@github.com/kyubuns/AnimeTask.git?path=Assets/AnimeTask`
+        - UniTask must also be installed by PackageManager
     - [UnityPackage](https://github.com/kyubuns/AnimeTask/releases)
 
 ## Sample
