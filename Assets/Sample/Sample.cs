@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿
 using System.Threading;
-using UnityEngine;
-#if ENABLE_UNITASK
-using Task = UniRx.Async.UniTask;
-#else
 using System.Threading.Tasks;
-#endif
+using UnityEngine;
 
 namespace AnimeTask.Sample
 {
