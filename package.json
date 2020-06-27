@@ -1,0 +1,16 @@
+{
+  "name": "com.kyubuns.animetask",
+  "displayName": "AnimeTask",
+  "version": "1.0.0",
+  "unity": "2018.4",
+  "description": "Task Animation Library for Unity",
+  "documentationUrl": "https://github.com/kyubuns/AnimeTask",
+  "dependencies": {
+  },
+  "author": {
+    "name": "kyubuns",
+    "email": "kyubuns@gmail.com",
+    "url": "http://kyubuns.dev/"
+  },
+  "type": "library"
+}
