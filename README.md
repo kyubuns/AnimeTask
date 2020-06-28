@@ -140,6 +140,64 @@ await UniTask.WhenAll(
         - AnimeTask.asmdef must have a reference to UniTask.
         - <img width="300" alt="Screen Shot 2020-06-27 at 22 48 21" src="https://user-images.githubusercontent.com/961165/85923709-51965c80-b8c8-11ea-8c3a-f0b321d0d4ab.png">
 
+## Supported
+
+- Easing
+    - Linear
+    - InBack
+    - OutBack
+    - InOutBack
+    - InBounce
+    - OutBounce
+    - InOutBounce
+    - InCirc
+    - OutCirc
+    - InOutCirc
+    - InCubic
+    - OutCubic
+    - InOutCubic
+    - InElastic
+    - OutElastic
+    - InOutElastic
+    - InExpo
+    - OutExpo
+    - InOutExpo
+    - InQuad
+    - OutQuad
+    - InOutQuad
+    - InQuart
+    - OutQuart
+    - InOutQuart
+    - InQuint
+    - OutQuint
+    - InOutQuint
+    - InSine
+    - OutSine
+    - InOutSine
+- Moving
+    - Linear
+    - Gravity
+- Translator
+    - LocalPosition
+    - LocalPositionX
+    - LocalPositionY
+    - LocalPositionZ
+    - GlobalPosition
+    - GlobalPositionX
+    - GlobalPositionY
+    - GlobalPositionZ
+    - LocalScale
+    - LocalScaleX
+    - LocalScaleY
+    - LocalScaleZ
+    - Color
+    - ColorR
+    - ColorG
+    - ColorB
+    - ColorA
+    - Text
+    - Action
+
 ## 考え方
 
 PlayやPlayToには2つの引数を渡します。  
