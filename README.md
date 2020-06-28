@@ -2,7 +2,7 @@
 
 Task Animation Library for Unity
 
-![gif_animation_001](https://user-images.githubusercontent.com/961165/85936316-77f1e180-b934-11ea-9614-9d1aa152bd41.gif)
+![gif_animation_001](https://user-images.githubusercontent.com/961165/85940937-8c48d500-b95a-11ea-81b5-fddd17166a96.gif)
 
 ## Sample
 
@@ -71,7 +71,7 @@ await Anime.PlayTo(
 );
 ```
 
-<img src="https://user-images.githubusercontent.com/961165/85936316-77f1e180-b934-11ea-9614-9d1aa152bd41.gif" width="480">
+<img src="https://user-images.githubusercontent.com/961165/85940937-8c48d500-b95a-11ea-81b5-fddd17166a96.gif" width="480">
 
 ### TranslateTo.Action
 
