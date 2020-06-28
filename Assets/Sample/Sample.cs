@@ -57,12 +57,10 @@ namespace AnimeTask.Sample
         {
             await Anime.Delay(delay);
             await Anime.Play(
-                Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f),
-                TranslateTo.Action<float>(x =>
-                {
-                    var p = new Vector3(Mathf.Sin(x), Mathf.Cos(x), 0.0f) * 3.0f;
-                    go.transform.localPosition = p;
-                }));
+                Animator.Convert(Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f),
+                    x => new Vector3(Mathf.Sin(x), Mathf.Cos(x), 0.0f) * 3.0f),
+                TranslateTo.LocalPosition(go)
+            );
         }
 
         public async Task Sample04()

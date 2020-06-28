@@ -86,8 +86,8 @@ await Anime.Play(
 
 ### UnscaledTime
 
-スケジューラーは自作出来るので、特定のオブジェクトだけ時間を止めたり出来ます。  
-デフォルトはTime.timeを利用していて、Time.unscaledTimeを利用するUnscaledTimeSchedulerも利用できます。
+スケジューラーは自作出来るので、特定のオブジェクトだけ時間を止めたりすることが可能。  
+デフォルトはTime.timeを利用していて、Time.unscaledTimeを利用するUnscaledTimeSchedulerも利用できる。
 
 ```csharp
 await Anime.Play(
@@ -130,6 +130,20 @@ await UniTask.WhenAll(
 
 <img src="https://user-images.githubusercontent.com/961165/85938704-8ea33300-b94a-11ea-986a-8537038f92f3.gif" width="480">
 
+### Convert
+
+floatの推移を円運動に変換する。
+
+```csharp
+await Anime.Play(
+    Animator.Convert(
+        Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f),
+        x => new Vector3(Mathf.Sin(x), Mathf.Cos(x), 0.0f) * 3.0f
+    ),
+    TranslateTo.LocalPosition(go)
+);
+```
+
 ## Instructions
 
 - Import [UniTask](https://github.com/Cysharp/UniTask)
@@ -139,64 +153,6 @@ await UniTask.WhenAll(
     - [UnityPackage](https://github.com/kyubuns/AnimeTask/releases)
         - AnimeTask.asmdef must have a reference to UniTask.
         - <img width="300" alt="Screen Shot 2020-06-27 at 22 48 21" src="https://user-images.githubusercontent.com/961165/85923709-51965c80-b8c8-11ea-8c3a-f0b321d0d4ab.png">
-
-## Supported
-
-- Easing
-    - Linear
-    - InBack
-    - OutBack
-    - InOutBack
-    - InBounce
-    - OutBounce
-    - InOutBounce
-    - InCirc
-    - OutCirc
-    - InOutCirc
-    - InCubic
-    - OutCubic
-    - InOutCubic
-    - InElastic
-    - OutElastic
-    - InOutElastic
-    - InExpo
-    - OutExpo
-    - InOutExpo
-    - InQuad
-    - OutQuad
-    - InOutQuad
-    - InQuart
-    - OutQuart
-    - InOutQuart
-    - InQuint
-    - OutQuint
-    - InOutQuint
-    - InSine
-    - OutSine
-    - InOutSine
-- Moving
-    - Linear
-    - Gravity
-- Translator
-    - LocalPosition
-    - LocalPositionX
-    - LocalPositionY
-    - LocalPositionZ
-    - GlobalPosition
-    - GlobalPositionX
-    - GlobalPositionY
-    - GlobalPositionZ
-    - LocalScale
-    - LocalScaleX
-    - LocalScaleY
-    - LocalScaleZ
-    - Color
-    - ColorR
-    - ColorG
-    - ColorB
-    - ColorA
-    - Text
-    - Action
 
 ## 考え方
 
