@@ -144,6 +144,8 @@ await Anime.Play(
 );
 ```
 
+<img src="https://user-images.githubusercontent.com/961165/85940836-ef863780-b959-11ea-94a3-11e9ed5057f4.gif" width="480">
+
 ## Instructions
 
 - Import [UniTask](https://github.com/Cysharp/UniTask)
