@@ -113,6 +113,23 @@ await Anime.PlayTo(
 );
 ```
 
+### Delay
+
+2秒間右に移動しつつ、最後の0.2秒でScaleを0にする
+
+```csharp
+await UniTask.WhenAll(
+    Anime.PlayTo(
+        Moving.Linear(2f, 2f),
+        TranslateTo.LocalPositionX(cubes[0])
+    ),
+    Anime.PlayTo(
+        Animator.Delay(1.8f, Easing.Create<Linear>(Vector3.zero, 0.2f)),
+        TranslateTo.LocalScale(cubes[0])
+    )
+);
+```
+
 ## 考え方
 
 PlayやPlayToには2つの引数を渡します。  

@@ -1,6 +1,7 @@
 ﻿
 using System.Threading;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace AnimeTask.Sample
@@ -69,9 +70,15 @@ namespace AnimeTask.Sample
             using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
             {
                 await Anime.Delay(1f);
-                await Anime.PlayTo(
-                    Moving.Linear(1f, 2f),
-                    TranslateTo.LocalPositionX(cubes[0])
+                await UniTask.WhenAll(
+                    Anime.PlayTo(
+                        Moving.Linear(2f, 2f),
+                        TranslateTo.LocalPositionX(cubes[0])
+                    ),
+                    Anime.PlayTo(
+                        Animator.Delay(1.8f, Easing.Create<Linear>(Vector3.zero, 0.2f)),
+                        TranslateTo.LocalScale(cubes[0])
+                    )
                 );
                 await Anime.Delay(1f);
             }
