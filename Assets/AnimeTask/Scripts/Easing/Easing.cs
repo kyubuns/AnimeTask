@@ -6,6 +6,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return v;
         }
     }
@@ -13,6 +18,11 @@ namespace AnimeTask
     public class InBack : IEasing
     {
         public float Function(float v)
+        {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
         {
             return v * v * v - v * Mathf.Sin(v * Mathf.PI);
         }
@@ -22,6 +32,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             var f = (1f - v);
             return 1f - (f * f * f - f * Mathf.Sin(f * Mathf.PI));
         }
@@ -30,6 +45,11 @@ namespace AnimeTask
     public class InOutBack : IEasing
     {
         public float Function(float v)
+        {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
         {
             if (v < 0.5f)
             {
@@ -48,6 +68,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return Bounce(v);
         }
 
@@ -60,6 +85,11 @@ namespace AnimeTask
     public class OutBounce : IEasing
     {
         public float Function(float v)
+        {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
         {
             return Bounce(v);
         }
@@ -89,6 +119,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             if (v < 0.5f)
             {
                 return 0.5f * InBounce.Bounce(v * 2f);
@@ -104,6 +139,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return 1f - Mathf.Sqrt(1f - (v * v));
         }
     }
@@ -112,6 +152,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return Mathf.Sqrt((2f - v) * v);
         }
     }
@@ -119,6 +164,11 @@ namespace AnimeTask
     public class InOutCirc : IEasing
     {
         public float Function(float v)
+        {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
         {
             if (v < 0.5f)
             {
@@ -135,6 +185,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return v * v * v;
         }
     }
@@ -142,6 +197,11 @@ namespace AnimeTask
     public class OutCubic : IEasing
     {
         public float Function(float v)
+        {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
         {
             var f = (v - 1f);
             return f * f * f + 1f;
@@ -151,6 +211,11 @@ namespace AnimeTask
     public class InOutCubic : IEasing
     {
         public float Function(float v)
+        {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
         {
             if (v < 0.5f)
             {
@@ -168,6 +233,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return Mathf.Sin(13 * (Mathf.PI / 2f) * v) * Mathf.Pow(2f, 10f * (v - 1f));
         }
     }
@@ -176,6 +246,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return Mathf.Sin(-13 * (Mathf.PI / 2f) * (v + 1)) * Mathf.Pow(2f, -10f * v) + 1f;
         }
     }
@@ -183,6 +258,11 @@ namespace AnimeTask
     public class InOutElastic : IEasing
     {
         public float Function(float v)
+        {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
         {
             if (v < 0.5f)
             {
@@ -199,6 +279,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return Mathf.Approximately(0.0f, v) ? v : Mathf.Pow(2f, 10f * (v - 1f));
         }
     }
@@ -207,6 +292,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return Mathf.Approximately(1.0f, v) ? v : 1f - Mathf.Pow(2f, -10f * v);
         }
     }
@@ -214,6 +304,11 @@ namespace AnimeTask
     public class InOutExpo : IEasing
     {
         public float Function(float v)
+        {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
         {
             if (Mathf.Approximately(0.0f, v) || Mathf.Approximately(1.0f, v)) return v;
 
@@ -232,6 +327,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return v * v;
         }
     }
@@ -240,6 +340,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return -(v * (v - 2f));
         }
     }
@@ -247,6 +352,11 @@ namespace AnimeTask
     public class InOutQuad : IEasing
     {
         public float Function(float v)
+        {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
         {
             if (v < 0.5f)
             {
@@ -263,6 +373,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return v * v * v * v;
         }
     }
@@ -270,6 +385,11 @@ namespace AnimeTask
     public class OutQuart : IEasing
     {
         public float Function(float v)
+        {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
         {
             var f = (v - 1f);
             return f * f * f * (1f - v) + 1f;
@@ -279,6 +399,11 @@ namespace AnimeTask
     public class InOutQuart : IEasing
     {
         public float Function(float v)
+        {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
         {
             if (v < 0.5f)
             {
@@ -296,6 +421,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return v * v * v * v * v;
         }
     }
@@ -303,6 +433,11 @@ namespace AnimeTask
     public class OutQuint : IEasing
     {
         public float Function(float v)
+        {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
         {
             var f = (v - 1f);
             return f * f * f * f * f + 1f;
@@ -312,6 +447,11 @@ namespace AnimeTask
     public class InOutQuint : IEasing
     {
         public float Function(float v)
+        {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
         {
             if (v < 0.5f)
             {
@@ -329,6 +469,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return Mathf.Sin((v - 1f) * (Mathf.PI / 2f)) + 1f;
         }
     }
@@ -337,6 +482,11 @@ namespace AnimeTask
     {
         public float Function(float v)
         {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
+        {
             return Mathf.Sin(v * (Mathf.PI / 2f));
         }
     }
@@ -344,6 +494,11 @@ namespace AnimeTask
     public class InOutSine : IEasing
     {
         public float Function(float v)
+        {
+            return Calc(v);
+        }
+
+        public static float Calc(float v)
         {
             return 0.5f * (1f - Mathf.Cos(v * Mathf.PI));
         }
