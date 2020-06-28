@@ -17,7 +17,7 @@ await Anime.Play(
 );
 ```
 
-![gif_animation_008](https://user-images.githubusercontent.com/961165/85938659-32d8aa00-b94a-11ea-84e4-162626e31861.gif)
+<img src="https://user-images.githubusercontent.com/961165/85938659-32d8aa00-b94a-11ea-84e4-162626e31861.gif" width="480">
 
 ### PlayTo
 
@@ -30,7 +30,7 @@ await Anime.PlayTo(
 );
 ```
 
-![gif_animation_012](https://user-images.githubusercontent.com/961165/85938725-b5fa0000-b94a-11ea-8c4c-2b20b2090561.gif)
+<img src="https://user-images.githubusercontent.com/961165/85938725-b5fa0000-b94a-11ea-8c4c-2b20b2090561.gif" width="480">
 
 ### Easing
 
@@ -43,7 +43,7 @@ await Anime.PlayTo(
 );
 ```
 
-![gif_animation_010](https://user-images.githubusercontent.com/961165/85938690-6d424700-b94a-11ea-9f8a-9bccddabf6b3.gif)
+<img src="https://user-images.githubusercontent.com/961165/85938690-6d424700-b94a-11ea-9f8a-9bccddabf6b3.gif" width="480">
 
 ### Linear
 
@@ -71,7 +71,7 @@ await Anime.PlayTo(
 );
 ```
 
-![gif_animation_001](https://user-images.githubusercontent.com/961165/85936316-77f1e180-b934-11ea-9614-9d1aa152bd41.gif)
+<img src="https://user-images.githubusercontent.com/961165/85936316-77f1e180-b934-11ea-9614-9d1aa152bd41.gif" width="480">
 
 ### TranslateTo.Action
 
@@ -128,7 +128,7 @@ await UniTask.WhenAll(
 );
 ```
 
-![gif_animation_011](https://user-images.githubusercontent.com/961165/85938704-8ea33300-b94a-11ea-986a-8537038f92f3.gif)
+<img src="https://user-images.githubusercontent.com/961165/85938704-8ea33300-b94a-11ea-986a-8537038f92f3.gif" width="480">
 
 ## Instructions
 
