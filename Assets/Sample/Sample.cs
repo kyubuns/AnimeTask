@@ -63,5 +63,18 @@ namespace AnimeTask.Sample
                     go.transform.localPosition = p;
                 }));
         }
+
+        public async Task Sample04()
+        {
+            using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
+            {
+                await Anime.Delay(1f);
+                await Anime.PlayTo(
+                    Moving.Linear(1f, 2f),
+                    TranslateTo.LocalPositionX(cubes[0])
+                );
+                await Anime.Delay(1f);
+            }
+        }
     }
 }
