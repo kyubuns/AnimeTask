@@ -2,7 +2,7 @@
 
 Task Animation Library for Unity
 
-![image](https://user-images.githubusercontent.com/961165/46568998-56470e80-c989-11e8-8798-c168a1c6b494.gif)
+![gif_animation_001](https://user-images.githubusercontent.com/961165/85936316-77f1e180-b934-11ea-9614-9d1aa152bd41.gif)
 
 ## Instructions
 
@@ -46,6 +46,32 @@ EasingのInCubicを利用して移動する。
 await Anime.PlayTo(
     Easing.Create<InCubic>(new Vector3(-5f, 3f, 0f), 2f),
     TranslateTo.LocalPosition(cube)
+);
+```
+
+### Linear
+
+秒速1で、2秒間移動する。
+
+```csharp
+await Anime.PlayTo(
+    Moving.Linear(1f, 2f),
+    TranslateTo.LocalPositionX(cube)
+);
+```
+
+### Gravity
+
+```csharp
+const float xRange = 5f;
+const float yRangeMin = 5f;
+const float yRangeMax = 10f;
+await Anime.PlayTo(
+    Moving.Gravity(
+        new Vector3(Random.Range(-xRange, xRange), Random.Range(yRangeMin, yRangeMax)),
+        Vector3.down * 9.8f,
+        5f),
+    TranslateTo.LocalPosition(shape)
 );
 ```
 
