@@ -29,7 +29,7 @@ await Anime.Play(
 
 ### PlayTo
 
-PlayToを利用すると、現在地から移動する。
+PlayToを利用すると、現在地から指定した位置まで移動する。
 
 ```csharp
 await Anime.PlayTo(
@@ -40,7 +40,7 @@ await Anime.PlayTo(
 
 ### Easing
 
-EasingのInCubicを利用して移動する。
+EasingのInCubicを利用して、指定した位置まで移動する。
 
 ```csharp
 await Anime.PlayTo(
@@ -51,7 +51,7 @@ await Anime.PlayTo(
 
 ### Linear
 
-秒速1で、2秒間移動する。
+指定した速度（秒速1）で、2秒間移動する。
 
 ```csharp
 await Anime.PlayTo(
