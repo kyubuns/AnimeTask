@@ -7,39 +7,39 @@ namespace AnimeTask
         public static LocalPositionTranslator LocalPosition(Transform transform) => new LocalPositionTranslator(transform);
         public static LocalPositionTranslator LocalPosition(GameObject gameObject) => new LocalPositionTranslator(gameObject.transform);
         public static LocalPositionTranslator LocalPosition(Component component) => new LocalPositionTranslator(component.transform);
-        public static LocalPositionXTranslator LocalPositionX(Transform transform) => new LocalPositionXTranslator(transform);
-        public static LocalPositionXTranslator LocalPositionX(GameObject gameObject) => new LocalPositionXTranslator(gameObject.transform);
-        public static LocalPositionXTranslator LocalPositionX(Component component) => new LocalPositionXTranslator(component.transform);
-        public static LocalPositionYTranslator LocalPositionY(Transform transform) => new LocalPositionYTranslator(transform);
-        public static LocalPositionYTranslator LocalPositionY(GameObject gameObject) => new LocalPositionYTranslator(gameObject.transform);
-        public static LocalPositionYTranslator LocalPositionY(Component component) => new LocalPositionYTranslator(component.transform);
-        public static LocalPositionZTranslator LocalPositionZ(Transform transform) => new LocalPositionZTranslator(transform);
-        public static LocalPositionZTranslator LocalPositionZ(GameObject gameObject) => new LocalPositionZTranslator(gameObject.transform);
-        public static LocalPositionZTranslator LocalPositionZ(Component component) => new LocalPositionZTranslator(component.transform);
+        public static LocalPositionXTranslator LocalPositionX(Transform transform) => new LocalPositionXTranslator(transform, 0);
+        public static LocalPositionXTranslator LocalPositionX(GameObject gameObject) => new LocalPositionXTranslator(gameObject.transform, 0);
+        public static LocalPositionXTranslator LocalPositionX(Component component) => new LocalPositionXTranslator(component.transform, 0);
+        public static LocalPositionXTranslator LocalPositionY(Transform transform) => new LocalPositionXTranslator(transform, 1);
+        public static LocalPositionXTranslator LocalPositionY(GameObject gameObject) => new LocalPositionXTranslator(gameObject.transform, 1);
+        public static LocalPositionXTranslator LocalPositionY(Component component) => new LocalPositionXTranslator(component.transform, 1);
+        public static LocalPositionXTranslator LocalPositionZ(Transform transform) => new LocalPositionXTranslator(transform, 2);
+        public static LocalPositionXTranslator LocalPositionZ(GameObject gameObject) => new LocalPositionXTranslator(gameObject.transform, 2);
+        public static LocalPositionXTranslator LocalPositionZ(Component component) => new LocalPositionXTranslator(component.transform, 2);
         public static GlobalPositionTranslator GlobalPosition(Transform transform) => new GlobalPositionTranslator(transform);
         public static GlobalPositionTranslator GlobalPosition(GameObject gameObject) => new GlobalPositionTranslator(gameObject.transform);
         public static GlobalPositionTranslator GlobalPosition(Component component) => new GlobalPositionTranslator(component.transform);
-        public static GlobalPositionXTranslator GlobalPositionX(Transform transform) => new GlobalPositionXTranslator(transform);
-        public static GlobalPositionXTranslator GlobalPositionX(GameObject gameObject) => new GlobalPositionXTranslator(gameObject.transform);
-        public static GlobalPositionXTranslator GlobalPositionX(Component component) => new GlobalPositionXTranslator(component.transform);
-        public static GlobalPositionYTranslator GlobalPositionY(Transform transform) => new GlobalPositionYTranslator(transform);
-        public static GlobalPositionYTranslator GlobalPositionY(GameObject gameObject) => new GlobalPositionYTranslator(gameObject.transform);
-        public static GlobalPositionYTranslator GlobalPositionY(Component component) => new GlobalPositionYTranslator(component.transform);
-        public static GlobalPositionZTranslator GlobalPositionZ(Transform transform) => new GlobalPositionZTranslator(transform);
-        public static GlobalPositionZTranslator GlobalPositionZ(GameObject gameObject) => new GlobalPositionZTranslator(gameObject.transform);
-        public static GlobalPositionZTranslator GlobalPositionZ(Component component) => new GlobalPositionZTranslator(component.transform);
+        public static GlobalPositionXTranslator GlobalPositionX(Transform transform) => new GlobalPositionXTranslator(transform, 0);
+        public static GlobalPositionXTranslator GlobalPositionX(GameObject gameObject) => new GlobalPositionXTranslator(gameObject.transform, 0);
+        public static GlobalPositionXTranslator GlobalPositionX(Component component) => new GlobalPositionXTranslator(component.transform, 0);
+        public static GlobalPositionXTranslator GlobalPositionY(Transform transform) => new GlobalPositionXTranslator(transform, 1);
+        public static GlobalPositionXTranslator GlobalPositionY(GameObject gameObject) => new GlobalPositionXTranslator(gameObject.transform, 1);
+        public static GlobalPositionXTranslator GlobalPositionY(Component component) => new GlobalPositionXTranslator(component.transform, 1);
+        public static GlobalPositionXTranslator GlobalPositionZ(Transform transform) => new GlobalPositionXTranslator(transform, 2);
+        public static GlobalPositionXTranslator GlobalPositionZ(GameObject gameObject) => new GlobalPositionXTranslator(gameObject.transform, 2);
+        public static GlobalPositionXTranslator GlobalPositionZ(Component component) => new GlobalPositionXTranslator(component.transform, 2);
         public static LocalScaleTranslator LocalScale(Transform transform) => new LocalScaleTranslator(transform);
         public static LocalScaleTranslator LocalScale(GameObject gameObject) => new LocalScaleTranslator(gameObject.transform);
         public static LocalScaleTranslator LocalScale(Component component) => new LocalScaleTranslator(component.transform);
-        public static LocalScaleXTranslator LocalScaleX(Transform transform) => new LocalScaleXTranslator(transform);
-        public static LocalScaleXTranslator LocalScaleX(GameObject gameObject) => new LocalScaleXTranslator(gameObject.transform);
-        public static LocalScaleXTranslator LocalScaleX(Component component) => new LocalScaleXTranslator(component.transform);
-        public static LocalScaleYTranslator LocalScaleY(Transform transform) => new LocalScaleYTranslator(transform);
-        public static LocalScaleYTranslator LocalScaleY(GameObject gameObject) => new LocalScaleYTranslator(gameObject.transform);
-        public static LocalScaleYTranslator LocalScaleY(Component component) => new LocalScaleYTranslator(component.transform);
-        public static LocalScaleZTranslator LocalScaleZ(Transform transform) => new LocalScaleZTranslator(transform);
-        public static LocalScaleZTranslator LocalScaleZ(GameObject gameObject) => new LocalScaleZTranslator(gameObject.transform);
-        public static LocalScaleZTranslator LocalScaleZ(Component component) => new LocalScaleZTranslator(component.transform);
+        public static LocalScaleXTranslator LocalScaleX(Transform transform) => new LocalScaleXTranslator(transform, 0);
+        public static LocalScaleXTranslator LocalScaleX(GameObject gameObject) => new LocalScaleXTranslator(gameObject.transform, 0);
+        public static LocalScaleXTranslator LocalScaleX(Component component) => new LocalScaleXTranslator(component.transform, 0);
+        public static LocalScaleXTranslator LocalScaleY(Transform transform) => new LocalScaleXTranslator(transform, 1);
+        public static LocalScaleXTranslator LocalScaleY(GameObject gameObject) => new LocalScaleXTranslator(gameObject.transform, 1);
+        public static LocalScaleXTranslator LocalScaleY(Component component) => new LocalScaleXTranslator(component.transform, 1);
+        public static LocalScaleXTranslator LocalScaleZ(Transform transform) => new LocalScaleXTranslator(transform, 2);
+        public static LocalScaleXTranslator LocalScaleZ(GameObject gameObject) => new LocalScaleXTranslator(gameObject.transform, 2);
+        public static LocalScaleXTranslator LocalScaleZ(Component component) => new LocalScaleXTranslator(component.transform, 2);
     }
 
     public class LocalPositionTranslator : IValueTranslator<Vector3>
@@ -60,54 +60,20 @@ namespace AnimeTask
 
     public class LocalPositionXTranslator : IValueTranslator<float>
     {
-        public float Current => transform.localPosition.x;
+        public int Index { get; }
+        public float Current => transform.localPosition[Index];
         private readonly Transform transform;
 
-        public LocalPositionXTranslator(Transform transform)
+        public LocalPositionXTranslator(Transform transform, int index)
         {
+            Index = index;
             this.transform = transform;
         }
 
         public void Update(float value)
         {
             var p = transform.localPosition;
-            p.x = value;
-            transform.localPosition = p;
-        }
-    }
-
-    public class LocalPositionYTranslator : IValueTranslator<float>
-    {
-        public float Current => transform.localPosition.y;
-        private readonly Transform transform;
-
-        public LocalPositionYTranslator(Transform transform)
-        {
-            this.transform = transform;
-        }
-
-        public void Update(float value)
-        {
-            var p = transform.localPosition;
-            p.y = value;
-            transform.localPosition = p;
-        }
-    }
-
-    public class LocalPositionZTranslator : IValueTranslator<float>
-    {
-        public float Current => transform.localPosition.z;
-        private readonly Transform transform;
-
-        public LocalPositionZTranslator(Transform transform)
-        {
-            this.transform = transform;
-        }
-
-        public void Update(float value)
-        {
-            var p = transform.localPosition;
-            p.z = value;
+            p[Index] = value;
             transform.localPosition = p;
         }
     }
@@ -130,54 +96,20 @@ namespace AnimeTask
 
     public class GlobalPositionXTranslator : IValueTranslator<float>
     {
-        public float Current => transform.position.x;
+        public int Index { get; }
+        public float Current => transform.position[Index];
         private readonly Transform transform;
 
-        public GlobalPositionXTranslator(Transform transform)
+        public GlobalPositionXTranslator(Transform transform, int index)
         {
+            Index = index;
             this.transform = transform;
         }
 
         public void Update(float value)
         {
             var p = transform.position;
-            p.x = value;
-            transform.position = p;
-        }
-    }
-
-    public class GlobalPositionYTranslator : IValueTranslator<float>
-    {
-        public float Current => transform.position.y;
-        private readonly Transform transform;
-
-        public GlobalPositionYTranslator(Transform transform)
-        {
-            this.transform = transform;
-        }
-
-        public void Update(float value)
-        {
-            var p = transform.position;
-            p.y = value;
-            transform.position = p;
-        }
-    }
-
-    public class GlobalPositionZTranslator : IValueTranslator<float>
-    {
-        public float Current => transform.position.z;
-        private readonly Transform transform;
-
-        public GlobalPositionZTranslator(Transform transform)
-        {
-            this.transform = transform;
-        }
-
-        public void Update(float value)
-        {
-            var p = transform.position;
-            p.z = value;
+            p[Index] = value;
             transform.position = p;
         }
     }
@@ -200,54 +132,20 @@ namespace AnimeTask
 
     public class LocalScaleXTranslator : IValueTranslator<float>
     {
-        public float Current => transform.localScale.x;
+        public int Index { get; }
+        public float Current => transform.localScale[Index];
         private readonly Transform transform;
 
-        public LocalScaleXTranslator(Transform transform)
+        public LocalScaleXTranslator(Transform transform, int index)
         {
+            Index = index;
             this.transform = transform;
         }
 
         public void Update(float value)
         {
             var p = transform.localScale;
-            p.x = value;
-            transform.localScale = p;
-        }
-    }
-
-    public class LocalScaleYTranslator : IValueTranslator<float>
-    {
-        public float Current => transform.localScale.y;
-        private readonly Transform transform;
-
-        public LocalScaleYTranslator(Transform transform)
-        {
-            this.transform = transform;
-        }
-
-        public void Update(float value)
-        {
-            var p = transform.localScale;
-            p.y = value;
-            transform.localScale = p;
-        }
-    }
-
-    public class LocalScaleZTranslator : IValueTranslator<float>
-    {
-        public float Current => transform.localScale.z;
-        private readonly Transform transform;
-
-        public LocalScaleZTranslator(Transform transform)
-        {
-            this.transform = transform;
-        }
-
-        public void Update(float value)
-        {
-            var p = transform.localScale;
-            p.z = value;
+            p[Index] = value;
             transform.localScale = p;
         }
     }
