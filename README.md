@@ -86,6 +86,46 @@ await Anime.Play(
 );
 ```
 
+### UnscaledTime
+
+スケジューラーは自作出来るので、特定のオブジェクトだけ時間を止めたり出来ます。  
+デフォルトはTime.timeを利用していて、Time.unscaledTimeを利用するUnscaledTimeSchedulerも利用できます。
+
+```csharp
+await Anime.Play(
+    Easing.Create<Linear>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2f),
+    TranslateTo.LocalPosition(shape),
+    new UnscaledTimeScheduler()
+);
+```
+
+### Cancel
+
+```csharp
+var cancellationTokenSource = new CancellationTokenSource();
+cancellationTokenSource.Token.Register(() => Debug.Log("Cancel"));
+cancellationTokenSource.CancelAfter(500);
+
+await Anime.PlayTo(
+    Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), 2f),
+    TranslateTo.LocalPosition(cubes[0]),
+    cancellationTokenSource.Token
+);
+```
+
+## 考え方
+
+PlayやPlayToには2つの引数を渡します。  
+1個目がAnimator、2個目がTranslatorで、これらは明確に役割が異なります。
+
+### Animator
+
+経過時間を受け取り、現在の値を返す。
+
+### Translator
+
+値を反映する。
+
 ## Requirements
 
 - Requires Unity2018.4 or later
