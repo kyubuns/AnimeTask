@@ -76,7 +76,7 @@ namespace AnimeTask.Sample
                         TranslateTo.LocalPositionX(cubes[0])
                     ),
                     Anime.PlayTo(
-                        Animator.Delay(1.8f, Easing.Create<Linear>(Vector3.zero, 0.2f)),
+                        Animator.Delay(1.8f, Easing.Create<Linear>(Vector2.zero, 0.2f)),
                         TranslateTo.LocalScale(cubes[0])
                     )
                 );

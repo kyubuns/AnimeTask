@@ -42,10 +42,13 @@ namespace AnimeTask
         public static LocalScaleXTranslator LocalScaleZ(Component component) => new LocalScaleXTranslator(component.transform, 2);
     }
 
-    public class LocalPositionTranslator : IValueTranslator<Vector3>
+    public class LocalPositionTranslator : IValueTranslator<Vector3>, IValueTranslator<Vector2>
     {
-        public Vector3 Current => transform.localPosition;
         private readonly Transform transform;
+        public Vector3 Current => transform.localPosition;
+
+        Vector2 IValueTranslator<Vector2>.Current => transform.localPosition;
+        Vector3 IValueTranslator<Vector3>.Current => transform.localPosition;
 
         public LocalPositionTranslator(Transform transform)
         {
@@ -53,6 +56,11 @@ namespace AnimeTask
         }
 
         public void Update(Vector3 value)
+        {
+            transform.localPosition = value;
+        }
+
+        public void Update(Vector2 value)
         {
             transform.localPosition = value;
         }
@@ -78,10 +86,13 @@ namespace AnimeTask
         }
     }
 
-    public class GlobalPositionTranslator : IValueTranslator<Vector3>
+    public class GlobalPositionTranslator : IValueTranslator<Vector3>, IValueTranslator<Vector2>
     {
-        public Vector3 Current => transform.position;
         private readonly Transform transform;
+        public Vector3 Current => transform.position;
+
+        Vector2 IValueTranslator<Vector2>.Current => transform.position;
+        Vector3 IValueTranslator<Vector3>.Current => transform.position;
 
         public GlobalPositionTranslator(Transform transform)
         {
@@ -89,6 +100,12 @@ namespace AnimeTask
         }
 
         public void Update(Vector3 value)
+        {
+            transform.position = value;
+        }
+
+
+        public void Update(Vector2 value)
         {
             transform.position = value;
         }
@@ -114,10 +131,13 @@ namespace AnimeTask
         }
     }
 
-    public class LocalScaleTranslator : IValueTranslator<Vector3>
+    public class LocalScaleTranslator : IValueTranslator<Vector3>, IValueTranslator<Vector2>
     {
-        public Vector3 Current => transform.localScale;
         private readonly Transform transform;
+        public Vector3 Current => transform.localScale;
+
+        Vector3 IValueTranslator<Vector3>.Current => transform.localScale;
+        Vector2 IValueTranslator<Vector2>.Current => transform.localScale;
 
         public LocalScaleTranslator(Transform transform)
         {
@@ -125,6 +145,11 @@ namespace AnimeTask
         }
 
         public void Update(Vector3 value)
+        {
+            transform.localScale = value;
+        }
+
+        public void Update(Vector2 value)
         {
             transform.localScale = value;
         }
