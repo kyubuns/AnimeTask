@@ -4,16 +4,6 @@ Task Animation Library for Unity
 
 ![gif_animation_001](https://user-images.githubusercontent.com/961165/85936316-77f1e180-b934-11ea-9614-9d1aa152bd41.gif)
 
-## Instructions
-
-- Import [UniTask](https://github.com/Cysharp/UniTask)
-- Import AnimeTask
-    - Package Manager `git@github.com/kyubuns/AnimeTask.git?path=Assets/AnimeTask`
-        - UniTask must also be installed by PackageManager
-    - [UnityPackage](https://github.com/kyubuns/AnimeTask/releases)
-        - AnimeTask.asmdef must have a reference to UniTask.
-        - <img width="300" alt="Screen Shot 2020-06-27 at 22 48 21" src="https://user-images.githubusercontent.com/961165/85923709-51965c80-b8c8-11ea-8c3a-f0b321d0d4ab.png">
-
 ## Sample
 
 ### Basic
@@ -27,6 +17,8 @@ await Anime.Play(
 );
 ```
 
+![gif_animation_008](https://user-images.githubusercontent.com/961165/85938659-32d8aa00-b94a-11ea-84e4-162626e31861.gif)
+
 ### PlayTo
 
 PlayToを利用すると、現在地から指定した位置まで移動する。
@@ -38,9 +30,11 @@ await Anime.PlayTo(
 );
 ```
 
+![gif_animation_012](https://user-images.githubusercontent.com/961165/85938725-b5fa0000-b94a-11ea-8c4c-2b20b2090561.gif)
+
 ### Easing
 
-EasingのInCubicを利用して、指定した位置まで移動する。
+[Easing](https://easings.net/)の[InCubic](https://easings.net/#easeInCubic)を利用して、指定した位置まで移動する。
 
 ```csharp
 await Anime.PlayTo(
@@ -48,6 +42,8 @@ await Anime.PlayTo(
     TranslateTo.LocalPosition(cube)
 );
 ```
+
+![gif_animation_010](https://user-images.githubusercontent.com/961165/85938690-6d424700-b94a-11ea-9f8a-9bccddabf6b3.gif)
 
 ### Linear
 
@@ -74,6 +70,8 @@ await Anime.PlayTo(
     TranslateTo.LocalPosition(shape)
 );
 ```
+
+![gif_animation_001](https://user-images.githubusercontent.com/961165/85936316-77f1e180-b934-11ea-9614-9d1aa152bd41.gif)
 
 ### TranslateTo.Action
 
@@ -115,20 +113,32 @@ await Anime.PlayTo(
 
 ### Delay
 
-2秒間右に移動しつつ、最後の0.2秒でScaleを0にする
+2秒間右に等速で移動しつつ、最後の0.2秒でScaleを0にする
 
 ```csharp
 await UniTask.WhenAll(
     Anime.PlayTo(
-        Moving.Linear(2f, 2f),
-        TranslateTo.LocalPositionX(cubes[0])
+        Moving.Linear(3f, 2f),
+        TranslateTo.LocalPositionX(cube)
     ),
     Anime.PlayTo(
         Animator.Delay(1.8f, Easing.Create<Linear>(Vector3.zero, 0.2f)),
-        TranslateTo.LocalScale(cubes[0])
+        TranslateTo.LocalScale(cube)
     )
 );
 ```
+
+![gif_animation_011](https://user-images.githubusercontent.com/961165/85938704-8ea33300-b94a-11ea-986a-8537038f92f3.gif)
+
+## Instructions
+
+- Import [UniTask](https://github.com/Cysharp/UniTask)
+- Import AnimeTask
+    - Package Manager `git@github.com/kyubuns/AnimeTask.git?path=Assets/AnimeTask`
+        - UniTask must also be installed by PackageManager
+    - [UnityPackage](https://github.com/kyubuns/AnimeTask/releases)
+        - AnimeTask.asmdef must have a reference to UniTask.
+        - <img width="300" alt="Screen Shot 2020-06-27 at 22 48 21" src="https://user-images.githubusercontent.com/961165/85923709-51965c80-b8c8-11ea-8c3a-f0b321d0d4ab.png">
 
 ## 考え方
 
