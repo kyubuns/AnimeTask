@@ -1,5 +1,5 @@
 {
-  "name": "com.kyubuns.animetask",
+  "name": "dev.kyubuns.animetask",
   "displayName": "AnimeTask",
   "version": "1.0.2",
   "unity": "2018.4",
@@ -10,7 +10,7 @@
   "author": {
     "name": "kyubuns",
     "email": "kyubuns@gmail.com",
-    "url": "http://kyubuns.dev/"
+    "url": "https://kyubuns.dev/"
   },
   "type": "library"
 }
