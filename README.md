@@ -150,7 +150,7 @@ await Anime.Play(
 
 - Import [UniTask](https://github.com/Cysharp/UniTask)
 - Import AnimeTask
-    - Package Manager `git@github.com/kyubuns/AnimeTask.git?path=Assets/AnimeTask`
+    - Package Manager `https://github.com/kyubuns/AnimeTask.git?path=Assets/AnimeTask`
         - UniTask must also be installed by PackageManager
     - [UnityPackage](https://github.com/kyubuns/AnimeTask/releases)
         - AnimeTask.asmdef must have a reference to UniTask.
