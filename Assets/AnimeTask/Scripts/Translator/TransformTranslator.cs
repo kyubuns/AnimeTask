@@ -40,6 +40,9 @@ namespace AnimeTask
         public static LocalScaleXTranslator LocalScaleZ(Transform transform) => new LocalScaleXTranslator(transform, 2);
         public static LocalScaleXTranslator LocalScaleZ(GameObject gameObject) => new LocalScaleXTranslator(gameObject.transform, 2);
         public static LocalScaleXTranslator LocalScaleZ(Component component) => new LocalScaleXTranslator(component.transform, 2);
+        public static GlobalRotationTranslator GlobalRotation(Transform transform) => new GlobalRotationTranslator(transform);
+        public static GlobalRotationTranslator GlobalRotation(GameObject gameObject) => new GlobalRotationTranslator(gameObject.transform);
+        public static GlobalRotationTranslator GlobalRotation(Component component) => new GlobalRotationTranslator(component.transform);
     }
 
     public class LocalPositionTranslator : IValueTranslator<Vector3>, IValueTranslator<Vector2>
@@ -172,6 +175,24 @@ namespace AnimeTask
             var p = transform.localScale;
             p[Index] = value;
             transform.localScale = p;
+        }
+    }
+
+    public class GlobalRotationTranslator : IValueTranslator<Quaternion>
+    {
+        private readonly Transform transform;
+        public Quaternion Current => transform.rotation;
+
+        Quaternion IValueTranslator<Quaternion>.Current => transform.rotation;
+
+        public GlobalRotationTranslator(Transform transform)
+        {
+            this.transform = transform;
+        }
+
+        public void Update(Quaternion value)
+        {
+            transform.rotation = value;
         }
     }
 }

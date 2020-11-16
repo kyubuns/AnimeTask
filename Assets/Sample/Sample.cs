@@ -81,5 +81,20 @@ namespace AnimeTask.Sample
                 await Anime.Delay(1f);
             }
         }
+
+        public async Task Sample05()
+        {
+            using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
+            {
+                await Anime.Delay(1f);
+                await UniTask.WhenAll(
+                    Anime.Play(
+                        Easing.Create<OutCubic>(Quaternion.identity, Quaternion.Euler(30f, 0f, 0f), 0.5f),
+                        TranslateTo.GlobalRotation(cubes[0])
+                    )
+                );
+                await Anime.Delay(1f);
+            }
+        }
     }
 }
