@@ -19,6 +19,10 @@ await Anime.Play(
 );
 ```
 
+```csharp
+await Easing.Create<Linear>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2f).ToLocalPosition(cube);
+```
+
 <img src="https://user-images.githubusercontent.com/961165/85938659-32d8aa00-b94a-11ea-84e4-162626e31861.gif" width="480">
 
 ### PlayTo
@@ -26,10 +30,7 @@ await Anime.Play(
 PlayToを利用すると、現在地から指定した位置まで移動する。
 
 ```csharp
-await Anime.PlayTo(
-    Easing.Create<Linear>(new Vector3(-5f, 3f, 0f), 2f),
-    TranslateTo.LocalPosition(cube)
-);
+await Easing.Create<Linear>(new Vector3(-5f, 3f, 0f), 2f).ToLocalPosition(cube);
 ```
 
 <img src="https://user-images.githubusercontent.com/961165/85938725-b5fa0000-b94a-11ea-8c4c-2b20b2090561.gif" width="480">
@@ -39,10 +40,7 @@ await Anime.PlayTo(
 [Easing](https://easings.net/)の[InCubic](https://easings.net/#easeInCubic)を利用して、指定した位置まで移動する。
 
 ```csharp
-await Anime.PlayTo(
-    Easing.Create<InCubic>(new Vector3(-5f, 3f, 0f), 2f),
-    TranslateTo.LocalPosition(cube)
-);
+await Easing.Create<InCubic>(new Vector3(-5f, 3f, 0f), 2f).ToLocalPosition(cube);
 ```
 
 <img src="https://user-images.githubusercontent.com/961165/85938690-6d424700-b94a-11ea-9f8a-9bccddabf6b3.gif" width="480">
@@ -52,10 +50,7 @@ await Anime.PlayTo(
 指定した速度（秒速1）で、2秒間移動する。
 
 ```csharp
-await Anime.PlayTo(
-    Moving.Linear(1f, 2f),
-    TranslateTo.LocalPositionX(cube)
-);
+await Moving.Linear(1f, 2f).ToLocalPositionX(cube);
 ```
 
 ### Gravity
@@ -64,13 +59,11 @@ await Anime.PlayTo(
 const float xRange = 5f;
 const float yRangeMin = 5f;
 const float yRangeMax = 10f;
-await Anime.PlayTo(
-    Moving.Gravity(
-        new Vector3(Random.Range(-xRange, xRange), Random.Range(yRangeMin, yRangeMax)),
-        Vector3.down * 9.8f,
-        5f),
-    TranslateTo.LocalPosition(shape)
-);
+await Moving.Gravity(
+          new Vector3(Random.Range(-xRange, xRange), Random.Range(yRangeMin, yRangeMax)),
+          Vector3.down * 9.8f,
+          5f
+      ).ToLocalPosition(shape)
 ```
 
 <img src="https://user-images.githubusercontent.com/961165/85940937-8c48d500-b95a-11ea-81b5-fddd17166a96.gif" width="480">
@@ -80,10 +73,7 @@ await Anime.PlayTo(
 TranslateTo.Actionを利用すると、アニメーションした値を自由に使用出来る。
 
 ```csharp
-await Anime.Play(
-    Easing.Create<Linear>(0, 100, 2f),
-    TranslateTo.Action<float>(x => Debug.Log(x))
-);
+Easing.Create<Linear>(0, 100, 2f).ToAction<float>(x => Debug.Log(x))
 ```
 
 ### UnscaledTime
@@ -106,11 +96,7 @@ var cancellationTokenSource = new CancellationTokenSource();
 cancellationTokenSource.Token.Register(() => Debug.Log("Cancel"));
 cancellationTokenSource.CancelAfter(500);
 
-await Anime.PlayTo(
-    Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), 2f),
-    TranslateTo.LocalPosition(cubes[0]),
-    cancellationTokenSource.Token
-);
+await Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), 2f).ToLocalPosition(cubes[0], cancellationTokenSource.Token);
 ```
 
 ### Delay
@@ -119,14 +105,8 @@ await Anime.PlayTo(
 
 ```csharp
 await UniTask.WhenAll(
-    Anime.PlayTo(
-        Moving.Linear(3f, 2f),
-        TranslateTo.LocalPositionX(cube)
-    ),
-    Anime.PlayTo(
-        Animator.Delay(1.8f, Easing.Create<Linear>(Vector3.zero, 0.2f)),
-        TranslateTo.LocalScale(cube)
-    )
+    Moving.Linear(3f, 2f).ToLocalPositionX(cube),
+    Animator.Delay(1.8f, Easing.Create<Linear>(Vector3.zero, 0.2f)).ToLocalScale(cube),
 );
 ```
 
@@ -137,13 +117,10 @@ await UniTask.WhenAll(
 floatの推移を円運動に変換する。
 
 ```csharp
-await Anime.Play(
-    Animator.Convert(
-        Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f),
-        x => new Vector3(Mathf.Sin(x), Mathf.Cos(x), 0.0f) * 3.0f
-    ),
-    TranslateTo.LocalPosition(go)
-);
+await Animator.Convert(
+    Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f),
+    x => new Vector3(Mathf.Sin(x), Mathf.Cos(x), 0.0f) * 3.0f
+).ToLocalPosition(go)
 ```
 
 <img src="https://user-images.githubusercontent.com/961165/85940836-ef863780-b959-11ea-94a3-11e9ed5057f4.gif" width="480">
