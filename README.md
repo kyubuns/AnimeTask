@@ -19,6 +19,8 @@ await Anime.Play(
 );
 ```
 
+↓ こう書いても同じです。
+
 ```csharp
 await Easing.Create<Linear>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2f).ToLocalPosition(cube);
 ```
