@@ -6,7 +6,7 @@ Task Animation Library for Unity
 
 ![gif_animation_001](https://user-images.githubusercontent.com/961165/85940937-8c48d500-b95a-11ea-81b5-fddd17166a96.gif)
 
-Rx Version! -> [kyubuns/AnimeTask](https://github.com/kyubuns/AnimeRx)
+Rx Version! -> [kyubuns/AnimeRx](https://github.com/kyubuns/AnimeRx)
 
 ## Sample
 
