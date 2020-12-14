@@ -134,10 +134,7 @@ await Animator.Convert(
 - Import [UniTask](https://github.com/Cysharp/UniTask)
 - Import AnimeTask
     - Package Manager `https://github.com/kyubuns/AnimeTask.git?path=Assets/AnimeTask`
-        - UniTask must also be installed by PackageManager
     - [UnityPackage](https://github.com/kyubuns/AnimeTask/releases)
-        - AnimeTask.asmdef must have a reference to UniTask.
-        - <img width="300" alt="Screen Shot 2020-06-27 at 22 48 21" src="https://user-images.githubusercontent.com/961165/85923709-51965c80-b8c8-11ea-8c3a-f0b321d0d4ab.png">
 
 ## 考え方
 
