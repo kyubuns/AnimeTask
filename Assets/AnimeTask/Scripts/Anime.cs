@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace AnimeTask
 {
@@ -43,7 +44,7 @@ namespace AnimeTask
         private static async UniTask PlayInternal<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler, CancellationToken cancellationToken)
         {
             var startTime = scheduler.Now;
-            while (!cancellationToken.IsCancellationRequested)
+            while (!cancellationToken.IsCancellationRequested && Application.isPlaying)
             {
                 var (t, finished) = animator.Update(scheduler.Now - startTime);
                 translator.Update(t);
