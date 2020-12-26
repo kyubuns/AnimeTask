@@ -124,10 +124,18 @@ floatの推移を円運動に変換する。
 await Animator.Convert(
     Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f),
     x => new Vector3(Mathf.Sin(x), Mathf.Cos(x), 0.0f) * 3.0f
-).ToLocalPosition(go)
+).ToLocalPosition(go);
 ```
 
 <img src="https://user-images.githubusercontent.com/961165/85940836-ef863780-b959-11ea-94a3-11e9ed5057f4.gif" width="480">
+
+### IProgress
+
+Supporting [IProgress](https://docs.microsoft.com/ja-jp/dotnet/api/system.iprogress-1)
+
+```csharp
+await Easing.Create<Linear>(2f).ToProgress(Progress.Create<float>(x => Debug.Log(x)));
+```
 
 ## Instructions
 
