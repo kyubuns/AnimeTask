@@ -14,10 +14,20 @@ namespace AnimeTask
             return Play(animator, translator, DefaultScheduler, cancellationToken);
         }
 
+        public static UniTask Play<T>(IAnimator<T> animator, IProgress<T> progress, CancellationToken cancellationToken = default)
+        {
+            return Play(animator, TranslateTo.Progress(progress), cancellationToken);
+        }
+
         public static async UniTask Play<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler, CancellationToken cancellationToken = default)
         {
             animator.Start();
             await PlayInternal(animator, translator, scheduler, cancellationToken);
+        }
+
+        public static UniTask Play<T>(IAnimator<T> animator, IProgress<T> progress, IScheduler scheduler, CancellationToken cancellationToken = default)
+        {
+            return Play(animator, TranslateTo.Progress(progress), scheduler, cancellationToken);
         }
 
         public static UniTask PlayTo<T>(IAnimatorWithStartValue<T> animator, IValueTranslator<T> translator, CancellationToken cancellationToken = default)

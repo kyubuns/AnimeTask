@@ -5,6 +5,11 @@ namespace AnimeTask
 {
     public static partial class Easing
     {
+        public static Vector1EasingAnimator Create<T>(float duration) where T : IEasing, new()
+        {
+            return new Vector1EasingAnimator(new T(), 0f, 1f, duration);
+        }
+
         public static Vector1EasingAnimator Create<T>(float start, float end, float duration) where T : IEasing, new()
         {
             return new Vector1EasingAnimator(new T(), start, end, duration);

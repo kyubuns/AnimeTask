@@ -79,5 +79,11 @@ namespace AnimeTask.Sample
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
             }
         }
+
+        public async Task Sample06()
+        {
+            await Anime.Play(Easing.Create<Linear>(2f), Progress.Create<float>(x => Debug.Log(x)));
+            await Easing.Create<Linear>(2f).ToProgress(Progress.Create<float>(x => Debug.Log(x)));
+        }
     }
 }
