@@ -82,8 +82,10 @@ namespace AnimeTask.Sample
 
         public async Task Sample06()
         {
-            await Anime.Play(Easing.Create<Linear>(2f), Progress.Create<float>(x => Debug.Log(x)));
-            await Easing.Create<Linear>(2f).ToProgress(Progress.Create<float>(x => Debug.Log(x)));
+            using (var cubes = new SampleCubes(new Vector3(0f, 0f, 0f)))
+            {
+                await Easing.Create<OutBounce>(Color.white, Color.red, 2f).ToMaterialPropertyColor(cubes[0].GetComponent<MeshRenderer>(), "_Color");
+            }
         }
     }
 }
