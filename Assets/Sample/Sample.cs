@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Random = System.Random;
 
 namespace AnimeTask.Sample
 {
     public class Sample : MonoBehaviour
     {
+        private static readonly int ShaderColor = Shader.PropertyToID("_Color");
+
         public async Task Sample01()
         {
             using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
@@ -82,9 +86,24 @@ namespace AnimeTask.Sample
 
         public async Task Sample06()
         {
-            using (var cubes = new SampleCubes(new Vector3(0f, 0f, 0f)))
+            var p = Enumerable.Range(0, 11)
+                .Select(x => Enumerable.Range(0, 11).Select(y => new Vector3(x - 5f, y - 5f, 0)))
+                .SelectMany(x => x)
+                .ToArray();
+            using (var cubes = new SampleCubes(p))
             {
-                await Easing.Create<OutBounce>(Color.white, Color.red, 2f).ToMaterialPropertyColor(cubes[0].GetComponent<MeshRenderer>(), "_Color");
+                for (var i = 0; i < 100; ++i)
+                {
+                    await UniTask.WhenAll(
+                        cubes.All.Select(x =>
+                        {
+                            var r = x.GetComponent<MeshRenderer>();
+                            var pb = new MaterialPropertyBlock();
+                            r.GetPropertyBlock(pb);
+                            return Easing.Create<InOutCubic>(pb.GetColor(ShaderColor), UnityEngine.Random.ColorHSV(), 0.5f).ToMaterialPropertyColor(r, "_Color");
+                        })
+                    );
+                }
             }
         }
     }

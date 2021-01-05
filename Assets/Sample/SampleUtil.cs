@@ -18,6 +18,7 @@ namespace AnimeTask.Sample
     public class SampleCubes : IDisposable
     {
         private readonly List<GameObject> cubes = new List<GameObject>();
+        public IReadOnlyList<GameObject> All => cubes;
         public GameObject this[int index] => cubes[index];
 
         public SampleCubes(params Vector3[] positions)
