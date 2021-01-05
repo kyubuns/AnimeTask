@@ -8,6 +8,8 @@ namespace AnimeTask.Sample
 {
     public class Sample : MonoBehaviour
     {
+        public MeshRenderer testRenderer;
+
         public async Task Sample01()
         {
             using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
@@ -82,7 +84,7 @@ namespace AnimeTask.Sample
 
         public async Task Sample06()
         {
-            await Anime.Play(Easing.Create<Linear>(2f), Progress.Create<float>(x => Debug.Log(x)));
+            await Easing.Create<Linear>(2f).ToMaterialPropertyFloat(testRenderer, "_Metallic");
             await Easing.Create<Linear>(2f).ToProgress(Progress.Create<float>(x => Debug.Log(x)));
         }
     }
