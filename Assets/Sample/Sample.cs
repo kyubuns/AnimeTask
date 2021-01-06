@@ -64,7 +64,7 @@ namespace AnimeTask.Sample
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
                 await UniTask.WhenAll(
                     Moving.Linear(2f, 2f).ToLocalPositionX(cubes[0]),
-                    Animator.Delay(1.8f, Easing.Create<Linear>(Vector3.zero, 0.2f)).ToLocalScale(cubes[0])
+                    Animator.Delay(1.8f, Easing.Create<Linear>(Vector3.zero, 0.2f)).DebugLog().ToLocalScale(cubes[0])
                 );
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
             }
