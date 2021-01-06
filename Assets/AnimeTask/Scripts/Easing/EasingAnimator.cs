@@ -86,10 +86,6 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start()
-        {
-        }
-
         public Tuple<float, bool> Update(float time)
         {
             var value = Mathf.LerpUnclamped(start, end, easing.Function(Mathf.Min(time / duration, 1.0f)));
@@ -136,10 +132,6 @@ namespace AnimeTask
             this.start = start;
             this.end = end;
             this.duration = duration;
-        }
-
-        public void Start()
-        {
         }
 
         public Tuple<Vector2, bool> Update(float time)
@@ -190,10 +182,6 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start()
-        {
-        }
-
         public Tuple<Vector3, bool> Update(float time)
         {
             var value = Vector3.LerpUnclamped(start, end, easing.Function(Mathf.Min(time / duration, 1.0f)));
@@ -240,10 +228,6 @@ namespace AnimeTask
             this.start = start;
             this.end = end;
             this.duration = duration;
-        }
-
-        public void Start()
-        {
         }
 
         public Tuple<Vector4, bool> Update(float time)
@@ -294,10 +278,6 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start()
-        {
-        }
-
         public Tuple<Quaternion, bool> Update(float time)
         {
             var value = Quaternion.LerpUnclamped(start, end, easing.Function(Mathf.Min(time / duration, 1.0f)));
@@ -344,10 +324,6 @@ namespace AnimeTask
             this.start = start;
             this.end = end;
             this.duration = duration;
-        }
-
-        public void Start()
-        {
         }
 
         public Tuple<Color, bool> Update(float time)

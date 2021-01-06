@@ -27,11 +27,6 @@ namespace AnimeTask
             this.animator = animator;
         }
 
-        public void Start()
-        {
-            animator.Start();
-        }
-
         public Tuple<T, bool> Update(float time)
         {
             return animator.Update(Mathf.Max(time - duration, 0f));

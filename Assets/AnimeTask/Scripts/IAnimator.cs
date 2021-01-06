@@ -4,7 +4,6 @@ namespace AnimeTask
 {
     public interface IAnimator<T>
     {
-        void Start();
         Tuple<T, bool> Update(float time);
     }
 

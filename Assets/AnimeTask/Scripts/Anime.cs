@@ -21,7 +21,6 @@ namespace AnimeTask
 
         public static async UniTask Play<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler, CancellationToken cancellationToken = default)
         {
-            animator.Start();
             await PlayInternal(animator, translator, scheduler, cancellationToken);
         }
 
@@ -77,10 +76,6 @@ namespace AnimeTask
         public DummyAnimator(IAnimatorWithStartValue<T> animator)
         {
             this.animator = animator;
-        }
-
-        public void Start()
-        {
         }
 
         public Tuple<T, bool> Update(float time)

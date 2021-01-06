@@ -21,11 +21,6 @@ namespace AnimeTask
             this.func = func;
         }
 
-        public void Start()
-        {
-            animator.Start();
-        }
-
         public Tuple<T2, bool> Update(float time)
         {
             var (item1, item2) = animator.Update(time);
