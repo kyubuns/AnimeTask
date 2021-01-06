@@ -11,7 +11,7 @@ namespace AnimeTask.Sample
     {
         private static readonly int ShaderColor = Shader.PropertyToID("_Color");
 
-        public async Task Sample01()
+        public async UniTask Sample01()
         {
             using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
             {
@@ -21,7 +21,7 @@ namespace AnimeTask.Sample
             }
         }
 
-        public async Task Sample02()
+        public async UniTask Sample02()
         {
             using (var cubes = new SampleCubes(new Vector3(0f, 3f, 0f), new Vector3(0f, 3f, 0f), new Vector3(0f, 3f, 0f)))
             {
@@ -35,7 +35,7 @@ namespace AnimeTask.Sample
             }
         }
 
-        public async Task Sample03()
+        public async UniTask Sample03()
         {
             using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
             {
@@ -57,7 +57,7 @@ namespace AnimeTask.Sample
                 .ToLocalPosition(go);
         }
 
-        public async Task Sample04()
+        public async UniTask Sample04()
         {
             using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
             {
@@ -70,7 +70,7 @@ namespace AnimeTask.Sample
             }
         }
 
-        public async Task Sample05()
+        public async UniTask Sample05()
         {
             using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
             {
@@ -82,7 +82,7 @@ namespace AnimeTask.Sample
             }
         }
 
-        public async Task Sample06()
+        public async UniTask Sample06()
         {
             var p = Enumerable.Range(0, 11)
                 .Select(x => Enumerable.Range(0, 11).Select(y => new Vector3(x - 5f, y - 5f, 0)))
@@ -105,7 +105,7 @@ namespace AnimeTask.Sample
             }
         }
 
-        public async Task Sample07()
+        public async UniTask Sample07()
         {
             using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
             {
@@ -121,7 +121,7 @@ namespace AnimeTask.Sample
             }
         }
 
-        public async Task Sample08()
+        public async UniTask Sample08()
         {
             using (var cubes = new SampleCubes(new Vector3(-5f, -1f, 0f), new Vector3(0f, 1f, 0f)))
             {
@@ -137,7 +137,7 @@ namespace AnimeTask.Sample
             }
         }
 
-        public async Task Sample09()
+        public async UniTask Sample09()
         {
             using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
             {
