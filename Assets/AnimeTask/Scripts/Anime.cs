@@ -40,18 +40,10 @@ namespace AnimeTask
             await PlayInternal(animator, translator, scheduler, cancellationToken);
         }
 
-        public static UniTask Delay(float duration, CancellationToken cancellationToken = default)
-        {
-            return Delay(duration, DefaultScheduler, cancellationToken);
-        }
-
-        public static async UniTask Delay(float duration, IScheduler scheduler, CancellationToken cancellationToken = default)
-        {
-            await DelayInternal(duration, scheduler, cancellationToken);
-        }
-
         private static async UniTask PlayInternal<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler, CancellationToken cancellationToken)
         {
+            if (scheduler == default) scheduler = DefaultScheduler;
+
             var startTime = scheduler.Now;
             while (!cancellationToken.IsCancellationRequested && Application.isPlaying)
             {
@@ -61,12 +53,6 @@ namespace AnimeTask
                 if (used < time) break;
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
             }
-        }
-
-        private static async UniTask DelayInternal(float duration, IScheduler scheduler, CancellationToken cancellationToken)
-        {
-            var startTime = scheduler.Now;
-            await UniTask.WaitWhile(() => scheduler.Now - startTime < duration, cancellationToken: cancellationToken);
         }
     }
 }
