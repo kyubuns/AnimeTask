@@ -9,7 +9,6 @@ namespace AnimeTask
 
     public interface IAnimatorWithStartValue<T>
     {
-        void Start(T startValue);
-        Tuple<T, bool> Update(float time);
+        IAnimator<T> Start(T startValue);
     }
 }

@@ -44,14 +44,9 @@ namespace AnimeTask
             this.animator = animator;
         }
 
-        public void Start(T startValue)
+        public IAnimator<T> Start(T startValue)
         {
-            animator.Start(startValue);
-        }
-
-        public Tuple<T, bool> Update(float time)
-        {
-            return animator.Update(Mathf.Max(time - duration, 0f));
+            return new DelayAnimator<T>(duration, animator.Start(startValue));
         }
     }
 }
