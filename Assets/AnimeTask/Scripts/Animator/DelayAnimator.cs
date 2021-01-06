@@ -1,52 +1,49 @@
 using System;
-using UnityEngine;
 
 namespace AnimeTask
 {
     public static partial class Animator
     {
-        public static DelayAnimator<T> Delay<T>(float duration, IAnimator<T> animator)
+        public static DelayAnimator<T> Delay<T>(T startValue, float duration)
         {
-            return new DelayAnimator<T>(duration, animator);
+            return new DelayAnimator<T>(startValue, duration);
         }
 
-        public static DelayAnimatorWithStartValue<T> Delay<T>(float duration, IAnimatorWithStartValue<T> animator)
+        public static DelayAnimatorWithStartValue<T> Delay<T>(float duration)
         {
-            return new DelayAnimatorWithStartValue<T>(duration, animator);
+            return new DelayAnimatorWithStartValue<T>(duration);
         }
     }
 
     public class DelayAnimator<T> : IAnimator<T>
     {
+        private readonly T start;
         private readonly float duration;
-        private readonly IAnimator<T> animator;
 
-        public DelayAnimator(float duration, IAnimator<T> animator)
+        public DelayAnimator(T start, float duration)
         {
+            this.start = start;
             this.duration = duration;
-            this.animator = animator;
         }
 
         public Tuple<T, bool> Update(float time)
         {
-            return animator.Update(Mathf.Max(time - duration, 0f));
+            return Tuple.Create(start, time > duration);
         }
     }
 
     public class DelayAnimatorWithStartValue<T> : IAnimatorWithStartValue<T>
     {
         private readonly float duration;
-        private readonly IAnimatorWithStartValue<T> animator;
 
-        public DelayAnimatorWithStartValue(float duration, IAnimatorWithStartValue<T> animator)
+        public DelayAnimatorWithStartValue(float duration)
         {
             this.duration = duration;
-            this.animator = animator;
         }
 
         public IAnimator<T> Start(T startValue)
         {
-            return new DelayAnimator<T>(duration, animator.Start(startValue));
+            return new DelayAnimator<T>(startValue, duration);
         }
     }
 }
