@@ -55,9 +55,10 @@ namespace AnimeTask
             var startTime = scheduler.Now;
             while (!cancellationToken.IsCancellationRequested && Application.isPlaying)
             {
-                var (t, finished) = animator.Update(scheduler.Now - startTime);
+                var time = scheduler.Now - startTime;
+                var (t, used) = animator.Update(time);
                 translator.Update(t);
-                if (finished) break;
+                if (used < time) break;
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
             }
         }

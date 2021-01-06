@@ -25,10 +25,10 @@ namespace AnimeTask
             this.animator = animator;
         }
 
-        public Tuple<T, bool> Update(float time)
+        public Tuple<T, float> Update(float time)
         {
             var v = animator.Update(time);
-            Debug.Log($"{time:0.00}: {v}");
+            Debug.Log($"{time:0.00}: {v.Item1}");
             return v;
         }
     }

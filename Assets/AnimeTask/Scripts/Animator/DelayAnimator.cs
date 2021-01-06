@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace AnimeTask
 {
@@ -26,9 +27,9 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public Tuple<T, bool> Update(float time)
+        public Tuple<T, float> Update(float time)
         {
-            return Tuple.Create(start, time > duration);
+            return Tuple.Create(start, Mathf.Min(time, duration));
         }
     }
 
