@@ -121,10 +121,9 @@ await UniTask.WhenAll(
 floatの推移を円運動に変換する。
 
 ```csharp
-await Animator.Convert(
-    Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f),
-    x => new Vector3(Mathf.Sin(x), Mathf.Cos(x), 0.0f) * 3.0f
-).ToLocalPosition(go);
+await Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f)
+    .Convert(x => new Vector3(Mathf.Sin(x), Mathf.Cos(x), 0.0f) * 3.0f)
+    .ToLocalPosition(go);
 ```
 
 <img src="https://user-images.githubusercontent.com/961165/85940836-ef863780-b959-11ea-94a3-11e9ed5057f4.gif" width="480">

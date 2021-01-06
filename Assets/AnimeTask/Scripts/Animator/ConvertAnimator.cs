@@ -4,7 +4,7 @@ namespace AnimeTask
 {
     public static partial class Animator
     {
-        public static ConvertAnimator<T1, T2> Convert<T1, T2>(IAnimator<T1> animator, Func<T1, T2> func)
+        public static ConvertAnimator<T1, T2> Convert<T1, T2>(this IAnimator<T1> animator, Func<T1, T2> func)
         {
             return new ConvertAnimator<T1, T2>(animator, func);
         }

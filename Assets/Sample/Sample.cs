@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using Random = System.Random;
 
 namespace AnimeTask.Sample
 {
@@ -53,9 +52,8 @@ namespace AnimeTask.Sample
         private async UniTask CircleAnimation(GameObject go, float delay)
         {
             await UniTask.Delay(TimeSpan.FromSeconds(delay));
-            await Animator.Convert(
-                    Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f),
-                    x => new Vector3(Mathf.Sin(x), Mathf.Cos(x), 0.0f) * 3.0f)
+            await Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f)
+                .Convert(x => new Vector3(Mathf.Sin(x), Mathf.Cos(x), 0.0f) * 3.0f)
                 .ToLocalPosition(go);
         }
 
