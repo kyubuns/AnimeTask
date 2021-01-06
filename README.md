@@ -77,11 +77,8 @@ Easing.Create<Linear>(0, 100, 2f).ToAction<float>(x => Debug.Log(x))
 デフォルトはTime.timeを利用していて、Time.unscaledTimeを利用するUnscaledTimeSchedulerも利用できる。
 
 ```csharp
-await Anime.Play(
-    Easing.Create<Linear>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2f),
-    TranslateTo.LocalPosition(shape),
-    new UnscaledTimeScheduler()
-);
+Easing.Create<Linear>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2f)
+    .ToLocalPosition(shape, default, new UnscaledTimeScheduler());
 ```
 
 ### Cancel
