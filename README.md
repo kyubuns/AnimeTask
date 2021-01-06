@@ -15,15 +15,6 @@ Rx Version! -> [kyubuns/AnimeRx](https://github.com/kyubuns/AnimeRx)
 `(-5f, 0f, 0f)` から `(5f, 0f, 0f)` へ2秒かけて移動する。
 
 ```csharp
-await Anime.Play(
-    Easing.Create<Linear>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2f),
-    TranslateTo.LocalPosition(cube)
-);
-```
-
-↓ こう書いても同じです。
-
-```csharp
 await Easing.Create<Linear>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2f).ToLocalPosition(cube);
 ```
 
@@ -31,7 +22,7 @@ await Easing.Create<Linear>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2
 
 ### PlayTo
 
-PlayToを利用すると、現在地から指定した位置まで移動する。
+現在地から指定した位置まで移動する。
 
 ```csharp
 await Easing.Create<Linear>(new Vector3(-5f, 3f, 0f), 2f).ToLocalPosition(cube);
@@ -127,6 +118,18 @@ await Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f)
 ```
 
 <img src="https://user-images.githubusercontent.com/961165/85940836-ef863780-b959-11ea-94a3-11e9ed5057f4.gif" width="480">
+
+### Concat
+
+2秒で5fから0fまで移動し、1秒停止したあと、2秒で-5fへ移動する。
+
+```csharp
+await Easing.Create<OutCubic>(5f, 0f, 2f)
+    .Delay(1f)
+    .Concat(Easing.Create<OutCubic>(0f, -5f, 2f))
+    .Convert(x => new Vector3(x, 0f, 0f))
+    .ToLocalPosition(cubes[0]);
+```
 
 ### IProgress
 

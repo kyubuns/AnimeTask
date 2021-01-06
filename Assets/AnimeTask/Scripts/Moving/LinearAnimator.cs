@@ -49,14 +49,10 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start()
-        {
-        }
-
-        public Tuple<float, bool> Update(float time)
+        public Tuple<float, float> Update(float time)
         {
             var value = start + velocity * Mathf.Min(time, duration);
-            return Tuple.Create(value, time > duration);
+            return Tuple.Create(value, Mathf.Min(time, duration));
         }
     }
 
@@ -64,7 +60,6 @@ namespace AnimeTask
     {
         private readonly float velocity;
         private readonly float duration;
-        private float start;
 
         public Vector1LinearMovingAnimatorWithStartValue(float velocity, float duration)
         {
@@ -72,15 +67,9 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start(float startValue)
+        public IAnimator<float> Start(float startValue)
         {
-            start = startValue;
-        }
-
-        public Tuple<float, bool> Update(float time)
-        {
-            var value = start + velocity * Mathf.Min(time, duration);
-            return Tuple.Create(value, time > duration);
+            return new Vector1LinearMovingAnimator(startValue, velocity, duration);
         }
     }
 
@@ -97,14 +86,10 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start()
-        {
-        }
-
-        public Tuple<Vector2, bool> Update(float time)
+        public Tuple<Vector2, float> Update(float time)
         {
             var value = start + velocity * Mathf.Min(time, duration);
-            return Tuple.Create(value, time > duration);
+            return Tuple.Create(value, Mathf.Min(time, duration));
         }
     }
 
@@ -112,7 +97,6 @@ namespace AnimeTask
     {
         private readonly Vector2 velocity;
         private readonly float duration;
-        private Vector2 start;
 
         public Vector2LinearMovingAnimatorWithStartValue(Vector2 velocity, float duration)
         {
@@ -120,15 +104,9 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start(Vector2 startValue)
+        public IAnimator<Vector2> Start(Vector2 startValue)
         {
-            start = startValue;
-        }
-
-        public Tuple<Vector2, bool> Update(float time)
-        {
-            var value = start + velocity * Mathf.Min(time, duration);
-            return Tuple.Create(value, time > duration);
+            return new Vector2LinearMovingAnimator(startValue, velocity, duration);
         }
     }
 
@@ -145,14 +123,10 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start()
-        {
-        }
-
-        public Tuple<Vector3, bool> Update(float time)
+        public Tuple<Vector3, float> Update(float time)
         {
             var value = start + velocity * Mathf.Min(time, duration);
-            return Tuple.Create(value, time > duration);
+            return Tuple.Create(value, Mathf.Min(time, duration));
         }
     }
 
@@ -160,7 +134,6 @@ namespace AnimeTask
     {
         private readonly Vector3 velocity;
         private readonly float duration;
-        private Vector3 start;
 
         public Vector3LinearMovingAnimatorWithStartValue(Vector3 velocity, float duration)
         {
@@ -168,15 +141,9 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start(Vector3 startValue)
+        public IAnimator<Vector3> Start(Vector3 startValue)
         {
-            start = startValue;
-        }
-
-        public Tuple<Vector3, bool> Update(float time)
-        {
-            var value = start + velocity * Mathf.Min(time, duration);
-            return Tuple.Create(value, time > duration);
+            return new Vector3LinearMovingAnimator(startValue, velocity, duration);
         }
     }
 }

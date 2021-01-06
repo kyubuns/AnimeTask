@@ -2,15 +2,17 @@ using System;
 
 namespace AnimeTask
 {
-    public interface IAnimator<T>
+    public interface IConcatableAnimator<T>
     {
-        void Start();
-        Tuple<T, bool> Update(float time);
     }
 
-    public interface IAnimatorWithStartValue<T>
+    public interface IAnimator<T> : IConcatableAnimator<T>
     {
-        void Start(T startValue);
-        Tuple<T, bool> Update(float time);
+        Tuple<T, float> Update(float time);
+    }
+
+    public interface IAnimatorWithStartValue<T> : IConcatableAnimator<T>
+    {
+        IAnimator<T> Start(T startValue);
     }
 }

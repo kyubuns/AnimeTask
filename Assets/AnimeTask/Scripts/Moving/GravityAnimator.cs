@@ -51,15 +51,11 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start()
-        {
-        }
-
-        public Tuple<float, bool> Update(float time)
+        public Tuple<float, float> Update(float time)
         {
             var t = Mathf.Min(time, duration);
             var value = start + velocity * t + acceleration * (0.5f * t * t);
-            return Tuple.Create(value, time > duration);
+            return Tuple.Create(value, Mathf.Min(time, duration));
         }
     }
 
@@ -68,7 +64,6 @@ namespace AnimeTask
         private readonly float velocity;
         private readonly float acceleration;
         private readonly float duration;
-        private float start;
 
         public Vector1GravityMovingAnimatorWithStartValue(float velocity, float acceleration, float duration)
         {
@@ -77,16 +72,9 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start(float startValue)
+        public IAnimator<float> Start(float startValue)
         {
-            start = startValue;
-        }
-
-        public Tuple<float, bool> Update(float time)
-        {
-            var t = Mathf.Min(time, duration);
-            var value = start + velocity * t + acceleration * (0.5f * t * t);
-            return Tuple.Create(value, time > duration);
+            return new Vector1GravityMovingAnimator(startValue, velocity, acceleration, duration);
         }
     }
 
@@ -105,15 +93,11 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start()
-        {
-        }
-
-        public Tuple<Vector2, bool> Update(float time)
+        public Tuple<Vector2, float> Update(float time)
         {
             var t = Mathf.Min(time, duration);
             var value = start + velocity * t + acceleration * (0.5f * t * t);
-            return Tuple.Create(value, time > duration);
+            return Tuple.Create(value, Mathf.Min(time, duration));
         }
     }
 
@@ -122,7 +106,6 @@ namespace AnimeTask
         private readonly Vector2 velocity;
         private readonly Vector2 acceleration;
         private readonly float duration;
-        private Vector2 start;
 
         public Vector2GravityMovingAnimatorWithStartValue(Vector2 velocity, Vector2 acceleration, float duration)
         {
@@ -131,16 +114,9 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start(Vector2 startValue)
+        public IAnimator<Vector2> Start(Vector2 startValue)
         {
-            start = startValue;
-        }
-
-        public Tuple<Vector2, bool> Update(float time)
-        {
-            var t = Mathf.Min(time, duration);
-            var value = start + velocity * t + acceleration * (0.5f * t * t);
-            return Tuple.Create(value, time > duration);
+            return new Vector2GravityMovingAnimator(startValue, velocity, acceleration, duration);
         }
     }
 
@@ -159,15 +135,11 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start()
-        {
-        }
-
-        public Tuple<Vector3, bool> Update(float time)
+        public Tuple<Vector3, float> Update(float time)
         {
             var t = Mathf.Min(time, duration);
             var value = start + velocity * t + acceleration * (0.5f * t * t);
-            return Tuple.Create(value, time > duration);
+            return Tuple.Create(value, Mathf.Min(time, duration));
         }
     }
 
@@ -176,7 +148,6 @@ namespace AnimeTask
         private readonly Vector3 velocity;
         private readonly Vector3 acceleration;
         private readonly float duration;
-        private Vector3 start;
 
         public Vector3GravityMovingAnimatorWithStartValue(Vector3 velocity, Vector3 acceleration, float duration)
         {
@@ -185,16 +156,9 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public void Start(Vector3 startValue)
+        public IAnimator<Vector3> Start(Vector3 startValue)
         {
-            start = startValue;
-        }
-
-        public Tuple<Vector3, bool> Update(float time)
-        {
-            var t = Mathf.Min(time, duration);
-            var value = start + velocity * t + acceleration * (0.5f * t * t);
-            return Tuple.Create(value, time > duration);
+            return new Vector3GravityMovingAnimator(startValue, velocity, acceleration, duration);
         }
     }
 }

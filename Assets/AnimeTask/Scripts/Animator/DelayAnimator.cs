@@ -5,58 +5,42 @@ namespace AnimeTask
 {
     public static partial class Animator
     {
-        public static DelayAnimator<T> Delay<T>(float duration, IAnimator<T> animator)
-        {
-            return new DelayAnimator<T>(duration, animator);
-        }
+        public static DelayAnimator<T> Delay<T>(T startValue, float duration) => new DelayAnimator<T>(startValue, duration);
+        public static DelayAnimatorWithStartValue<T> Delay<T>(float duration) => new DelayAnimatorWithStartValue<T>(duration);
 
-        public static DelayAnimatorWithStartValue<T> Delay<T>(float duration, IAnimatorWithStartValue<T> animator)
-        {
-            return new DelayAnimatorWithStartValue<T>(duration, animator);
-        }
+        public static ConcatAnimator<T> Delay<T>(this IAnimator<T> animator, float duration) => Concat(animator, Delay<T>(duration));
+        public static ConcatAnimatorWithStartValue<T> Delay<T>(this IAnimatorWithStartValue<T> animator, float duration) => Concat(animator, Delay<T>(duration));
     }
 
     public class DelayAnimator<T> : IAnimator<T>
     {
+        private readonly T start;
         private readonly float duration;
-        private readonly IAnimator<T> animator;
 
-        public DelayAnimator(float duration, IAnimator<T> animator)
+        public DelayAnimator(T start, float duration)
         {
+            this.start = start;
             this.duration = duration;
-            this.animator = animator;
         }
 
-        public void Start()
+        public Tuple<T, float> Update(float time)
         {
-            animator.Start();
-        }
-
-        public Tuple<T, bool> Update(float time)
-        {
-            return animator.Update(Mathf.Max(time - duration, 0f));
+            return Tuple.Create(start, Mathf.Min(time, duration));
         }
     }
 
     public class DelayAnimatorWithStartValue<T> : IAnimatorWithStartValue<T>
     {
         private readonly float duration;
-        private readonly IAnimatorWithStartValue<T> animator;
 
-        public DelayAnimatorWithStartValue(float duration, IAnimatorWithStartValue<T> animator)
+        public DelayAnimatorWithStartValue(float duration)
         {
             this.duration = duration;
-            this.animator = animator;
         }
 
-        public void Start(T startValue)
+        public IAnimator<T> Start(T startValue)
         {
-            animator.Start(startValue);
-        }
-
-        public Tuple<T, bool> Update(float time)
-        {
-            return animator.Update(Mathf.Max(time - duration, 0f));
+            return new DelayAnimator<T>(startValue, duration);
         }
     }
 }
