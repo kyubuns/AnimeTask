@@ -104,5 +104,21 @@ namespace AnimeTask.Sample
                 }
             }
         }
+
+        public async Task Sample07()
+        {
+            using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(1));
+
+                var a = Easing.Create<OutCubic>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2f);
+                await UniTask.WhenAll(
+                    a.ToLocalPosition(cubes[0]),
+                    a.Convert(x => Vector3.one * Mathf.Abs(x.x)).ToLocalScale(cubes[0])
+                );
+
+                await UniTask.Delay(TimeSpan.FromSeconds(1));
+            }
+        }
     }
 }
