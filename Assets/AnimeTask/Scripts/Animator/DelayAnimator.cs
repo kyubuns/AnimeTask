@@ -5,15 +5,11 @@ namespace AnimeTask
 {
     public static partial class Animator
     {
-        public static DelayAnimator<T> Delay<T>(T startValue, float duration)
-        {
-            return new DelayAnimator<T>(startValue, duration);
-        }
+        public static DelayAnimator<T> Delay<T>(T startValue, float duration) => new DelayAnimator<T>(startValue, duration);
+        public static DelayAnimatorWithStartValue<T> Delay<T>(float duration) => new DelayAnimatorWithStartValue<T>(duration);
 
-        public static DelayAnimatorWithStartValue<T> Delay<T>(float duration)
-        {
-            return new DelayAnimatorWithStartValue<T>(duration);
-        }
+        public static ConcatAnimator<T> Delay<T>(this IAnimator<T> animator, float duration) => Concat(animator, Delay<T>(duration));
+        public static ConcatAnimatorWithStartValue<T> Delay<T>(this IAnimatorWithStartValue<T> animator, float duration) => Concat(animator, Delay<T>(duration));
     }
 
     public class DelayAnimator<T> : IAnimator<T>

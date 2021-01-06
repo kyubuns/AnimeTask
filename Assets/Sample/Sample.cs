@@ -90,7 +90,7 @@ namespace AnimeTask.Sample
                 .ToArray();
             using (var cubes = new SampleCubes(p))
             {
-                for (var i = 0; i < 100; ++i)
+                for (var i = 0; i < 5; ++i)
                 {
                     await UniTask.WhenAll(
                         cubes.All.Select(x =>
@@ -132,6 +132,33 @@ namespace AnimeTask.Sample
                     a.ToLocalPosition(cubes[0]),
                     a.ToLocalPosition(cubes[1])
                 );
+
+                await UniTask.Delay(TimeSpan.FromSeconds(1));
+            }
+        }
+
+        public async Task Sample09()
+        {
+            using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(1));
+
+                var a = Animator.Concat(
+                    Easing.Create<OutCubic>(-5f, 0f, 2f),
+                    Animator.Delay<float>(1f),
+                    Easing.Create<OutCubic>(0f, 5f, 2f)
+                );
+
+                await UniTask.WhenAll(
+                    a.Convert(x => new Vector3(x, 0f, 0f)).ToLocalPosition(cubes[0]),
+                    a.Convert(x => Vector3.one * Mathf.Abs(x)).ToLocalScale(cubes[0])
+                );
+
+                await Easing.Create<OutCubic>(5f, 0f, 2f)
+                    .Delay(1f)
+                    .Concat(Easing.Create<OutCubic>(0f, -5f, 2f))
+                    .Convert(x => new Vector3(x, 0f, 0f))
+                    .ToLocalPosition(cubes[0]);
 
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
             }
