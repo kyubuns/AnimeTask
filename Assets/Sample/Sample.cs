@@ -166,15 +166,16 @@ namespace AnimeTask.Sample
 
         public async UniTask Sample10()
         {
-            using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
+            using (var cubes = new SampleCubes(new Vector3(0f, 0f, 0f), new Vector3(0f, 1f, 0f)))
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-                var moveAnimation = Moving.Linear(2f, 2f);
+                var moveAnimation = Easing.Create<Linear>(0f, 5f, 2f);
                 await UniTask.WhenAll(
                     moveAnimation.ToLocalPositionX(cubes[0]),
-                    moveAnimation.RelativeDelay<Vector3, float>(-0.2f).Concat(Easing.Create<Linear>(Vector3.zero, 0.2f)).ToLocalScale(cubes[0])
+                    moveAnimation.RelativeDelay(-0.5f).Concat(moveAnimation).ToLocalPositionX(cubes[1])
                 );
+
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
             }
         }
