@@ -11,8 +11,8 @@ namespace AnimeTask
         public static ConcatAnimator<T> Delay<T>(this IAnimator<T> animator, float duration) => Concat(animator, Delay<T>(duration));
         public static ConcatAnimatorWithStartValue<T> Delay<T>(this IAnimatorWithStartValue<T> animator, float duration) => Concat(animator, Delay<T>(duration));
 
-        public static RelativeDelayAnimator<T1, T2> RelativeDelay<T1, T2>(T1 startValue, IAnimator<T2> baseAnimator, float duration) => new RelativeDelayAnimator<T1, T2>(startValue, baseAnimator, duration);
-        public static RelativeDelayAnimatorWithStartValue<T1, T2> RelativeDelay<T1, T2>(IAnimatorWithStartValue<T2> baseAnimator, float duration) => new RelativeDelayAnimatorWithStartValue<T1, T2>(baseAnimator, duration);
+        public static RelativeDelayAnimator<T1, T2> RelativeDelay<T1, T2>(this T1 startValue, IAnimator<T2> baseAnimator, float duration) => new RelativeDelayAnimator<T1, T2>(startValue, baseAnimator, duration);
+        public static RelativeDelayAnimatorWithStartValue<T1, T2> RelativeDelay<T1, T2>(this IAnimatorWithStartValue<T2> baseAnimator, float duration) => new RelativeDelayAnimatorWithStartValue<T1, T2>(baseAnimator, duration);
     }
 
     public class DelayAnimator<T> : IAnimator<T>

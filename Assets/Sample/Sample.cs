@@ -173,7 +173,7 @@ namespace AnimeTask.Sample
                 var moveAnimation = Moving.Linear(2f, 2f);
                 await UniTask.WhenAll(
                     moveAnimation.ToLocalPositionX(cubes[0]),
-                    Animator.RelativeDelay<Vector3, float>(moveAnimation, -0.2f).Concat(Easing.Create<Linear>(Vector3.zero, 0.2f)).DebugLog().ToLocalScale(cubes[0])
+                    moveAnimation.RelativeDelay<Vector3, float>(-0.2f).Concat(Easing.Create<Linear>(Vector3.zero, 0.2f)).ToLocalScale(cubes[0])
                 );
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
             }
