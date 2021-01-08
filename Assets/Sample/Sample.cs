@@ -163,5 +163,20 @@ namespace AnimeTask.Sample
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
             }
         }
+
+        public async UniTask Sample10()
+        {
+            using (var cubes = new SampleCubes(new Vector3(-5f, 0f, 0f)))
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(1));
+
+                var moveAnimation = Moving.Linear(2f, 2f);
+                await UniTask.WhenAll(
+                    moveAnimation.ToLocalPositionX(cubes[0]),
+                    Animator.RelativeDelay<Vector3, float>(moveAnimation, -0.2f).Concat(Easing.Create<Linear>(Vector3.zero, 0.2f)).DebugLog().ToLocalScale(cubes[0])
+                );
+                await UniTask.Delay(TimeSpan.FromSeconds(1));
+            }
+        }
     }
 }

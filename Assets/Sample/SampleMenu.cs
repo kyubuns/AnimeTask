@@ -20,6 +20,7 @@ namespace AnimeTask.Sample
             new Dropdown.OptionData("Sample07"),
             new Dropdown.OptionData("Sample08"),
             new Dropdown.OptionData("Sample09"),
+            new Dropdown.OptionData("Sample10"),
         };
 
         public void Start()
