@@ -34,5 +34,23 @@ namespace AnimeTask
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
             }
         }
+
+        public static async UniTask Delay(float duration, IScheduler scheduler = default, CancellationToken cancellationToken = default)
+        {
+            await DelayInternal(duration, scheduler, cancellationToken);
+        }
+
+        private static async UniTask DelayInternal(float duration, IScheduler scheduler, CancellationToken cancellationToken)
+        {
+            if (scheduler == default) scheduler = DefaultScheduler;
+
+            var startTime = scheduler.Now;
+            while (!cancellationToken.IsCancellationRequested && Application.isPlaying)
+            {
+                var time = scheduler.Now - startTime;
+                if (duration < time) break;
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+            }
+        }
     }
 }
