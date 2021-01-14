@@ -78,6 +78,10 @@ namespace AnimeTask
         public static UniTask ToLocalScaleZ(this IAnimatorWithStartValue<float> animator, GameObject gameObject, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new LocalScaleXTranslator(gameObject.transform, 2), scheduler, cancellationToken);
         public static UniTask ToLocalScaleZ(this IAnimatorWithStartValue<float> animator, Component component, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new LocalScaleXTranslator(component.transform, 2), scheduler, cancellationToken);
 
+        public static UniTask ToLocalRotation(this IAnimator<Quaternion> animator, GameObject gameObject, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator, new LocalRotationTranslator(gameObject.transform), scheduler, cancellationToken);
+        public static UniTask ToLocalRotation(this IAnimator<Quaternion> animator, Component component, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator, new LocalRotationTranslator(component.transform), scheduler, cancellationToken);
+        public static UniTask ToLocalRotation(this IAnimatorWithStartValue<Quaternion> animator, GameObject gameObject, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new LocalRotationTranslator(gameObject.transform), scheduler, cancellationToken);
+        public static UniTask ToLocalRotation(this IAnimatorWithStartValue<Quaternion> animator, Component component, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new LocalRotationTranslator(component.transform), scheduler, cancellationToken);
         public static UniTask ToGlobalRotation(this IAnimator<Quaternion> animator, GameObject gameObject, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator, new GlobalRotationTranslator(gameObject.transform), scheduler, cancellationToken);
         public static UniTask ToGlobalRotation(this IAnimator<Quaternion> animator, Component component, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator, new GlobalRotationTranslator(component.transform), scheduler, cancellationToken);
         public static UniTask ToGlobalRotation(this IAnimatorWithStartValue<Quaternion> animator, GameObject gameObject, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new GlobalRotationTranslator(gameObject.transform), scheduler, cancellationToken);
@@ -89,8 +93,8 @@ namespace AnimeTask
         private readonly Transform transform;
         public Vector3 Current => transform.localPosition;
 
-        Vector2 IValueTranslator<Vector2>.Current => transform.localPosition;
-        Vector3 IValueTranslator<Vector3>.Current => transform.localPosition;
+        Vector2 IValueTranslator<Vector2>.Current => Current;
+        Vector3 IValueTranslator<Vector3>.Current => Current;
 
         public LocalPositionTranslator(Transform transform)
         {
@@ -111,8 +115,9 @@ namespace AnimeTask
     public class LocalPositionXTranslator : IValueTranslator<float>
     {
         public int Index { get; }
-        public float Current => transform.localPosition[Index];
+
         private readonly Transform transform;
+        public float Current => transform.localPosition[Index];
 
         public LocalPositionXTranslator(Transform transform, int index)
         {
@@ -133,8 +138,8 @@ namespace AnimeTask
         private readonly Transform transform;
         public Vector3 Current => transform.position;
 
-        Vector2 IValueTranslator<Vector2>.Current => transform.position;
-        Vector3 IValueTranslator<Vector3>.Current => transform.position;
+        Vector2 IValueTranslator<Vector2>.Current => Current;
+        Vector3 IValueTranslator<Vector3>.Current => Current;
 
         public GlobalPositionTranslator(Transform transform)
         {
@@ -156,8 +161,9 @@ namespace AnimeTask
     public class GlobalPositionXTranslator : IValueTranslator<float>
     {
         public int Index { get; }
-        public float Current => transform.position[Index];
+
         private readonly Transform transform;
+        public float Current => transform.position[Index];
 
         public GlobalPositionXTranslator(Transform transform, int index)
         {
@@ -178,8 +184,8 @@ namespace AnimeTask
         private readonly Transform transform;
         public Vector3 Current => transform.localScale;
 
-        Vector3 IValueTranslator<Vector3>.Current => transform.localScale;
-        Vector2 IValueTranslator<Vector2>.Current => transform.localScale;
+        Vector3 IValueTranslator<Vector3>.Current => Current;
+        Vector2 IValueTranslator<Vector2>.Current => Current;
 
         public LocalScaleTranslator(Transform transform)
         {
@@ -200,8 +206,9 @@ namespace AnimeTask
     public class LocalScaleXTranslator : IValueTranslator<float>
     {
         public int Index { get; }
-        public float Current => transform.localScale[Index];
+
         private readonly Transform transform;
+        public float Current => transform.localScale[Index];
 
         public LocalScaleXTranslator(Transform transform, int index)
         {
@@ -217,12 +224,26 @@ namespace AnimeTask
         }
     }
 
+    public class LocalRotationTranslator : IValueTranslator<Quaternion>
+    {
+        private readonly Transform transform;
+        public Quaternion Current => transform.localRotation;
+
+        public LocalRotationTranslator(Transform transform)
+        {
+            this.transform = transform;
+        }
+
+        public void Update(Quaternion value)
+        {
+            transform.localRotation = value;
+        }
+    }
+
     public class GlobalRotationTranslator : IValueTranslator<Quaternion>
     {
         private readonly Transform transform;
         public Quaternion Current => transform.rotation;
-
-        Quaternion IValueTranslator<Quaternion>.Current => transform.rotation;
 
         public GlobalRotationTranslator(Transform transform)
         {
