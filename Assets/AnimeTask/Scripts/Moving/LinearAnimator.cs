@@ -49,10 +49,10 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public Tuple<float, float> Update(float time)
+        public (float, float) Update(float time)
         {
             var value = start + velocity * Mathf.Min(time, duration);
-            return Tuple.Create(value, Mathf.Min(time, duration));
+            return (value, Mathf.Min(time, duration));
         }
     }
 
@@ -86,10 +86,10 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public Tuple<Vector2, float> Update(float time)
+        public (Vector2, float) Update(float time)
         {
             var value = start + velocity * Mathf.Min(time, duration);
-            return Tuple.Create(value, Mathf.Min(time, duration));
+            return (value, Mathf.Min(time, duration));
         }
     }
 
@@ -123,10 +123,10 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public Tuple<Vector3, float> Update(float time)
+        public (Vector3, float) Update(float time)
         {
             var value = start + velocity * Mathf.Min(time, duration);
-            return Tuple.Create(value, Mathf.Min(time, duration));
+            return (value, Mathf.Min(time, duration));
         }
     }
 

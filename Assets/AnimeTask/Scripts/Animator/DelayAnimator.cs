@@ -27,9 +27,9 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public Tuple<T, float> Update(float time)
+        public (T, float) Update(float time)
         {
-            return Tuple.Create(start, Mathf.Min(time, duration));
+            return (start, Mathf.Min(time, duration));
         }
     }
 
@@ -61,16 +61,16 @@ namespace AnimeTask
             this.duration = duration;
         }
 
-        public Tuple<T1, float> Update(float time)
+        public (T1, float) Update(float time)
         {
             var f = time - duration;
             var (_, used) = baseAnimator.Update(f);
             if (used < f)
             {
-                return Tuple.Create(start, time - (f - used));
+                return (start, time - (f - used));
             }
 
-            return Tuple.Create(start, time);
+            return (start, time);
         }
     }
 

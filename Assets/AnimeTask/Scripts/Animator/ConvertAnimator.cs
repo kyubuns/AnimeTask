@@ -26,10 +26,10 @@ namespace AnimeTask
             this.func = func;
         }
 
-        public Tuple<T2, float> Update(float time)
+        public (T2, float) Update(float time)
         {
             var (item1, item2) = animator.Update(time);
-            return Tuple.Create(func(item1), item2);
+            return (func(item1), item2);
         }
     }
 

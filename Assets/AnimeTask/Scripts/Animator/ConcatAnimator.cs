@@ -30,11 +30,11 @@ namespace AnimeTask
             currentAnimator = animator1;
         }
 
-        public Tuple<T, float> Update(float time)
+        public (T, float) Update(float time)
         {
             while (true)
             {
-                if (currentAnimator == null) return Tuple.Create(currentValue, usedTime);
+                if (currentAnimator == null) return (currentValue, usedTime);
                 var (v, used) = currentAnimator.Update(time - usedTime);
 
                 if (used < time - usedTime)
@@ -45,7 +45,7 @@ namespace AnimeTask
                     continue;
                 }
 
-                return Tuple.Create(v, time);
+                return (v, time);
             }
         }
 

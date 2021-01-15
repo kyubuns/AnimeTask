@@ -8,7 +8,7 @@ namespace AnimeTask
 
     public interface IAnimator<T> : IConcatableAnimator<T>
     {
-        Tuple<T, float> Update(float time);
+        (T, float) Update(float time);
     }
 
     public interface IAnimatorWithStartValue<T> : IConcatableAnimator<T>
