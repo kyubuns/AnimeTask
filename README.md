@@ -158,7 +158,7 @@ PlayやPlayToには2つの引数を渡します。
 
 ## Requirements
 
-- Requires Unity2018.4 or later
+- Requires Unity2019.4 or later
 
 ## License
 
