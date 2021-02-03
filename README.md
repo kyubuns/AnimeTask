@@ -63,6 +63,17 @@ await Moving.Gravity(
 
 <img src="https://user-images.githubusercontent.com/961165/85940937-8c48d500-b95a-11ea-81b5-fddd17166a96.gif" width="480">
 
+### CalcDuration
+
+距離から移動時間を計算して移動する。
+
+```csharp
+await Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), x => x / 2f)
+    .Concat(Easing.Create<OutCubic>(new Vector3(5f, 2f, 0f), x => x / 2f))
+    .Concat(Easing.Create<OutCubic>(new Vector3(-5f, 0f, 0f), x => x / 2f))
+    .ToLocalPosition(cubes);
+```
+
 ### TranslateTo.Action
 
 TranslateTo.Actionを利用すると、アニメーションした値を自由に使用出来る。
