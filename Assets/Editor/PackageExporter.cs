@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,20 +7,24 @@ namespace Development
 {
     public static class PackageExporter
     {
-        [MenuItem("Dev/Export Package")]
+        private const string Target = "Assets/AnimeTask";
+
+        [MenuItem("Export/Package")]
         public static void Export()
         {
-            var directories = new[]
-            {
-                "Assets/AnimeTask",
-            };
+            var packageText = AssetDatabase.LoadAssetAtPath<TextAsset>(Path.Combine(Target, "package.json"));
+            var package = JsonUtility.FromJson<PackageJson>(packageText.text);
 
-            // ReSharper disable once AssignNullToNotNullAttribute
-            var outputPath = Path.Combine(Path.GetDirectoryName(Application.dataPath), "AnimeTask.unitypackage");
-
-            AssetDatabase.ExportPackage(directories, outputPath, ExportPackageOptions.Recurse);
-
+            var outputPath = Path.Combine(Path.GetDirectoryName(Application.dataPath) ?? "", $"{package.displayName}_v{package.version}.unitypackage");
+            AssetDatabase.ExportPackage(new[] { Target }, outputPath, ExportPackageOptions.Recurse);
             Debug.LogFormat("ExportPackage {0}", outputPath);
         }
+    }
+
+    [Serializable]
+    public class PackageJson
+    {
+        public string displayName;
+        public string version;
     }
 }
