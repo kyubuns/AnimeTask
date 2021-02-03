@@ -179,5 +179,20 @@ namespace AnimeTask.Sample
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
             }
         }
+
+        public async UniTask Sample11()
+        {
+            using (var cubes = new SampleCubes(new Vector3(0f, 0f, 0f)))
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(1));
+
+                await Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), x => x / 2f)
+                    .Concat(Easing.Create<OutCubic>(new Vector3(5f, 2f, 0f), x => x / 2f))
+                    .Concat(Easing.Create<OutCubic>(new Vector3(-5f, 0f, 0f), x => x / 2f))
+                    .ToLocalPosition(cubes[0]);
+
+                await UniTask.Delay(TimeSpan.FromSeconds(1));
+            }
+        }
     }
 }
