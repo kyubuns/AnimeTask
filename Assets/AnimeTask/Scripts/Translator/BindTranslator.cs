@@ -7,6 +7,7 @@ namespace AnimeTask
     public static partial class TranslateTo
     {
         public static UniTask ToBind<T>(this IAnimator<T> animator, Func<T> getter, Action<T> setter, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator, new BindTranslator<T>(getter, setter), scheduler, cancellationToken);
+        public static UniTask ToBind<T>(this IAnimatorWithStartValue<T> animator, Func<T> getter, Action<T> setter, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new BindTranslator<T>(getter, setter), scheduler, cancellationToken);
     }
 
     public class BindTranslator<T> : IValueTranslator<T>
