@@ -1,8 +1,8 @@
 # AnimeTask
 
-English | [日本語](README-JP.md)
+[English](README.md) | 日本語
 
-Task Animation Library for Unity
+UnityのTaskアニメーションライブラリ
 
 <a href="https://www.buymeacoffee.com/kyubuns" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
@@ -14,7 +14,7 @@ Rx Version! -> [kyubuns/AnimeRx](https://github.com/kyubuns/AnimeRx)
 
 ### Basic
 
-Move from `(-5f, 0f, 0f)` to `(5f, 0f, 0f)` over 2 seconds.
+`(-5f, 0f, 0f)` から `(5f, 0f, 0f)` へ2秒かけて移動する。
 
 ```csharp
 await Easing.Create<Linear>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2f).ToLocalPosition(cube);
@@ -24,7 +24,7 @@ await Easing.Create<Linear>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2
 
 ### PlayTo
 
-Move from the current location to a specified location.
+現在地から指定した位置まで移動する。
 
 ```csharp
 await Easing.Create<Linear>(new Vector3(-5f, 3f, 0f), 2f).ToLocalPosition(cube);
@@ -34,7 +34,7 @@ await Easing.Create<Linear>(new Vector3(-5f, 3f, 0f), 2f).ToLocalPosition(cube);
 
 ### Easing
 
-Use [InCubic](https://easings.net/#easeInCubic) of [Easing](https://easings.net/) to move to a specified position.
+[Easing](https://easings.net/)の[InCubic](https://easings.net/#easeInCubic)を利用して、指定した位置まで移動する。
 
 ```csharp
 await Easing.Create<InCubic>(new Vector3(-5f, 3f, 0f), 2f).ToLocalPosition(cube);
@@ -44,7 +44,7 @@ await Easing.Create<InCubic>(new Vector3(-5f, 3f, 0f), 2f).ToLocalPosition(cube)
 
 ### Linear
 
-Move at 1 per second for 2 seconds.
+秒速1で、2秒間移動する。
 
 ```csharp
 await Moving.Linear(1f, 2f).ToLocalPositionX(cube);
@@ -67,7 +67,7 @@ await Moving.Gravity(
 
 ### CalcDuration
 
-Move by calculating moving time from distance.
+距離から移動時間を計算して移動する。
 
 ```csharp
 await Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), x => x / 2f)
@@ -78,7 +78,7 @@ await Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), x => x / 2f)
 
 ### TranslateTo.Action
 
-`TranslateTo.Action` enables you to use the animated values freely.
+`TranslateTo.Action`を利用すると、アニメーションした値を自由に使用出来る。
 
 ```csharp
 Easing.Create<Linear>(0, 100, 2f).ToAction<float>(x => Debug.Log(x))
@@ -86,8 +86,8 @@ Easing.Create<Linear>(0, 100, 2f).ToAction<float>(x => Debug.Log(x))
 
 ### UnscaledTime
 
-You can create your own scheduler, so you can stop time for specific objects.  
-The default is to use `Time.time`, and you can also use `UnscaledTimeScheduler`, which uses `Time.unscaledTime`.
+スケジューラーは自作出来るので、特定のオブジェクトだけ時間を止めたりすることが可能。  
+デフォルトは`Time.time`を利用していて、`Time.unscaledTime`を利用する`UnscaledTimeScheduler`も利用できる。
 
 ```csharp
 Easing.Create<Linear>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2f)
@@ -106,7 +106,7 @@ await Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), 2f).ToLocalPosition(cubes
 
 ### Delay
 
-Move to the right at constant speed for 2 seconds, and set scale to 0 in the last 0.2 seconds.
+2秒間右に等速で移動しつつ、最後の0.2秒でScaleを0にする
 
 ```csharp
 await UniTask.WhenAll(
@@ -119,7 +119,7 @@ await UniTask.WhenAll(
 
 ### Convert
 
-Convert a `float` transition to a circular motion.
+floatの推移を円運動に変換する。
 
 ```csharp
 await Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f)
@@ -131,7 +131,7 @@ await Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f)
 
 ### Concat
 
-It moves from 5f to 0f in 2 seconds, stops for 1 second, and moves to -5f in 2 seconds.
+2秒で5fから0fまで移動し、1秒停止したあと、2秒で-5fへ移動する。
 
 ```csharp
 await Easing.Create<OutCubic>(5f, 0f, 2f)
@@ -143,7 +143,7 @@ await Easing.Create<OutCubic>(5f, 0f, 2f)
 
 ### IProgress
 
-Supporting [IProgress](https://docs.microsoft.com/ja-jp/dotnet/api/system.iprogress-1)
+[IProgress](https://docs.microsoft.com/ja-jp/dotnet/api/system.iprogress-1) をサポートしています。
 
 ```csharp
 await Easing.Create<Linear>(2f).ToProgress(Progress.Create<float>(x => Debug.Log(x)));
@@ -151,27 +151,27 @@ await Easing.Create<Linear>(2f).ToProgress(Progress.Create<float>(x => Debug.Log
 
 ## Instructions
 
-- Import [UniTask](https://github.com/Cysharp/UniTask)
-- Import AnimeTask
+- [UniTask](https://github.com/Cysharp/UniTask)をインポートします
+- AnimeTaskをインポートします
   - Package Manager `https://github.com/kyubuns/AnimeTask.git?path=Assets/AnimeTask`
   - [UnityPackage](https://github.com/kyubuns/AnimeTask/releases)
 
 ## Way of thinking
 
-You can pass two arguments to `Play` and `PlayTo`.  
-The first is the `Animator` and the second is the `Translator`, which have distinct roles.
+`Play`や`PlayTo`には2つの引数を渡します。  
+1個目が`Animator`、2個目が`Translator`で、これらは明確に役割が異なります。
 
 ### Animator
 
-Takes the elapsed time and returns the current value.
+経過時間を受け取り、現在の値を返す。
 
 ### Translator
 
-Reflect the value.
+値を反映する。
 
 ## Requirements
 
-- Requires Unity2019.4 or later
+- Unity2019.4 以降
 
 ## License
 
@@ -179,13 +179,13 @@ MIT License (see [LICENSE](LICENSE))
 
 ## Buy me a coffee
 
-Are you enjoying save time?  
-Buy me a coffee if you love my code!  
+手間を省いて楽しんでいますか？  
+私のコードを気に入ったらぜひコーヒーをおごってください！  
 https://www.buymeacoffee.com/kyubuns
 
 ## "I used it for this game!"
 
-I'd be happy to receive reports like "I used it for this game!"  
-Please contact me by email, twitter or any other means.  
-(This library is MIT licensed, so reporting is NOT mandatory.)  
+「このゲームに使いました！」みたいな報告があると嬉しいですね。  
+メールやtwitterなどでご連絡お待ちしております。  
+(このライブラリはMITライセンスであるため、報告は必須ではありません。)  
 https://kyubuns.dev/
