@@ -1,14 +1,13 @@
 # AnimeTask
 
-[English](README.md) | 日本語
+UnityのTaskアニメーションライブラリ  
+Rx Version! -> [kyubuns/AnimeRx](https://github.com/kyubuns/AnimeRx)
 
-UnityのTaskアニメーションライブラリ
+***Read this document in other languages: [English](https://github.com/kyubuns/AnimeTask/blob/main/README.md)***
 
 <a href="https://www.buymeacoffee.com/kyubuns" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
 ![gif_animation_001](https://user-images.githubusercontent.com/961165/85940937-8c48d500-b95a-11ea-81b5-fddd17166a96.gif)
-
-Rx Version! -> [kyubuns/AnimeRx](https://github.com/kyubuns/AnimeRx)
 
 ## Sample
 
@@ -151,12 +150,12 @@ await Easing.Create<Linear>(2f).ToProgress(Progress.Create<float>(x => Debug.Log
 
 ## Instructions
 
-- [UniTask](https://github.com/Cysharp/UniTask)をインポートします
-- AnimeTaskをインポートします
+- [UniTask](https://github.com/Cysharp/UniTask)をインポート
+- AnimeTaskをインポート
   - Package Manager `https://github.com/kyubuns/AnimeTask.git?path=Assets/AnimeTask`
   - [UnityPackage](https://github.com/kyubuns/AnimeTask/releases)
 
-## Way of thinking
+## 考え方
 
 `Play`や`PlayTo`には2つの引数を渡します。  
 1個目が`Animator`、2個目が`Translator`で、これらは明確に役割が異なります。
@@ -171,7 +170,7 @@ await Easing.Create<Linear>(2f).ToProgress(Progress.Create<float>(x => Debug.Log
 
 ## Requirements
 
-- Unity2019.4 以降
+- Unity2019.4 以降。
 
 ## License
 
@@ -179,13 +178,14 @@ MIT License (see [LICENSE](LICENSE))
 
 ## Buy me a coffee
 
-手間を省いて楽しんでいますか？  
-私のコードを気に入ったらぜひコーヒーをおごってください！  
+もしこのプロジェクトが気に入ったなら、ぜひコーヒーを奢ってください！  
 https://www.buymeacoffee.com/kyubuns
 
-## "I used it for this game!"
+## 「ゲームに使ったよ！」
 
-「このゲームに使いました！」みたいな報告があると嬉しいですね。  
-メールやtwitterなどでご連絡お待ちしております。  
-(このライブラリはMITライセンスであるため、報告は必須ではありません。)  
+「このゲームにこのライブラリ使ったよ！」という報告を貰えるとめっちゃ喜びます！  
+メールやtwitterでお気軽にご連絡ください。  
+(MITライセンスのため、報告は義務ではありません。)  
+[メッセージフォーム](https://kyubuns.dev/message.html)
+
 https://kyubuns.dev/

@@ -1,14 +1,13 @@
 # AnimeTask
 
-English | [日本語](README-JP.md)
+Task Animation Library for Unity  
+Rx Version! -> [kyubuns/AnimeRx](https://github.com/kyubuns/AnimeRx)
 
-Task Animation Library for Unity
+***Read this document in other languages: [日本語](https://github.com/kyubuns/AnimeTask/blob/main/README_ja.md)***
 
 <a href="https://www.buymeacoffee.com/kyubuns" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
 ![gif_animation_001](https://user-images.githubusercontent.com/961165/85940937-8c48d500-b95a-11ea-81b5-fddd17166a96.gif)
-
-Rx Version! -> [kyubuns/AnimeRx](https://github.com/kyubuns/AnimeRx)
 
 ## Sample
 
@@ -188,4 +187,6 @@ https://www.buymeacoffee.com/kyubuns
 I'd be happy to receive reports like "I used it for this game!"  
 Please contact me by email, twitter or any other means.  
 (This library is MIT licensed, so reporting is NOT mandatory.)  
+[MessageForm](https://kyubuns.dev/message.html)
+
 https://kyubuns.dev/
