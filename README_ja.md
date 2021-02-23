@@ -148,7 +148,6 @@ await Easing.Create<OutCubic>(5f, 0f, 2f)
 await Easing.Create<Linear>(2f).ToProgress(Progress.Create<float>(x => Debug.Log(x)));
 ```
 
-
 ### UniRx.Extensions
 
 ```csharp
