@@ -1,0 +1,23 @@
+{
+    "name": "AnimeTask.Extensions",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:1a4cffb770ce347a39cea41a326324ec",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.neuecc.unirx",
+            "expression": "",
+            "define": "ANIMETASK_UNIRX_SUPPORT"
+        }
+    ],
+    "noEngineReferences": false
+}
