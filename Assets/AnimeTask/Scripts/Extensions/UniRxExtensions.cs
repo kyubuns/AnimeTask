@@ -8,10 +8,10 @@ namespace AnimeTask.Extensions
 {
     public static class UniRxExtensions
     {
-        public static IDisposable SubscribeToAnime<T>(this IObservable<IAnimator<T>> animatorObservable, Func<IAnimator<T>, CancellationToken, UniTask> translator)
+        public static IDisposable SubscribeTask<T>(this IObservable<T> source, Func<T, CancellationToken, UniTask> taskFunc)
         {
             var cancellationTokenSource = new CancellationTokenSource();
-            return animatorObservable
+            return source
                 .DoOnCancel(() =>
                 {
                     cancellationTokenSource.Cancel();
@@ -20,7 +20,7 @@ namespace AnimeTask.Extensions
                 {
                     cancellationTokenSource.Cancel();
                     cancellationTokenSource = new CancellationTokenSource();
-                    translator(x, cancellationTokenSource.Token).Forget();
+                    taskFunc(x, cancellationTokenSource.Token).Forget();
                 });
         }
     }
