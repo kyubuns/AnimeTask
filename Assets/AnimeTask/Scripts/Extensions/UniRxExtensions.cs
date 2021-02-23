@@ -8,30 +8,20 @@ namespace AnimeTask.Extensions
 {
     public static class UniRxExtensions
     {
-        public static IObservable<AsyncUnit> SelectSwitchTask<T>(this IObservable<T> source, Func<T, CancellationToken, UniTask> selector)
+        public static IDisposable SubscribeToAnime<T>(this IObservable<IAnimator<T>> animatorObservable, Func<IAnimator<T>, CancellationToken, UniTask> translator)
         {
             var cancellationTokenSource = new CancellationTokenSource();
-            return source
-                .Select(x =>
+            return animatorObservable
+                .DoOnCancel(() =>
+                {
+                    cancellationTokenSource.Cancel();
+                })
+                .Subscribe(x =>
                 {
                     cancellationTokenSource.Cancel();
                     cancellationTokenSource = new CancellationTokenSource();
-                    return selector(x, cancellationTokenSource.Token).ToObservable();
-                })
-                .Switch();
-        }
-
-        public static IObservable<TR> SelectSwitchTask<T, TR>(this IObservable<T> source, Func<T, CancellationToken, UniTask<TR>> selector)
-        {
-            var cancellationTokenSource = new CancellationTokenSource();
-            return source
-                .Select(x =>
-                {
-                    cancellationTokenSource.Cancel();
-                    cancellationTokenSource = new CancellationTokenSource();
-                    return selector(x, cancellationTokenSource.Token).ToObservable();
-                })
-                .Switch();
+                    translator(x, cancellationTokenSource.Token).Forget();
+                });
         }
     }
 }
