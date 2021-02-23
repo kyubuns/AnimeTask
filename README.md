@@ -148,6 +148,18 @@ Supporting [IProgress](https://docs.microsoft.com/ja-jp/dotnet/api/system.iprogr
 await Easing.Create<Linear>(2f).ToProgress(Progress.Create<float>(x => Debug.Log(x)));
 ```
 
+### UniRx.Extensions
+
+```csharp
+var score = new ReactiveProperty<int>(0);
+score
+    .SubscribeTask(async (x, cancellationToken) =>
+    {
+        scoreCounter.text = $"{x}";
+        await Easing.Create<OutBounce>(2f, 1f, 0.5f).ToLocalScale(scoreCounter, cancellationToken);
+    });
+```
+
 ## Instructions
 
 - Import [UniTask](https://github.com/Cysharp/UniTask)
