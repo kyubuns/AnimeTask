@@ -58,10 +58,14 @@ namespace AnimeTask
         public static UniTask ToLocalScale(this IAnimator<Vector3> animator, Component component, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator, new LocalScaleTranslator(component.transform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(component.GetCancellationTokenOnDestroy(), cancellationToken).Token);
         public static UniTask ToLocalScale(this IAnimator<Vector2> animator, GameObject gameObject, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator, new LocalScaleTranslator(gameObject.transform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token);
         public static UniTask ToLocalScale(this IAnimator<Vector2> animator, Component component, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator, new LocalScaleTranslator(component.transform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(component.GetCancellationTokenOnDestroy(), cancellationToken).Token);
+        public static UniTask ToLocalScale(this IAnimator<float> animator, GameObject gameObject, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator, new LocalScaleTranslator(gameObject.transform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token);
+        public static UniTask ToLocalScale(this IAnimator<float> animator, Component component, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator, new LocalScaleTranslator(component.transform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(component.GetCancellationTokenOnDestroy(), cancellationToken).Token);
         public static UniTask ToLocalScale(this IAnimatorWithStartValue<Vector3> animator, GameObject gameObject, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new LocalScaleTranslator(gameObject.transform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token);
         public static UniTask ToLocalScale(this IAnimatorWithStartValue<Vector3> animator, Component component, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new LocalScaleTranslator(component.transform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(component.GetCancellationTokenOnDestroy(), cancellationToken).Token);
         public static UniTask ToLocalScale(this IAnimatorWithStartValue<Vector2> animator, GameObject gameObject, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new LocalScaleTranslator(gameObject.transform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token);
         public static UniTask ToLocalScale(this IAnimatorWithStartValue<Vector2> animator, Component component, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new LocalScaleTranslator(component.transform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(component.GetCancellationTokenOnDestroy(), cancellationToken).Token);
+        public static UniTask ToLocalScale(this IAnimatorWithStartValue<float> animator, GameObject gameObject, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new LocalScaleTranslator(gameObject.transform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token);
+        public static UniTask ToLocalScale(this IAnimatorWithStartValue<float> animator, Component component, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new LocalScaleTranslator(component.transform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(component.GetCancellationTokenOnDestroy(), cancellationToken).Token);
 
         public static UniTask ToLocalScaleX(this IAnimator<float> animator, GameObject gameObject, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator, new LocalScaleXTranslator(gameObject.transform, 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token);
         public static UniTask ToLocalScaleX(this IAnimator<float> animator, Component component, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator, new LocalScaleXTranslator(component.transform, 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(component.GetCancellationTokenOnDestroy(), cancellationToken).Token);
@@ -179,13 +183,14 @@ namespace AnimeTask
         }
     }
 
-    public class LocalScaleTranslator : IValueTranslator<Vector3>, IValueTranslator<Vector2>
+    public class LocalScaleTranslator : IValueTranslator<Vector3>, IValueTranslator<Vector2>, IValueTranslator<float>
     {
         private readonly Transform transform;
         public Vector3 Current => transform.localScale;
 
         Vector3 IValueTranslator<Vector3>.Current => Current;
         Vector2 IValueTranslator<Vector2>.Current => Current;
+        float IValueTranslator<float>.Current => (Current.x + Current.y + Current.z) / 3f;
 
         public LocalScaleTranslator(Transform transform)
         {
@@ -200,6 +205,11 @@ namespace AnimeTask
         public void Update(Vector2 value)
         {
             transform.localScale = value;
+        }
+
+        public void Update(float value)
+        {
+            transform.localScale = Vector3.one * value;
         }
     }
 
