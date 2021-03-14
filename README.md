@@ -136,8 +136,7 @@ It moves from 5f to 0f in 2 seconds, stops for 1 second, and moves to -5f in 2 s
 await Easing.Create<OutCubic>(5f, 0f, 2f)
     .Delay(1f)
     .Concat(Easing.Create<OutCubic>(0f, -5f, 2f))
-    .Convert(x => new Vector3(x, 0f, 0f))
-    .ToLocalPosition(cubes[0]);
+    .ToLocalPositionX(cubes[0]);
 ```
 
 ### IProgress
