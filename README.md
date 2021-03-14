@@ -151,21 +151,12 @@ await Easing.Create<Linear>(2f).ToProgress(Progress.Create<float>(x => Debug.Log
 ### AnimationCanceller
 
 ```csharp
-var state = new BoolReactiveProperty();
+var canceller = go.GetAnimationCanceller().Cancel();
+Easing.Create<Linear>(1.0f, 0.5f).ToLocalPositionX(go, canceller.Token);
 
-state.Where(x => x)
-    .Subscribe(_ =>
-    {
-        var canceller = go.GetAnimationCanceller().Cancel();
-        Easing.Create<Linear>(1.0f, 0.1f).ToLocalPositionX(go, canceller.Token);
-    });
-
-state.Where(x => !x)
-    .Subscribe(_ =>
-    {
-        var canceller = go.GetAnimationCanceller().Cancel();
-        Easing.Create<Linear>(0.0f, 0.1f).ToLocalPositionX(go, canceller.Token);
-    });
+// in other class/scope
+var canceller = go.GetAnimationCanceller().Cancel();
+Easing.Create<Linear>(0.0f, 0.5f).ToLocalPositionX(go, canceller.Token);
 ```
 
 ### UniRx.Extensions
