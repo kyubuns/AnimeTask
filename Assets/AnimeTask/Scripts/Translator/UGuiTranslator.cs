@@ -23,6 +23,9 @@ namespace AnimeTask
 
         public static UniTask ToColorA(this IAnimator<float> animator, Graphic graphic, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator,  new ColorXTranslator(graphic, 3), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token);
         public static UniTask ToColorA(this IAnimatorWithStartValue<float> animator, Graphic graphic, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator,  new ColorXTranslator(graphic, 3), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token);
+
+        public static UniTask ToFillAmount(this IAnimator<float> animator, Image image, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator,  new FillAmountTranslator(image), scheduler, CancellationTokenSource.CreateLinkedTokenSource(image.GetCancellationTokenOnDestroy(), cancellationToken).Token);
+        public static UniTask ToFillAmount(this IAnimatorWithStartValue<float> animator, Image image, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator,  new FillAmountTranslator(image), scheduler, CancellationTokenSource.CreateLinkedTokenSource(image.GetCancellationTokenOnDestroy(), cancellationToken).Token);
     }
 
     public class TextTranslator : ITranslator<float>
@@ -75,6 +78,22 @@ namespace AnimeTask
             var c = graphic.color;
             c[Index] = value;
             graphic.color = c;
+        }
+    }
+
+    public class FillAmountTranslator : IValueTranslator<float>
+    {
+        public float Current => image.fillAmount;
+        private readonly Image image;
+
+        public FillAmountTranslator(Image image)
+        {
+            this.image = image;
+        }
+
+        public void Update(float value)
+        {
+            image.fillAmount = value;
         }
     }
 }
