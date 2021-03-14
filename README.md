@@ -148,6 +148,28 @@ Supporting [IProgress](https://docs.microsoft.com/ja-jp/dotnet/api/system.iprogr
 await Easing.Create<Linear>(2f).ToProgress(Progress.Create<float>(x => Debug.Log(x)));
 ```
 
+### AnimationCanceller
+
+```csharp
+var state = new BoolReactiveProperty();
+
+state.Where(x => x)
+    .Subscribe(_ =>
+    {
+        var canceller = go.GetAnimationCanceller();
+        canceller.Cancel();
+        Easing.Create<Linear>(1.0f, 0.1f).ToLocalPositionX(go, canceller.Token);
+    });
+
+state.Where(x => !x)
+    .Subscribe(_ =>
+    {
+        var canceller = go.GetAnimationCanceller();
+        canceller.Cancel();
+        Easing.Create<Linear>(0.0f, 0.1f).ToLocalPositionX(go, canceller.Token);
+    });
+```
+
 ### UniRx.Extensions
 
 ```csharp
