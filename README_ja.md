@@ -136,8 +136,7 @@ await Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f)
 await Easing.Create<OutCubic>(5f, 0f, 2f)
     .Delay(1f)
     .Concat(Easing.Create<OutCubic>(0f, -5f, 2f))
-    .Convert(x => new Vector3(x, 0f, 0f))
-    .ToLocalPosition(cubes[0]);
+    .ToLocalPositionX(cubes[0]);
 ```
 
 ### IProgress
