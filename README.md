@@ -156,16 +156,14 @@ var state = new BoolReactiveProperty();
 state.Where(x => x)
     .Subscribe(_ =>
     {
-        var canceller = go.GetAnimationCanceller();
-        canceller.Cancel();
+        var canceller = go.GetAnimationCanceller().Cancel();
         Easing.Create<Linear>(1.0f, 0.1f).ToLocalPositionX(go, canceller.Token);
     });
 
 state.Where(x => !x)
     .Subscribe(_ =>
     {
-        var canceller = go.GetAnimationCanceller();
-        canceller.Cancel();
+        var canceller = go.GetAnimationCanceller().Cancel();
         Easing.Create<Linear>(0.0f, 0.1f).ToLocalPositionX(go, canceller.Token);
     });
 ```

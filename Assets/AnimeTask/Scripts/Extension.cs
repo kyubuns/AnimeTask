@@ -27,10 +27,11 @@ namespace AnimeTask
             Cancel();
         }
 
-        public void Cancel()
+        public AnimationCanceller Cancel()
         {
             cancellationTokenSource?.Cancel();
             cancellationTokenSource = null;
+            return this;
         }
 
         public CancellationTokenSource TokenSource

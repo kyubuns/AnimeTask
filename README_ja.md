@@ -148,6 +148,26 @@ await Easing.Create<OutCubic>(5f, 0f, 2f)
 await Easing.Create<Linear>(2f).ToProgress(Progress.Create<float>(x => Debug.Log(x)));
 ```
 
+### AnimationCanceller
+
+```csharp
+var state = new BoolReactiveProperty();
+
+state.Where(x => x)
+    .Subscribe(_ =>
+    {
+        var canceller = go.GetAnimationCanceller().Cancel();
+        Easing.Create<Linear>(1.0f, 0.1f).ToLocalPositionX(go, canceller.Token);
+    });
+
+state.Where(x => !x)
+    .Subscribe(_ =>
+    {
+        var canceller = go.GetAnimationCanceller().Cancel();
+        Easing.Create<Linear>(0.0f, 0.1f).ToLocalPositionX(go, canceller.Token);
+    });
+```
+
 ### UniRx.Extensions
 
 ```csharp
