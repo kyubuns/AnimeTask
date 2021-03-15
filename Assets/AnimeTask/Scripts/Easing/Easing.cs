@@ -24,7 +24,7 @@ namespace AnimeTask
 
         public static float Calc(float v)
         {
-            return v * v * v - v * Mathf.Sin(v * Mathf.PI);
+            return 2.70158f * v * v * v - 1.70158f * v * v;
         }
     }
 
@@ -37,8 +37,7 @@ namespace AnimeTask
 
         public static float Calc(float v)
         {
-            var f = (1f - v);
-            return 1f - (f * f * f - f * Mathf.Sin(f * Mathf.PI));
+            return 1f + 2.70158f * Mathf.Pow(v - 1f, 3f) + 1.70158f * Mathf.Pow(v - 1f, 2f);
         }
     }
 
@@ -51,15 +50,16 @@ namespace AnimeTask
 
         public static float Calc(float v)
         {
+            const float c1 = 1.70158f;
+            const float c2 = c1 * 1.525f;
+
             if (v < 0.5f)
             {
-                var f = 2f * v;
-                return 0.5f * (f * f * f - f * Mathf.Sin(f * Mathf.PI));
+                return (Mathf.Pow(2f * v, 2f) * ((c2 + 1f) * 2f * v - c2)) / 2f;
             }
             else
             {
-                var f = (1 - (2 * v - 1));
-                return 0.5f * (1f - (f * f * f - f * Mathf.Sin(f * Mathf.PI))) + 0.5f;
+                return (Mathf.Pow(2f * v - 2f, 2f) * ((c2 + 1f) * (v * 2f - 2f) + c2) + 2f) / 2f;
             }
         }
     }
@@ -96,21 +96,24 @@ namespace AnimeTask
 
         public static float Bounce(float v)
         {
-            if (v < 4f / 11.0f)
+            if (v < 1 / 2.75f)
             {
-                return (121f * v * v) / 16.0f;
+                return 7.5625f * v * v;
             }
-            else if (v < 8f / 11.0f)
+            else if (v < 2 / 2.75f)
             {
-                return (363f / 40.0f * v * v) - (99f / 10.0f * v) + 17f / 5.0f;
+                var f = v - 0.54545f;
+                return 7.5625f * f * f + 0.75f;
             }
-            else if (v < 9f / 10.0f)
+            else if (v < 2.5 / 2.75f)
             {
-                return (4356f / 361.0f * v * v) - (35442f / 1805.0f * v) + 16061f / 1805.0f;
+                var f = v - 0.81818f;
+                return 7.5625f * f * f + 0.9375f;
             }
             else
             {
-                return (54f / 5.0f * v * v) - (513f / 25.0f * v) + 268f / 25.0f;
+                var f = v - 0.95454f;
+                return 7.5625f * f * f + 0.984375f;
             }
         }
     }
@@ -238,7 +241,8 @@ namespace AnimeTask
 
         public static float Calc(float v)
         {
-            return Mathf.Sin(13 * (Mathf.PI / 2f) * v) * Mathf.Pow(2f, 10f * (v - 1f));
+            if (Mathf.Approximately(0.0f, v) || Mathf.Approximately(1.0f, v)) return v;
+            return Mathf.Sin((v * 10f - 10.75f) * (2f * Mathf.PI / 3f)) * -Mathf.Pow(2f, 10f * (v - 1f));
         }
     }
 
@@ -251,7 +255,8 @@ namespace AnimeTask
 
         public static float Calc(float v)
         {
-            return Mathf.Sin(-13 * (Mathf.PI / 2f) * (v + 1)) * Mathf.Pow(2f, -10f * v) + 1f;
+            if (Mathf.Approximately(0.0f, v) || Mathf.Approximately(1.0f, v)) return v;
+            return Mathf.Sin((v * 10f - 0.75f) * (2f * Mathf.PI / 3f)) * Mathf.Pow(2f, -10f * v) + 1f;
         }
     }
 
@@ -264,13 +269,15 @@ namespace AnimeTask
 
         public static float Calc(float v)
         {
+            if (Mathf.Approximately(0.0f, v) || Mathf.Approximately(1.0f, v)) return v;
+
             if (v < 0.5f)
             {
-                return 0.5f * Mathf.Sin(13f * (Mathf.PI / 2f) * (2f * v)) * Mathf.Pow(2f, 10f * ((2f * v) - 1f));
+                return -Mathf.Pow(2f, 20f * v - 10f) * Mathf.Sin((20f * v - 11.125f) * (2f * Mathf.PI) / 4.5f) / 2f;
             }
             else
             {
-                return 0.5f * (Mathf.Sin(-13f * (Mathf.PI / 2f) * ((2f * v - 1f) + 1f)) * Mathf.Pow(2f, -10f * (2f * v - 1f)) + 2f);
+                return Mathf.Pow(2f, -20f * v + 10f) * Mathf.Sin((20f * v - 11.125f) * (2f * Mathf.PI) / 4.5f) / 2f + 1f;
             }
         }
     }
@@ -411,8 +418,8 @@ namespace AnimeTask
             }
             else
             {
-                var f = ((2f * v) - 2f);
-                return 0.5f * f * f * f * f + 1f;
+                var f = (v - 1f);
+                return 1f - 8f * f * f * f * f;
             }
         }
     }
