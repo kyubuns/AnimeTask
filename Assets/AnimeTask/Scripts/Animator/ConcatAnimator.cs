@@ -34,10 +34,11 @@ namespace AnimeTask
         {
             while (true)
             {
+                var f = time - usedTime;
                 if (currentAnimator == null) return (currentValue, usedTime);
-                var (v, used) = currentAnimator.Update(time - usedTime);
+                var (v, used) = currentAnimator.Update(f);
 
-                if (used < time - usedTime)
+                if (used < f)
                 {
                     currentValue = v;
                     usedTime += used;
