@@ -11,6 +11,8 @@ Rx Version! -> [kyubuns/AnimeRx](https://github.com/kyubuns/AnimeRx)
 
 ## Sample
 
+-> [Example of use](https://github.com/kyubuns/AnimeTask/wiki/Gallery)
+
 ### Basic
 
 Move from `(-5f, 0f, 0f)` to `(5f, 0f, 0f)` over 2 seconds.
