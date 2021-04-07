@@ -1,3 +1,4 @@
+#if !UNITY_2019_1_OR_NEWER || ANIMETASK_UGUI_SUPPORT
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -97,3 +98,4 @@ namespace AnimeTask
         }
     }
 }
+#endif
