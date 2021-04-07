@@ -9,15 +9,15 @@ namespace AnimeTask
     {
         public static IScheduler DefaultScheduler { get; set; } = new TimeScheduler();
 
-        public static async UniTask Play<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler = default, CancellationToken cancellationToken = default)
+        public static UniTask Play<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler = default, CancellationToken cancellationToken = default)
         {
-            await PlayInternal(animator, translator, scheduler, cancellationToken);
+            return PlayInternal(animator, translator, scheduler, cancellationToken);
         }
 
-        public static async UniTask PlayTo<T>(IAnimatorWithStartValue<T> animatorWithStartValue, IValueTranslator<T> translator, IScheduler scheduler = default, CancellationToken cancellationToken = default)
+        public static UniTask PlayTo<T>(IAnimatorWithStartValue<T> animatorWithStartValue, IValueTranslator<T> translator, IScheduler scheduler = default, CancellationToken cancellationToken = default)
         {
             var animator = animatorWithStartValue.Start(translator.Current);
-            await PlayInternal(animator, translator, scheduler, cancellationToken);
+            return PlayInternal(animator, translator, scheduler, cancellationToken);
         }
 
         private static async UniTask PlayInternal<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler, CancellationToken cancellationToken)
@@ -35,9 +35,9 @@ namespace AnimeTask
             }
         }
 
-        public static async UniTask Delay(float duration, IScheduler scheduler = default, CancellationToken cancellationToken = default)
+        public static UniTask Delay(float duration, IScheduler scheduler = default, CancellationToken cancellationToken = default)
         {
-            await DelayInternal(duration, scheduler, cancellationToken);
+            return DelayInternal(duration, scheduler, cancellationToken);
         }
 
         private static async UniTask DelayInternal(float duration, IScheduler scheduler, CancellationToken cancellationToken)
