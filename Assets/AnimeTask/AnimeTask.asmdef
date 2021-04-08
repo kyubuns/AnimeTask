@@ -16,6 +16,11 @@
             "name": "com.neuecc.unirx",
             "expression": "",
             "define": "ANIMETASK_UNIRX_SUPPORT"
+        },
+        {
+            "name": "com.unity.ugui",
+            "expression": "",
+            "define": "ANIMETASK_UGUI_SUPPORT"
         }
     ],
     "noEngineReferences": false
