@@ -9,6 +9,8 @@ namespace AnimeTask.Sample
 {
     public class Sample : MonoBehaviour
     {
+        [SerializeField] private AnimationCurve sample12 = default;
+
         private static readonly int ShaderColor = Shader.PropertyToID("_Color");
 
         public async UniTask Sample01()
@@ -190,6 +192,18 @@ namespace AnimeTask.Sample
                     .Concat(Easing.Create<OutCubic>(new Vector3(5f, 2f, 0f), x => x / 2f))
                     .Concat(Easing.Create<OutCubic>(new Vector3(-5f, 0f, 0f), x => x / 2f))
                     .ToLocalPosition(cubes[0]);
+
+                await UniTask.Delay(TimeSpan.FromSeconds(1));
+            }
+        }
+
+        public async UniTask Sample12()
+        {
+            using (var cubes = new SampleCubes(new Vector3(0f, 0f, 0f)))
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(1));
+
+                await Moving.AnimationCurve(sample12, 2f).ToLocalPositionX(cubes[0]);
 
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
             }
