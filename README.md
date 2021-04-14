@@ -66,6 +66,17 @@ await Moving.Gravity(
 
 <img src="https://user-images.githubusercontent.com/961165/85940937-8c48d500-b95a-11ea-81b5-fddd17166a96.gif" width="480">
 
+### AnimationCurve
+
+```csharp
+[SerializeField] private AnimationCurve sample12 = default;
+
+public async UniTask Sample12()
+{
+    await Moving.AnimationCurve(sample12).ToLocalPositionX(cube);
+}
+```
+
 ### CalcDuration
 
 Move by calculating moving time from distance.
