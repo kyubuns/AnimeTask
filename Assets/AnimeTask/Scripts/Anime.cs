@@ -7,7 +7,7 @@ namespace AnimeTask
 {
     public static class Anime
     {
-        public static IScheduler DefaultScheduler { get; set; } = new TimeScheduler();
+        public static IScheduler DefaultScheduler { get; set; } = new DefaultTimeScheduler();
 
         public static UniTask Play<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler = default, CancellationToken cancellationToken = default, SkipToken skipToken = default)
         {
@@ -25,7 +25,8 @@ namespace AnimeTask
             if (scheduler == default) scheduler = DefaultScheduler;
 
             var startTime = scheduler.Now;
-            while (!cancellationToken.IsCancellationRequested && !skipToken.IsSkipRequested && Application.isPlaying)
+            var playState = Application.isPlaying;
+            while (!cancellationToken.IsCancellationRequested && !skipToken.IsSkipRequested && playState == Application.isPlaying)
             {
                 var time = scheduler.Now - startTime;
                 var (t, used) = animator.Update(time);
@@ -53,7 +54,8 @@ namespace AnimeTask
             if (scheduler == default) scheduler = DefaultScheduler;
 
             var startTime = scheduler.Now;
-            while (!cancellationToken.IsCancellationRequested && !skipToken.IsSkipRequested && Application.isPlaying)
+            var playState = Application.isPlaying;
+            while (!cancellationToken.IsCancellationRequested && !skipToken.IsSkipRequested && playState == Application.isPlaying)
             {
                 var time = scheduler.Now - startTime;
                 if (duration < time) break;

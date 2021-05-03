@@ -33,7 +33,11 @@ namespace AnimeTask.Sample
         {
             foreach (var cube in cubes)
             {
-                Object.Destroy(cube);
+                if (cube != null)
+                {
+                    if (Application.isPlaying) Object.Destroy(cube);
+                    else Object.DestroyImmediate(cube);
+                }
             }
         }
     }

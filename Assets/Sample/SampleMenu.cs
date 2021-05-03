@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,6 +39,15 @@ namespace AnimeTask.Sample
         {
             Debug.Log($"Play {list[index].text}");
             Sample.Invoke(list[index].text, 0.0f);
+        }
+    }
+
+    public static class SampleEditorMenu
+    {
+        [MenuItem("Test/Sample01")]
+        public static void Sample01()
+        {
+            GameObject.Find("Sample").GetComponent<Sample>().Sample01().Forget();
         }
     }
 }
