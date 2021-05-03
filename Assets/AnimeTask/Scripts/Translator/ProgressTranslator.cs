@@ -6,7 +6,7 @@ namespace AnimeTask
 {
     public static partial class TranslateTo
     {
-        public static UniTask ToProgress<T>(this IAnimator<T> animator, IProgress<T> progress, CancellationToken cancellationToken = default, IScheduler scheduler = default) => Anime.Play(animator, new ProgressTranslator<T>(progress), scheduler, cancellationToken);
+        public static UniTask ToProgress<T>(this IAnimator<T> animator, IProgress<T> progress, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new ProgressTranslator<T>(progress), scheduler, cancellationToken, skipToken);
     }
 
     public class ProgressTranslator<T> : ITranslator<T>
