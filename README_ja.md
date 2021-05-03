@@ -160,6 +160,18 @@ var canceller = go.GetAnimationCanceller().Cancel();
 Easing.Create<Linear>(0.0f, 0.5f).ToLocalPositionX(go, canceller.Token);
 ```
 
+### Skip
+
+- (CancellationTokenを用いた) Cancelは `Cancel` した瞬間に、その位置に停止します。
+- (SkipTokenを用いた) Skipは `Skip` した瞬間に、終了位置まで移動します。
+
+```csharp
+var skipTokenSource = new SkipTokenSource();
+Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), 5f).ToLocalPosition(cubes[0], default, skipTokenSource.Token).Forget();
+await UniTask.Delay(TimeSpan.FromSeconds(1));
+skipTokenSource.Skip();
+```
+
 ### UniRx.Extensions
 
 ```csharp
