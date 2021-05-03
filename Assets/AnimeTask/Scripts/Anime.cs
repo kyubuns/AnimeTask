@@ -32,6 +32,7 @@ namespace AnimeTask
                 if (used < time) break;
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
             }
+            cancellationToken.ThrowIfCancellationRequested();
         }
 
         public static UniTask Delay(float duration, IScheduler scheduler = default, CancellationToken cancellationToken = default)
@@ -50,6 +51,7 @@ namespace AnimeTask
                 if (duration < time) break;
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
             }
+            cancellationToken.ThrowIfCancellationRequested();
         }
     }
 }
