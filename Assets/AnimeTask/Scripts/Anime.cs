@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace AnimeTask
@@ -9,11 +10,13 @@ namespace AnimeTask
     {
         public static IScheduler DefaultScheduler { get; set; } = new DefaultTimeScheduler();
 
+        [MustUseReturnValue]
         public static UniTask Play<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler = default, CancellationToken cancellationToken = default, SkipToken skipToken = default)
         {
             return PlayInternal(animator, translator, scheduler, cancellationToken, skipToken);
         }
 
+        [MustUseReturnValue]
         public static UniTask PlayTo<T>(IAnimatorWithStartValue<T> animatorWithStartValue, IValueTranslator<T> translator, IScheduler scheduler = default, CancellationToken cancellationToken = default, SkipToken skipToken = default)
         {
             var animator = animatorWithStartValue.Start(translator.Current);
@@ -44,6 +47,7 @@ namespace AnimeTask
             }
         }
 
+        [MustUseReturnValue]
         public static UniTask Delay(float duration, IScheduler scheduler = default, CancellationToken cancellationToken = default, SkipToken skipToken = default)
         {
             return DelayInternal(duration, scheduler, cancellationToken, skipToken);

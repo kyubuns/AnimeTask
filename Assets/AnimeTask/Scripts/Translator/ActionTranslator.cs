@@ -1,12 +1,13 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace AnimeTask
 {
     public static partial class TranslateTo
     {
-        public static UniTask ToAction<T>(this IAnimator<T> animator, Action<T> action, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new ActionTranslator<T>(action), scheduler, cancellationToken, skipToken);
+        [MustUseReturnValue] public static UniTask ToAction<T>(this IAnimator<T> animator, Action<T> action, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new ActionTranslator<T>(action), scheduler, cancellationToken, skipToken);
     }
 
     public class ActionTranslator<T> : ITranslator<T>
