@@ -197,10 +197,11 @@ score
 
 ## Instructions
 
-- Import [UniTask](https://github.com/Cysharp/UniTask)
-- Import AnimeTask
-  - Package Manager `https://github.com/kyubuns/AnimeTask.git?path=Assets/AnimeTask`
-  - [UnityPackage](https://github.com/kyubuns/AnimeTask/releases)
+- Import AnimeTask via Package Manager
+  - `https://github.com/kyubuns/AnimeTask.git?path=Assets/AnimeTask`
+- Import AnimeTask via UnityPackage
+  - Import [UniTask](https://github.com/Cysharp/UniTask)
+  - Import [UnityPackage](https://github.com/kyubuns/AnimeTask/releases)
 
 ## Way of thinking
 
