@@ -116,19 +116,6 @@ cancellationTokenSource.CancelAfter(500);
 await Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), 2f).ToLocalPosition(cubes[0], cancellationTokenSource.Token);
 ```
 
-### Delay
-
-Move to the right at constant speed for 2 seconds, and set scale to 0 in the last 0.2 seconds.
-
-```csharp
-await UniTask.WhenAll(
-    Moving.Linear(3f, 2f).ToLocalPositionX(cube),
-    Animator.Delay(1.8f, Easing.Create<Linear>(Vector3.zero, 0.2f)).ToLocalScale(cube),
-);
-```
-
-<img src="https://user-images.githubusercontent.com/961165/85938704-8ea33300-b94a-11ea-986a-8537038f92f3.gif" width="480">
-
 ### Convert
 
 Convert a `float` transition to a circular motion.
