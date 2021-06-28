@@ -9,26 +9,131 @@ namespace AnimeTask
 {
     public static partial class TranslateTo
     {
-        [MustUseReturnValue] public static UniTask ToAnchoredPosition(this IAnimator<Vector2> animator, GameObject gameObject, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new AnchoredPositionTranslator(gameObject.GetComponent<RectTransform>()), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPosition(this IAnimator<Vector2> animator, RectTransform rectTransform, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new AnchoredPositionTranslator(rectTransform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(rectTransform.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPosition(this IAnimator<Vector2> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new AnchoredPositionTranslator(graphic.rectTransform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPosition(this IAnimatorWithStartValue<Vector2> animator, GameObject gameObject, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new AnchoredPositionTranslator(gameObject.GetComponent<RectTransform>()), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPosition(this IAnimatorWithStartValue<Vector2> animator, RectTransform rectTransform, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new AnchoredPositionTranslator(rectTransform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(rectTransform.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPosition(this IAnimatorWithStartValue<Vector2> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new AnchoredPositionTranslator(graphic.rectTransform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPosition(this IAnimator<Vector2> animator, GameObject gameObject, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(gameObject);
+            return Anime.Play(animator, new AnchoredPositionTranslator(gameObject.GetComponent<RectTransform>()), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
 
-        [MustUseReturnValue] public static UniTask ToAnchoredPositionX(this IAnimator<float> animator, GameObject gameObject, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new AnchoredPositionXTranslator(gameObject.GetComponent<RectTransform>(), 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPositionX(this IAnimator<float> animator, RectTransform rectTransform, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new AnchoredPositionXTranslator(rectTransform, 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(rectTransform.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPositionX(this IAnimator<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new AnchoredPositionXTranslator(graphic.rectTransform, 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPositionX(this IAnimatorWithStartValue<float> animator, GameObject gameObject, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new AnchoredPositionXTranslator(gameObject.GetComponent<RectTransform>(), 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPositionX(this IAnimatorWithStartValue<float> animator, RectTransform rectTransform, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new AnchoredPositionXTranslator(rectTransform, 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(rectTransform.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPositionX(this IAnimatorWithStartValue<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new AnchoredPositionXTranslator(graphic.rectTransform, 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPosition(this IAnimator<Vector2> animator, RectTransform rectTransform, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(rectTransform);
+            return Anime.Play(animator, new AnchoredPositionTranslator(rectTransform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(rectTransform.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
 
-        [MustUseReturnValue] public static UniTask ToAnchoredPositionY(this IAnimator<float> animator, GameObject gameObject, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new AnchoredPositionXTranslator(gameObject.GetComponent<RectTransform>(), 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPositionY(this IAnimator<float> animator, RectTransform rectTransform, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new AnchoredPositionXTranslator(rectTransform, 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(rectTransform.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPositionY(this IAnimator<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new AnchoredPositionXTranslator(graphic.rectTransform, 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPositionY(this IAnimatorWithStartValue<float> animator, GameObject gameObject, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new AnchoredPositionXTranslator(gameObject.GetComponent<RectTransform>(), 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPositionY(this IAnimatorWithStartValue<float> animator, RectTransform rectTransform, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new AnchoredPositionXTranslator(rectTransform, 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(rectTransform.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToAnchoredPositionY(this IAnimatorWithStartValue<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new AnchoredPositionXTranslator(graphic.rectTransform, 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPosition(this IAnimator<Vector2> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.Play(animator, new AnchoredPositionTranslator(graphic.rectTransform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPosition(this IAnimatorWithStartValue<Vector2> animator, GameObject gameObject, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(gameObject);
+            return Anime.PlayTo(animator, new AnchoredPositionTranslator(gameObject.GetComponent<RectTransform>()), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPosition(this IAnimatorWithStartValue<Vector2> animator, RectTransform rectTransform, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(rectTransform);
+            return Anime.PlayTo(animator, new AnchoredPositionTranslator(rectTransform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(rectTransform.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPosition(this IAnimatorWithStartValue<Vector2> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.PlayTo(animator, new AnchoredPositionTranslator(graphic.rectTransform), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPositionX(this IAnimator<float> animator, GameObject gameObject, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(gameObject);
+            return Anime.Play(animator, new AnchoredPositionXTranslator(gameObject.GetComponent<RectTransform>(), 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPositionX(this IAnimator<float> animator, RectTransform rectTransform, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(rectTransform);
+            return Anime.Play(animator, new AnchoredPositionXTranslator(rectTransform, 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(rectTransform.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPositionX(this IAnimator<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.Play(animator, new AnchoredPositionXTranslator(graphic.rectTransform, 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPositionX(this IAnimatorWithStartValue<float> animator, GameObject gameObject, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(gameObject);
+            return Anime.PlayTo(animator, new AnchoredPositionXTranslator(gameObject.GetComponent<RectTransform>(), 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPositionX(this IAnimatorWithStartValue<float> animator, RectTransform rectTransform, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(rectTransform);
+            return Anime.PlayTo(animator, new AnchoredPositionXTranslator(rectTransform, 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(rectTransform.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPositionX(this IAnimatorWithStartValue<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.PlayTo(animator, new AnchoredPositionXTranslator(graphic.rectTransform, 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPositionY(this IAnimator<float> animator, GameObject gameObject, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(gameObject);
+            return Anime.Play(animator, new AnchoredPositionXTranslator(gameObject.GetComponent<RectTransform>(), 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPositionY(this IAnimator<float> animator, RectTransform rectTransform, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(rectTransform);
+            return Anime.Play(animator, new AnchoredPositionXTranslator(rectTransform, 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(rectTransform.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPositionY(this IAnimator<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.Play(animator, new AnchoredPositionXTranslator(graphic.rectTransform, 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPositionY(this IAnimatorWithStartValue<float> animator, GameObject gameObject, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(gameObject);
+            return Anime.PlayTo(animator, new AnchoredPositionXTranslator(gameObject.GetComponent<RectTransform>(), 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(gameObject.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPositionY(this IAnimatorWithStartValue<float> animator, RectTransform rectTransform, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(rectTransform);
+            return Anime.PlayTo(animator, new AnchoredPositionXTranslator(rectTransform, 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(rectTransform.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToAnchoredPositionY(this IAnimatorWithStartValue<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.PlayTo(animator, new AnchoredPositionXTranslator(graphic.rectTransform, 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
     }
 
     public class AnchoredPositionTranslator : IValueTranslator<Vector2>

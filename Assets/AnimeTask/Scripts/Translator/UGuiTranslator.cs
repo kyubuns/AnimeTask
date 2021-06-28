@@ -9,25 +9,96 @@ namespace AnimeTask
 {
     public static partial class TranslateTo
     {
-        [MustUseReturnValue] public static UniTask ToText(this IAnimator<float> animator, Text text, string format, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new TextTranslator(text, format), scheduler, CancellationTokenSource.CreateLinkedTokenSource(text.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        [MustUseReturnValue]
+        public static UniTask ToText(this IAnimator<float> animator, Text text, string format, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(text);
+            return Anime.Play(animator, new TextTranslator(text, format), scheduler, CancellationTokenSource.CreateLinkedTokenSource(text.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
 
-        [MustUseReturnValue] public static UniTask ToColor(this IAnimator<Color> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new ColorTranslator(graphic), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToColor(this IAnimatorWithStartValue<Color> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new ColorTranslator(graphic), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        [MustUseReturnValue]
+        public static UniTask ToColor(this IAnimator<Color> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.Play(animator, new ColorTranslator(graphic), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
 
-        [MustUseReturnValue] public static UniTask ToColorR(this IAnimator<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new ColorXTranslator(graphic, 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToColorR(this IAnimatorWithStartValue<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new ColorXTranslator(graphic, 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        [MustUseReturnValue]
+        public static UniTask ToColor(this IAnimatorWithStartValue<Color> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.PlayTo(animator, new ColorTranslator(graphic), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
 
-        [MustUseReturnValue] public static UniTask ToColorG(this IAnimator<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new ColorXTranslator(graphic, 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToColorG(this IAnimatorWithStartValue<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new ColorXTranslator(graphic, 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        [MustUseReturnValue]
+        public static UniTask ToColorR(this IAnimator<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.Play(animator, new ColorXTranslator(graphic, 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
 
-        [MustUseReturnValue] public static UniTask ToColorB(this IAnimator<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator, new ColorXTranslator(graphic, 2), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToColorB(this IAnimatorWithStartValue<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator, new ColorXTranslator(graphic, 2), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        [MustUseReturnValue]
+        public static UniTask ToColorR(this IAnimatorWithStartValue<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.PlayTo(animator, new ColorXTranslator(graphic, 0), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
 
-        [MustUseReturnValue] public static UniTask ToColorA(this IAnimator<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator,  new ColorXTranslator(graphic, 3), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToColorA(this IAnimatorWithStartValue<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator,  new ColorXTranslator(graphic, 3), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        [MustUseReturnValue]
+        public static UniTask ToColorG(this IAnimator<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.Play(animator, new ColorXTranslator(graphic, 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
 
-        [MustUseReturnValue] public static UniTask ToFillAmount(this IAnimator<float> animator, Image image, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.Play(animator,  new FillAmountTranslator(image), scheduler, CancellationTokenSource.CreateLinkedTokenSource(image.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
-        [MustUseReturnValue] public static UniTask ToFillAmount(this IAnimatorWithStartValue<float> animator, Image image, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default) => Anime.PlayTo(animator,  new FillAmountTranslator(image), scheduler, CancellationTokenSource.CreateLinkedTokenSource(image.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        [MustUseReturnValue]
+        public static UniTask ToColorG(this IAnimatorWithStartValue<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.PlayTo(animator, new ColorXTranslator(graphic, 1), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToColorB(this IAnimator<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.Play(animator, new ColorXTranslator(graphic, 2), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToColorB(this IAnimatorWithStartValue<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.PlayTo(animator, new ColorXTranslator(graphic, 2), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToColorA(this IAnimator<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.Play(animator, new ColorXTranslator(graphic, 3), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToColorA(this IAnimatorWithStartValue<float> animator, Graphic graphic, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(graphic);
+            return Anime.PlayTo(animator, new ColorXTranslator(graphic, 3), scheduler, CancellationTokenSource.CreateLinkedTokenSource(graphic.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToFillAmount(this IAnimator<float> animator, Image image, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(image);
+            return Anime.Play(animator, new FillAmountTranslator(image), scheduler, CancellationTokenSource.CreateLinkedTokenSource(image.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToFillAmount(this IAnimatorWithStartValue<float> animator, Image image, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(image);
+            return Anime.PlayTo(animator, new FillAmountTranslator(image), scheduler, CancellationTokenSource.CreateLinkedTokenSource(image.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
     }
 
     public class TextTranslator : ITranslator<float>
