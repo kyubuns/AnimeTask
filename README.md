@@ -205,7 +205,7 @@ Reflect the value.
 
 ## Requirements
 
-- Requires Unity2019.4 or later
+- Requires Unity2020.3 or later
 
 ## License
 
