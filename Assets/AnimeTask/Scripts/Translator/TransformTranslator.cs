@@ -514,11 +514,13 @@ namespace AnimeTask
 
     public class LocalPositionTranslator : IValueTranslator<Vector3>, IValueTranslator<Vector2>
     {
-        private readonly Transform transform;
+        public bool Alive => transform != null;
         public Vector3 Current => transform.localPosition;
 
         Vector2 IValueTranslator<Vector2>.Current => Current;
         Vector3 IValueTranslator<Vector3>.Current => Current;
+
+        private readonly Transform transform;
 
         public LocalPositionTranslator(Transform transform)
         {
@@ -538,10 +540,12 @@ namespace AnimeTask
 
     public class LocalPositionXTranslator : IValueTranslator<float>
     {
+        public bool Alive => transform != null;
+        public float Current => transform.localPosition[Index];
+
         public int Index { get; }
 
         private readonly Transform transform;
-        public float Current => transform.localPosition[Index];
 
         public LocalPositionXTranslator(Transform transform, int index)
         {
@@ -559,11 +563,13 @@ namespace AnimeTask
 
     public class GlobalPositionTranslator : IValueTranslator<Vector3>, IValueTranslator<Vector2>
     {
-        private readonly Transform transform;
+        public bool Alive => transform != null;
         public Vector3 Current => transform.position;
 
         Vector2 IValueTranslator<Vector2>.Current => Current;
         Vector3 IValueTranslator<Vector3>.Current => Current;
+
+        private readonly Transform transform;
 
         public GlobalPositionTranslator(Transform transform)
         {
@@ -584,10 +590,12 @@ namespace AnimeTask
 
     public class GlobalPositionXTranslator : IValueTranslator<float>
     {
+        public bool Alive => transform != null;
+        public float Current => transform.position[Index];
+
         public int Index { get; }
 
         private readonly Transform transform;
-        public float Current => transform.position[Index];
 
         public GlobalPositionXTranslator(Transform transform, int index)
         {
@@ -605,12 +613,14 @@ namespace AnimeTask
 
     public class LocalScaleTranslator : IValueTranslator<Vector3>, IValueTranslator<Vector2>, IValueTranslator<float>
     {
-        private readonly Transform transform;
+        public bool Alive => transform != null;
         public Vector3 Current => transform.localScale;
 
         Vector3 IValueTranslator<Vector3>.Current => Current;
         Vector2 IValueTranslator<Vector2>.Current => Current;
         float IValueTranslator<float>.Current => (Current.x + Current.y + Current.z) / 3f;
+
+        private readonly Transform transform;
 
         public LocalScaleTranslator(Transform transform)
         {
@@ -635,10 +645,12 @@ namespace AnimeTask
 
     public class LocalScaleXTranslator : IValueTranslator<float>
     {
+        public bool Alive => transform != null;
+        public float Current => transform.localScale[Index];
+
         public int Index { get; }
 
         private readonly Transform transform;
-        public float Current => transform.localScale[Index];
 
         public LocalScaleXTranslator(Transform transform, int index)
         {
@@ -656,8 +668,10 @@ namespace AnimeTask
 
     public class LocalRotationTranslator : IValueTranslator<Quaternion>
     {
-        private readonly Transform transform;
+        public bool Alive => transform != null;
         public Quaternion Current => transform.localRotation;
+
+        private readonly Transform transform;
 
         public LocalRotationTranslator(Transform transform)
         {
@@ -672,8 +686,10 @@ namespace AnimeTask
 
     public class GlobalRotationTranslator : IValueTranslator<Quaternion>
     {
-        private readonly Transform transform;
+        public bool Alive => transform != null;
         public Quaternion Current => transform.rotation;
+
+        private readonly Transform transform;
 
         public GlobalRotationTranslator(Transform transform)
         {

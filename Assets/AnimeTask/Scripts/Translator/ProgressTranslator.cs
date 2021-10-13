@@ -16,6 +16,8 @@ namespace AnimeTask
 
     public class ProgressTranslator<T> : ITranslator<T>
     {
+        public bool Alive => true;
+
         private readonly IProgress<T> progress;
 
         public ProgressTranslator(IProgress<T> progress)

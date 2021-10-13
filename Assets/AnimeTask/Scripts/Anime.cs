@@ -29,7 +29,7 @@ namespace AnimeTask
 
             var startTime = scheduler.Now;
             var playState = Application.isPlaying;
-            while (!cancellationToken.IsCancellationRequested && !skipToken.IsSkipRequested && playState == Application.isPlaying)
+            while (!cancellationToken.IsCancellationRequested && !skipToken.IsSkipRequested && translator.Alive && playState == Application.isPlaying)
             {
                 var time = scheduler.Now - startTime;
                 var (t, used) = animator.Update(time);
@@ -38,6 +38,7 @@ namespace AnimeTask
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
             }
 
+            if (!translator.Alive) throw new OperationCanceledException("!translator.Alive");
             cancellationToken.ThrowIfCancellationRequested();
 
             if (skipToken.IsSkipRequested)

@@ -103,6 +103,8 @@ namespace AnimeTask
 
     public class TextTranslator : ITranslator<float>
     {
+        public bool Alive => text != null;
+
         private readonly Text text;
         private readonly string format;
 
@@ -120,7 +122,9 @@ namespace AnimeTask
 
     public class ColorTranslator : IValueTranslator<Color>
     {
+        public bool Alive => graphic != null;
         public Color Current => graphic.color;
+
         private readonly Graphic graphic;
 
         public ColorTranslator(Graphic graphic)
@@ -136,8 +140,10 @@ namespace AnimeTask
 
     public class ColorXTranslator : IValueTranslator<float>
     {
-        public int Index { get; }
+        public bool Alive => graphic != null;
         public float Current => graphic.color[Index];
+
+        public int Index { get; }
         private readonly Graphic graphic;
 
         public ColorXTranslator(Graphic graphic, int index)
@@ -156,7 +162,9 @@ namespace AnimeTask
 
     public class FillAmountTranslator : IValueTranslator<float>
     {
+        public bool Alive => image != null;
         public float Current => image.fillAmount;
+
         private readonly Image image;
 
         public FillAmountTranslator(Image image)

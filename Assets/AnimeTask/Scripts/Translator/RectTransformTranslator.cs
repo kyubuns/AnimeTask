@@ -264,8 +264,10 @@ namespace AnimeTask
 
     public class AnchoredPositionTranslator : IValueTranslator<Vector2>
     {
-        private readonly RectTransform transform;
+        public bool Alive => transform != null;
         public Vector2 Current => transform.anchoredPosition;
+
+        private readonly RectTransform transform;
 
         public AnchoredPositionTranslator(RectTransform transform)
         {
@@ -280,10 +282,12 @@ namespace AnimeTask
 
     public class AnchoredPositionXTranslator : IValueTranslator<float>
     {
+        public bool Alive => transform != null;
+        public float Current => transform.localPosition[Index];
+
         public int Index { get; }
 
         private readonly RectTransform transform;
-        public float Current => transform.localPosition[Index];
 
         public AnchoredPositionXTranslator(RectTransform transform, int index)
         {
@@ -301,8 +305,10 @@ namespace AnimeTask
 
     public class SizeDeltaTranslator : IValueTranslator<Vector2>
     {
-        private readonly RectTransform transform;
+        public bool Alive => transform != null;
         public Vector2 Current => transform.sizeDelta;
+
+        private readonly RectTransform transform;
 
         public SizeDeltaTranslator(RectTransform transform)
         {
@@ -317,10 +323,12 @@ namespace AnimeTask
 
     public class SizeDeltaXTranslator : IValueTranslator<float>
     {
+        public bool Alive => transform != null;
+        public float Current => transform.sizeDelta[Index];
+
         public int Index { get; }
 
         private readonly RectTransform transform;
-        public float Current => transform.sizeDelta[Index];
 
         public SizeDeltaXTranslator(RectTransform transform, int index)
         {

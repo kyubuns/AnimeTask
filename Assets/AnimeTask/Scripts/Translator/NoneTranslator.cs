@@ -21,6 +21,7 @@ namespace AnimeTask
 
     public class NoneTranslator<T> : IValueTranslator<T>
     {
+        public bool Alive => true;
         public T Current => default;
 
         public void Update(T value)

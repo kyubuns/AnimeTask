@@ -23,6 +23,8 @@ namespace AnimeTask
 
     public class ReactivePropertyTranslator<T> : IValueTranslator<T>
     {
+        public bool Alive => true;
+
         public T Current => reactiveProperty.Value;
         private readonly ReactiveProperty<T> reactiveProperty;
 

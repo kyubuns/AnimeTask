@@ -2,6 +2,7 @@ namespace AnimeTask
 {
     public interface ITranslator<in T>
     {
+        bool Alive { get; }
         void Update(T value);
     }
 

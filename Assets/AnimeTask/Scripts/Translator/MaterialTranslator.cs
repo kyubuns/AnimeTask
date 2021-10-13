@@ -94,11 +94,12 @@ namespace AnimeTask
 
     public class MaterialPropertyColorTranslator : IValueTranslator<Color>
     {
+        public bool Alive => renderer != null;
+        public Color Current => materialPropertyBlock.GetColor(nameID);
+
         private readonly Renderer renderer;
         private readonly int nameID;
         private readonly MaterialPropertyBlock materialPropertyBlock;
-
-        public Color Current => materialPropertyBlock.GetColor(nameID);
 
         public MaterialPropertyColorTranslator(Renderer renderer, int nameID)
         {
@@ -125,11 +126,12 @@ namespace AnimeTask
 
     public class MaterialPropertyFloatTranslator : IValueTranslator<float>
     {
+        public bool Alive => renderer != null;
+        public float Current => materialPropertyBlock.GetFloat(nameID);
+
         private readonly Renderer renderer;
         private readonly int nameID;
         private readonly MaterialPropertyBlock materialPropertyBlock;
-
-        public float Current => materialPropertyBlock.GetFloat(nameID);
 
         public MaterialPropertyFloatTranslator(Renderer renderer, int nameID)
         {
@@ -156,11 +158,12 @@ namespace AnimeTask
 
     public class MaterialPropertyIntTranslator : IValueTranslator<int>
     {
+        public bool Alive => renderer != null;
+        public int Current => materialPropertyBlock.GetInt(nameID);
+
         private readonly Renderer renderer;
         private readonly int nameID;
         private readonly MaterialPropertyBlock materialPropertyBlock;
-
-        public int Current => materialPropertyBlock.GetInt(nameID);
 
         public MaterialPropertyIntTranslator(Renderer renderer, int nameID)
         {
