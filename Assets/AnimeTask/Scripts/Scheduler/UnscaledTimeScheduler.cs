@@ -4,6 +4,6 @@ namespace AnimeTask
 {
     public class UnscaledTimeScheduler : IScheduler
     {
-        public float Now => Time.unscaledTime;
+        public float DeltaTime => Time.unscaledDeltaTime;
     }
 }

@@ -2,6 +2,6 @@ namespace AnimeTask
 {
     public interface IScheduler
     {
-        float Now { get; }
+        float DeltaTime { get; }
     }
 }

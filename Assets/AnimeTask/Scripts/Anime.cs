@@ -8,7 +8,7 @@ namespace AnimeTask
 {
     public static class Anime
     {
-        public static IScheduler DefaultScheduler { get; set; } = new DefaultTimeScheduler();
+        public static IScheduler DefaultScheduler { get; set; } = new TimeScheduler();
 
         [MustUseReturnValue]
         public static UniTask Play<T>(IAnimator<T> animator, ITranslator<T> translator, IScheduler scheduler = default, CancellationToken cancellationToken = default, SkipToken skipToken = default)
@@ -27,15 +27,15 @@ namespace AnimeTask
         {
             if (scheduler == default) scheduler = DefaultScheduler;
 
-            var startTime = scheduler.Now;
+            var time = 0f;
             var playState = Application.isPlaying;
             while (!cancellationToken.IsCancellationRequested && !skipToken.IsSkipRequested && translator.Alive && playState == Application.isPlaying)
             {
-                var time = scheduler.Now - startTime;
                 var (t, used) = animator.Update(time);
                 translator.Update(t);
                 if (used < time) break;
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+                time += scheduler.DeltaTime;
             }
 
             if (!translator.Alive) throw new OperationCanceledException("!translator.Alive");
@@ -58,13 +58,13 @@ namespace AnimeTask
         {
             if (scheduler == default) scheduler = DefaultScheduler;
 
-            var startTime = scheduler.Now;
+            var time = 0f;
             var playState = Application.isPlaying;
             while (!cancellationToken.IsCancellationRequested && !skipToken.IsSkipRequested && playState == Application.isPlaying)
             {
-                var time = scheduler.Now - startTime;
                 if (duration < time) break;
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+                time += scheduler.DeltaTime;
             }
             cancellationToken.ThrowIfCancellationRequested();
         }
