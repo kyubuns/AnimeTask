@@ -34,7 +34,7 @@ namespace AnimeTask
                 var (t, used) = animator.Update(time);
                 translator.Update(t);
                 if (used < time) break;
-                await UniTask.NextFrame(PlayerLoopTiming.Update, cancellationToken);
+                await UniTask.NextFrame(scheduler.UpdateTiming, cancellationToken);
                 time += scheduler.DeltaTime;
             }
 
@@ -63,7 +63,7 @@ namespace AnimeTask
             while (!cancellationToken.IsCancellationRequested && !skipToken.IsSkipRequested && playState == Application.isPlaying)
             {
                 if (duration < time) break;
-                await UniTask.NextFrame(PlayerLoopTiming.Update, cancellationToken);
+                await UniTask.NextFrame(scheduler.UpdateTiming, cancellationToken);
                 time += scheduler.DeltaTime;
             }
             cancellationToken.ThrowIfCancellationRequested();
