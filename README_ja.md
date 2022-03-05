@@ -95,6 +95,18 @@ Easing.Create<Linear>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2f)
     .ToLocalPosition(shape, default, new UnscaledTimeScheduler());
 ```
 
+### Update Timing
+
+スケジューラーで更新タイミングを指定すれば、Update 以外のタイミングで値を更新することも可能です。
+
+```csharp
+public class CustomScheduler : IScheduler
+{
+    public float DeltaTime => Time.deltaTime;
+    public PlayerLoopTiming UpdateTiming => PlayerLoopTiming.PreUpdate;
+}
+```
+
 ### Cancel
 
 ```csharp

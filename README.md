@@ -106,6 +106,18 @@ Easing.Create<Linear>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2f)
     .ToLocalPosition(shape, default, new UnscaledTimeScheduler());
 ```
 
+### Update Timing
+
+If an update timing is specified in the scheduler, values can be updated at times other than Update.
+
+```csharp
+public class CustomScheduler : IScheduler
+{
+    public float DeltaTime => Time.deltaTime;
+    public PlayerLoopTiming UpdateTiming => PlayerLoopTiming.PreUpdate;
+}
+```
+
 ### Cancel
 
 ```csharp
