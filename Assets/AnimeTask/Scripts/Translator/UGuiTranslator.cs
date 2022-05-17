@@ -99,6 +99,20 @@ namespace AnimeTask
             CheckAlive(image);
             return Anime.PlayTo(animator, new FillAmountTranslator(image), scheduler, CancellationTokenSource.CreateLinkedTokenSource(image.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
         }
+
+        [MustUseReturnValue]
+        public static UniTask ToColorA(this IAnimator<float> animator, CanvasGroup canvasGroup, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(canvasGroup);
+            return Anime.Play(animator, new CanvasGroupTranslator(canvasGroup), scheduler, CancellationTokenSource.CreateLinkedTokenSource(canvasGroup.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
+
+        [MustUseReturnValue]
+        public static UniTask ToColorA(this IAnimatorWithStartValue<float> animator, CanvasGroup canvasGroup, CancellationToken cancellationToken = default, SkipToken skipToken = default, IScheduler scheduler = default)
+        {
+            CheckAlive(canvasGroup);
+            return Anime.PlayTo(animator, new CanvasGroupTranslator(canvasGroup), scheduler, CancellationTokenSource.CreateLinkedTokenSource(canvasGroup.GetCancellationTokenOnDestroy(), cancellationToken).Token, skipToken);
+        }
     }
 
     public class TextTranslator : ITranslator<float>
@@ -175,6 +189,24 @@ namespace AnimeTask
         public void Update(float value)
         {
             image.fillAmount = value;
+        }
+    }
+
+    public class CanvasGroupTranslator : IValueTranslator<float>
+    {
+        public bool Alive => canvasGroup != null;
+        public float Current => canvasGroup.alpha;
+
+        private readonly CanvasGroup canvasGroup;
+
+        public CanvasGroupTranslator(CanvasGroup canvasGroup)
+        {
+            this.canvasGroup = canvasGroup;
+        }
+
+        public void Update(float value)
+        {
+            canvasGroup.alpha = value;
         }
     }
 }
