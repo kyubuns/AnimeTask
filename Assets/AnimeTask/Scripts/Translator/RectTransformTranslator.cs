@@ -283,7 +283,7 @@ namespace AnimeTask
     public class AnchoredPositionXTranslator : IValueTranslator<float>
     {
         public bool Alive => transform != null;
-        public float Current => transform.localPosition[Index];
+        public float Current => transform.anchoredPosition[Index];
 
         public int Index { get; }
 
