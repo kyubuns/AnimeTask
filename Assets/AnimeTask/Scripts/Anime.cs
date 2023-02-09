@@ -105,7 +105,7 @@ namespace AnimeTask
             IsSkipRequested = true;
         }
 
-        public bool IsSkipRequested { get; private set; }
+        public bool IsSkipRequested { get; set; }
 
         public SkipToken Token { get; }
 
