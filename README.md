@@ -23,7 +23,7 @@ await Easing.Create<Linear>(new Vector3(-5f, 0f, 0f), new Vector3(5f, 0f, 0f), 2
 
 <img src="https://user-images.githubusercontent.com/961165/85938659-32d8aa00-b94a-11ea-84e4-162626e31861.gif" width="480">
 
-### PlayTo
+### `PlayTo`
 
 Move from the current location to a specified location.
 
@@ -35,7 +35,7 @@ await Easing.Create<Linear>(new Vector3(-5f, 3f, 0f), 2f).ToLocalPosition(cube);
 
 ### Easing
 
-Use [InCubic](https://easings.net/#easeInCubic) of [Easing](https://easings.net/) to move to a specified position.
+Use [`InCubic`](https://easings.net/#easeInCubic) of [`Easing`](https://easings.net/) to move to a specified position.
 
 ```csharp
 await Easing.Create<InCubic>(new Vector3(-5f, 3f, 0f), 2f).ToLocalPosition(cube);
@@ -51,7 +51,7 @@ Move at 1 per second for 2 seconds.
 await Moving.Linear(1f, 2f).ToLocalPositionX(cube);
 ```
 
-### Gravity
+### `Gravity`
 
 ```csharp
 const float xRange = 5f;
@@ -66,7 +66,7 @@ await Moving.Gravity(
 
 <img src="https://user-images.githubusercontent.com/961165/85940937-8c48d500-b95a-11ea-81b5-fddd17166a96.gif" width="480">
 
-### AnimationCurve
+### `AnimationCurve`
 
 ```csharp
 [SerializeField] private AnimationCurve sample12 = default;
@@ -88,7 +88,7 @@ await Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), x => x / 2f)
     .ToLocalPosition(cubes);
 ```
 
-### TranslateTo.Action
+### `TranslateTo.Action`
 
 `TranslateTo.Action` enables you to use the animated values freely.
 
@@ -96,7 +96,7 @@ await Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), x => x / 2f)
 Easing.Create<Linear>(0, 100, 2f).ToAction<float>(x => Debug.Log(x))
 ```
 
-### UnscaledTime
+### `UnscaledTime`
 
 You can create your own scheduler, so you can stop time for specific objects.  
 The default is to use `Time.time`, and you can also use `UnscaledTimeScheduler`, which uses `Time.unscaledTime`.
@@ -118,7 +118,7 @@ public class CustomScheduler : IScheduler
 }
 ```
 
-### Cancel
+### `Cancel`
 
 ```csharp
 var cancellationTokenSource = new CancellationTokenSource();
@@ -128,7 +128,7 @@ cancellationTokenSource.CancelAfter(500);
 await Easing.Create<OutCubic>(new Vector3(5f, 0f, 0f), 2f).ToLocalPosition(cubes[0], cancellationTokenSource.Token);
 ```
 
-### Convert
+### `Convert`
 
 Convert a `float` transition to a circular motion.
 
@@ -140,7 +140,7 @@ await Easing.Create<OutCubic>(0.0f, Mathf.PI * 2.0f, 2f)
 
 <img src="https://user-images.githubusercontent.com/961165/85940836-ef863780-b959-11ea-94a3-11e9ed5057f4.gif" width="480">
 
-### Concat
+### `Concat`
 
 It moves from 5f to 0f in 2 seconds, stops for 1 second, and moves to -5f in 2 seconds.
 
@@ -151,7 +151,7 @@ await Easing.Create<OutCubic>(5f, 0f, 2f)
     .ToLocalPositionX(cubes[0]);
 ```
 
-### IProgress
+### `IProgress`
 
 Supporting [IProgress](https://docs.microsoft.com/ja-jp/dotnet/api/system.iprogress-1)
 
@@ -159,7 +159,7 @@ Supporting [IProgress](https://docs.microsoft.com/ja-jp/dotnet/api/system.iprogr
 await Easing.Create<Linear>(2f).ToProgress(Progress.Create<float>(x => Debug.Log(x)));
 ```
 
-### AnimationCanceller
+### `AnimationCanceller`
 
 ```csharp
 var canceller = go.GetAnimationCanceller().Cancel();
@@ -170,7 +170,7 @@ var canceller = go.GetAnimationCanceller().Cancel();
 Easing.Create<Linear>(0.0f, 0.5f).ToLocalPositionX(go, canceller.Token);
 ```
 
-### Skip
+### `Skip`
 
 - Cancel (using CancellationToken) will stop at the position at the moment of `Cancel`.
 - Skip (using SkipToken) will move to the last position at the moment of `Skip`.
@@ -182,7 +182,7 @@ await UniTask.Delay(TimeSpan.FromSeconds(1));
 skipTokenSource.Skip();
 ```
 
-### UniRx.Extensions
+### `UniRx.Extensions`
 
 ```csharp
 var score = new ReactiveProperty<int>(0);
