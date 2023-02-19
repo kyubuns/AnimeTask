@@ -59,7 +59,7 @@ const float yRangeMin = 5f;
 const float yRangeMax = 10f;
 await Moving.Gravity(
           new Vector2(Random.Range(-xRange, xRange), Random.Range(yRangeMin, yRangeMax)),
-          Vector3.down * 9.8f,
+          Vector2.down * 9.8f,
           5f
       ).ToLocalPosition(shape)
 ```
