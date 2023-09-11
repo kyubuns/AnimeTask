@@ -1,7 +1,17 @@
 # AnimeTask
 
 Task Animation Library for Unity  
-Rx Version! -> [kyubuns/AnimeRx](https://github.com/kyubuns/AnimeRx)
+
+-----
+
+## Recommend
+
+It has been five years since I published this library.  
+Many TweenAnimation libraries have appeared.  
+I recommend PrimeTween which fits my ideology and performs better.  
+[KyryloKuzyk/PrimeTween](https://github.com/KyryloKuzyk/PrimeTween)
+
+-----
 
 ***Read this document in other languages: [日本語](https://github.com/kyubuns/AnimeTask/blob/main/README_ja.md)***
 
