@@ -8,7 +8,8 @@ Task Animation Library for Unity
 
 It has been five years since I published this library.  
 Many TweenAnimation libraries have appeared.  
-I recommend PrimeTween which fits my ideology and performs better.  
+If you are planning to use this library for a new project,  
+I recommend PrimeTween, which fits my philosophy and performs better.  
 [KyryloKuzyk/PrimeTween](https://github.com/KyryloKuzyk/PrimeTween)
 
 -----
