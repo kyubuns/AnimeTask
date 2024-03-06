@@ -2,6 +2,14 @@
 
 Task Animation Library for Unity  
 
+---
+
+> [!WARNING]
+> This is also a very old library.  
+> If you want to use a new one now, I recommend [PrimeTween](https://github.com/KyryloKuzyk/PrimeTween).
+
+---
+
 ***Read this document in other languages: [日本語](https://github.com/kyubuns/AnimeTask/blob/main/README_ja.md)***
 
 ![gif_animation_001](https://user-images.githubusercontent.com/961165/85940937-8c48d500-b95a-11ea-81b5-fddd17166a96.gif)
