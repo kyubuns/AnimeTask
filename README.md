@@ -2,21 +2,7 @@
 
 Task Animation Library for Unity  
 
------
-
-## Recommend
-
-It has been five years since I published this library.  
-Many TweenAnimation libraries have appeared.  
-If you are planning to use this library for a new project,  
-I recommend PrimeTween, which fits my philosophy and performs better.  
-[KyryloKuzyk/PrimeTween](https://github.com/KyryloKuzyk/PrimeTween)
-
------
-
 ***Read this document in other languages: [日本語](https://github.com/kyubuns/AnimeTask/blob/main/README_ja.md)***
-
-<a href="https://www.buymeacoffee.com/kyubuns" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
 ![gif_animation_001](https://user-images.githubusercontent.com/961165/85940937-8c48d500-b95a-11ea-81b5-fddd17166a96.gif)
 
@@ -233,18 +219,3 @@ Reflect the value.
 ## License
 
 MIT License (see [LICENSE](LICENSE))
-
-## Buy me a coffee
-
-Are you enjoying save time?  
-Buy me a coffee if you love my code!  
-https://www.buymeacoffee.com/kyubuns
-
-## "I used it for this game!"
-
-I'd be happy to receive reports like "I used it for this game!"  
-Please contact me by email, twitter or any other means.  
-(This library is MIT licensed, so reporting is NOT mandatory.)  
-[MessageForm](https://kyubuns.dev/message.html)
-
-https://kyubuns.dev/
